@@ -28,6 +28,20 @@ Instalamos un SO GNU/Linux Xubuntu en la MV del servidor.
 
 Realizamos la configuración que se nos proporciona y 
 
+[imagen03](images/03.png)
+
+[imagen04](images/04.png)
+
+[imagen05](images/05.png)
+
+[imagen06](images/06.png)
+
+[imagen07](images/07.png)
+
+[imagen08](images/08.png)
+
+[imagen09](images/09.png)
+
 Comprobamos que todo este bien utilizando los siguientes comandos:
 
 * ip a.
