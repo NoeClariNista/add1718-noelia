@@ -24,6 +24,35 @@ Creamos la MV del servidor con dos interfaces de red.
 
 ## 3.2. Instalación Del SSOO.
 
+Instalamos un SO GNU/Linux Xubuntu en la MV del servidor.
+
+Realizamos la configuración que se nos proporciona y comprobamos que todo este bien por comandos:
+
+* ip a.
+* route -n.
+* hostname -a.
+* hostname -f.
+* uname -a.
+* blkid.
+
+Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
+
 ## 3.3. Instalar El Servicio LTSP.
+
+Para permitir acceso remoto a la máquina utilizamos el comando apt-get install openssh-server.
+
+Modificamos el archivo de ssh y cambiamos la línea que pone PermitRootLogin y ponemos Yes.
+
+Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
+
+Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
+
+Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0. Cambiamos
+
+En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
+
+Ejecutamos el comando ltsp-info para consultar información.
+
+Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para ello utilizamos los comandos ps -ef|grep dhcp y ps -ef|grep ftp.
 
 # 4. Preparar MV Cliente.
