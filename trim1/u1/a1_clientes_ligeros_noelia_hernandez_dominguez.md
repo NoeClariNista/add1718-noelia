@@ -20,13 +20,17 @@ Creamos la MV del servidor con dos interfaces de red.
 
 * La primera interfaz será la externa. Estará configurada en VirtualBox como adaptador puente y nos servirá para comunicarnos con Internet. La IP de esta interfaz de red deber ser estática y será 172.18.20.41, la máscara será de clase B, el gateway será 172.18.0.1 y Servidor DNS será 8.8.4.4. El nombre del equipo será hernandez20d y el nombre del dominio será curso1718.
 
+![imagen01](./images/a1_clientes_ligeros/01.png)
+
 * La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servíra para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y su máscara será de clase C.
+
+![imagen02](./images/a1_clientes_ligeros/02.png)
 
 ## 3.2. Instalación Del SSOO.
 
 Instalamos un SO GNU/Linux Xubuntu en la MV del servidor.
 
-Realizamos la configuración que se nos proporciona y 
+Realizamos la configuración que se nos proporciona y
 
 ![imagen03](./images/a1_clientes_ligeros/03.png)
 
@@ -51,7 +55,14 @@ Comprobamos que todo este bien utilizando los siguientes comandos:
 * uname -a.
 * blkid.
 
+![imagen12](./images/a1_clientes_ligeros/12.png)
+
+![imagen13](./images/a1_clientes_ligeros/13.png)
+
 Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
+
+![imagen14](./images/a1_clientes_ligeros/14.png)
+![imagen15](./images/a1_clientes_ligeros/15.png)
 
 ## 3.3. Instalar El Servicio LTSP.
 
@@ -65,7 +76,7 @@ Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha
 
 Revisamos la configuración de la tarjeta de red interna del servidor. La IP deberá ser estática compatible con la configuración DHCP.
 
-Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0. 
+Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
 
 En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
 
