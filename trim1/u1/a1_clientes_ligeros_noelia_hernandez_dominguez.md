@@ -73,6 +73,8 @@ Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hern
 
 Para permitir acceso remoto a la máquina utilizamos el comando apt-get install openssh-server.
 
+![imagen16](./images/a1_clientes_ligeros/16.png)
+
 Modificamos el archivo de SSH y cambiamos la línea que pone PermitRootLogin y ponemos Yes.
 
 Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
