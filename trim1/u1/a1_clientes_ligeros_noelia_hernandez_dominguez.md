@@ -93,19 +93,39 @@ Revisamos la configuración de la tarjeta de red interna del servidor. La IP deb
 
 Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
 
+![imagen21](./images/a1_clientes_ligeros/21.png)
+
+![imagen22](./images/a1_clientes_ligeros/22.png)
+
 En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
+
+![imagen23](./images/a1_clientes_ligeros/23.png)
 
 Ejecutamos el comando ltsp-info para consultar información sobre nuestra imagen que hemos realizado.
 
+![imagen24](./images/a1_clientes_ligeros/24.png)
+
 Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para ello utilizamos los comandos ps -ef|grep dhcp y ps -ef|grep ftp.
+
+![imagen25](./images/a1_clientes_ligeros/25.png)
 
 # 4. Preparar MV Cliente.
 
 Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM, floppy y la tarjeta de red PXE en modo de red interna.
 
+![imagen26](./images/a1_clientes_ligeros/26.png)
+
+![imagen27](./images/a1_clientes_ligeros/27.png)
+
+![imagen28](./images/a1_clientes_ligeros/28.png)
+
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona correctamente.
 
+
+
 Cuando el cliente se conecte entramos con los usuarios hernandez1, hernandez2 y hernandez3.
+
+
 
 Vamos al servidor como superusuario y en la consola de comandos ponemos los siguientes comandos:
 
@@ -114,4 +134,8 @@ Vamos al servidor como superusuario y en la consola de comandos ponemos los sigu
 * arp, el cual muestra la tabla de ARP (Asociaciones de IP con MAC).
 * netstat -ntap, el cual muestra las conexiones con el exterior.
 
+
+
 Finalmente reiniciamos la MV cliente y grabamos un vídeo mostrando el funcionamiento.
+
+[]()
