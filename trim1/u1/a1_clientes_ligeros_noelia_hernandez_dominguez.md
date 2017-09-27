@@ -1,20 +1,20 @@
-# Clientes Ligeros.
+# **Clientes Ligeros.**
 
-# 1. Clientes Ligeros Con LTSP/Ubuntu.
+# **1. Clientes Ligeros Con LTSP/Ubuntu.**
 
 El cliente ligero es un ordenador básico de dimensiones reducidas (1/3 de un PC normal), que realiza todas sus tareas contra otro más potente a través de la red, generalmente un servidor, adquiriendo la capacidad computacional de éste.
 
 El servidor concentra todo el procesamiento y envía respuesta a través de la red a los Thin Clients. Cada usuario posee una cuenta de acceso que le permite iniciar una sesión en cualquier terminal, dando mayor flexibilidad.
 
-# 2. Preparativos.
+# **2. Preparativos.**
 
 Usaremos 2 MVs para montar clientes ligeros con LTSP.
 
-Para consultar o leer más información ir a su web oficial [LTSP](http://www.ltsp.org/).
+Para consultar o leer más información ir a su web oficial **[LTSP](http://www.ltsp.org/)**.
 
-# 3. Servidor LTSP.
+# **3. Servidor LTSP.**
 
-## 3.1. Preparar La MV Server.
+## **3.1. Preparar La MV Server.**
 
 Creamos la MV del servidor con dos interfaces de red.
 
@@ -24,17 +24,23 @@ Creamos la MV del servidor con dos interfaces de red.
 
 ![imagen12](./images/a1_clientes_ligeros/12.png)
 
-* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servíra para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y su máscara será de clase C.
+* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servírá para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y su máscara será de clase C.
 
 ![imagen02](./images/a1_clientes_ligeros/02.png)
 
 ![imagen13](./images/a1_clientes_ligeros/13.png)
 
-## 3.2. Instalación Del SSOO.
+## **3.2. Instalación Del SSOO.**
 
 Instalamos un SO GNU/Linux Xubuntu en la MV del servidor.
 
-Realizamos la configuración que se nos proporciona y
+Realizamos la siguiente configuración:
+
+~~~
+nombre: noelia.
+nombre de equipo: hernandez20d.
+nombre de usuario: noelia.
+~~~
 
 ![imagen03](./images/a1_clientes_ligeros/03.png)
 
@@ -62,7 +68,6 @@ Comprobamos que todo este bien utilizando los siguientes comandos:
 ~~~
 
 ![imagen10](./images/a1_clientes_ligeros/10.png)
-
 ![imagen11](./images/a1_clientes_ligeros/11.png)
 
 Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
@@ -71,7 +76,7 @@ Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hern
 
 ![imagen15](./images/a1_clientes_ligeros/15.png)
 
-## 3.3. Instalar El Servicio LTSP.
+## **3.3. Instalar El Servicio LTSP.**
 
 Para permitir acceso remoto a la máquina utilizamos el comando apt-get install openssh-server.
 
@@ -111,7 +116,7 @@ Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para e
 
 ![imagen25](./images/a1_clientes_ligeros/25.png)
 
-# 4. Preparar MV Cliente.
+# **4. Preparar MV Cliente.**
 
 Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM, floppy y la tarjeta de red PXE en modo de red interna.
 
