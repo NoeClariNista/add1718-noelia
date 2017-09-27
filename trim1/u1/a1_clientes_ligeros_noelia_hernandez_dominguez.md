@@ -77,7 +77,15 @@ Para permitir acceso remoto a la máquina utilizamos el comando apt-get install 
 
 Modificamos el archivo de SSH y cambiamos la línea que pone PermitRootLogin y ponemos Yes.
 
+![imagen17](./images/a1_clientes_ligeros/17.png)
+
+![imagen18](./images/a1_clientes_ligeros/18.png)
+
+![imagen19](./images/a1_clientes_ligeros/19.png)
+
 Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
+
+![imagen20](./images/a1_clientes_ligeros/20.png)
 
 Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
 
