@@ -121,11 +121,9 @@ Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo ti
 
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona correctamente.
 
-
+![imagen29](./images/a1_clientes_ligeros/29.png)
 
 Cuando el cliente se conecte entramos con los usuarios hernandez1, hernandez2 y hernandez3.
-
-
 
 Vamos al servidor como superusuario y en la consola de comandos ponemos los siguientes comandos:
 
@@ -133,8 +131,6 @@ Vamos al servidor como superusuario y en la consola de comandos ponemos los sigu
 * who, el cual muestra los usuarios conectados al sistema.
 * arp, el cual muestra la tabla de ARP (Asociaciones de IP con MAC).
 * netstat -ntap, el cual muestra las conexiones con el exterior.
-
-
 
 Finalmente reiniciamos la MV cliente y grabamos un vídeo mostrando el funcionamiento.
 
