@@ -22,13 +22,13 @@ Creamos la MV del servidor con dos interfaces de red.
 
 ![imagen01](./images/a1_clientes_ligeros/01.png)
 
-![imagen12](./images/a1_clientes_ligeros/13.png)
+![imagen12](./images/a1_clientes_ligeros/12.png)
 
 * La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servíra para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y su máscara será de clase C.
 
 ![imagen02](./images/a1_clientes_ligeros/02.png)
 
-![imagen13](./images/a1_clientes_ligeros/14.png)
+![imagen13](./images/a1_clientes_ligeros/13.png)
 
 ## 3.2. Instalación Del SSOO.
 
@@ -59,9 +59,9 @@ Comprobamos que todo este bien utilizando los siguientes comandos:
 * uname -a.
 * blkid.
 
-![imagen10](./images/a1_clientes_ligeros/12.png)
+![imagen10](./images/a1_clientes_ligeros/10.png)
 
-![imagen11](./images/a1_clientes_ligeros/13.png)
+![imagen11](./images/a1_clientes_ligeros/11.png)
 
 Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
 
