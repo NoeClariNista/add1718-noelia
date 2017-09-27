@@ -52,12 +52,14 @@ Realizamos la configuración que se nos proporciona y
 
 Comprobamos que todo este bien utilizando los siguientes comandos:
 
+~~~
 * ip a.
 * route -n.
 * hostname -a.
 * hostname -f.
 * uname -a.
 * blkid.
+~~~
 
 ![imagen10](./images/a1_clientes_ligeros/10.png)
 
@@ -119,7 +121,7 @@ Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo ti
 
 ![imagen28](./images/a1_clientes_ligeros/28.png)
 
-Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona correctamente.
+Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
 
 ![imagen29](./images/a1_clientes_ligeros/29.png)
 
@@ -128,3 +130,5 @@ Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos q
 ![imagen31](./images/a1_clientes_ligeros/31.png)
 
 ![imagen32](./images/a1_clientes_ligeros/32.png)
+
+![imagen33](./images/a1_clientes_ligeros/33.png)
