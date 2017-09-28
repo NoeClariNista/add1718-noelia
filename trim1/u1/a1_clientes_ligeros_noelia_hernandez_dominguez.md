@@ -139,13 +139,13 @@ Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo ti
 
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
 
-![imagen29](./images/a1_clientes_ligeros/29.png)
+![imagen29](./images/a1_clientes_ligeros/)
 
 ![imagen30](./images/a1_clientes_ligeros/30.png)
 
-![imagen31](./images/a1_clientes_ligeros/31.png)
+![imagen31](./images/a1_clientes_ligeros/)
 
-![imagen32](./images/a1_clientes_ligeros/32.png)
+![imagen32](./images/a1_clientes_ligeros/)
 
 ![imagen33](./images/a1_clientes_ligeros/33.png)
 
@@ -153,14 +153,28 @@ Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos q
 
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que todo funciona correctamente.
 
+[]()
+
 Cuando el cliente se conecte entramos con los usuarios hernandez1, hernandez2 y hernandez3.
+
+[]()
+
+[]()
+
+[]()
 
 Vamos al servidor como superusuario y en la consola de comandos ponemos los siguientes comandos:
 
+~~~
 * whoami, el cual muestra el usuario actual.
 * who, el cual muestra los usuarios conectados al sistema.
 * arp, el cual muestra la tabla de ARP (Asociaciones de IP con MAC).
 * netstat -ntap, el cual muestra las conexiones con el exterior.
+~~~
+
+[]()
+
+[]()
 
 Finalmente reiniciamos la MV cliente y grabamos un vídeo mostrando el funcionamiento.
 
