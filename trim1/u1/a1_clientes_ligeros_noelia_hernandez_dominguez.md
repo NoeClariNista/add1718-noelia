@@ -68,6 +68,7 @@ Comprobamos que todo este bien utilizando los siguientes comandos:
 ~~~
 
 ![imagen10](./images/a1_clientes_ligeros/10.png)
+
 ![imagen11](./images/a1_clientes_ligeros/11.png)
 
 Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
@@ -94,6 +95,12 @@ Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-
 
 ![imagen20](./images/a1_clientes_ligeros/20.png)
 
+~~~
+A partir de este punto pondre los dos casos de hacer una máquina con imagen de 64 bits y una imagen de 32 bits.
+~~~
+
+### **64 Bits.**
+
 Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
 
 Revisamos la configuración de la tarjeta de red interna del servidor. La IP deberá ser estática compatible con la configuración DHCP.
@@ -116,6 +123,8 @@ Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para e
 
 ![imagen25](./images/a1_clientes_ligeros/25.png)
 
+### **32 Bits.**
+
 # **4. Preparar MV Cliente.**
 
 Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM, floppy y la tarjeta de red PXE en modo de red interna.
@@ -125,6 +134,8 @@ Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo ti
 ![imagen27](./images/a1_clientes_ligeros/27.png)
 
 ![imagen28](./images/a1_clientes_ligeros/28.png)
+
+### **64 Bits.**
 
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
 
@@ -137,3 +148,20 @@ Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos q
 ![imagen32](./images/a1_clientes_ligeros/32.png)
 
 ![imagen33](./images/a1_clientes_ligeros/33.png)
+
+### **32 Bits.**
+
+Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que todo funciona correctamente.
+
+Cuando el cliente se conecte entramos con los usuarios hernandez1, hernandez2 y hernandez3.
+
+Vamos al servidor como superusuario y en la consola de comandos ponemos los siguientes comandos:
+
+* whoami, el cual muestra el usuario actual.
+* who, el cual muestra los usuarios conectados al sistema.
+* arp, el cual muestra la tabla de ARP (Asociaciones de IP con MAC).
+* netstat -ntap, el cual muestra las conexiones con el exterior.
+
+Finalmente reiniciamos la MV cliente y grabamos un vídeo mostrando el funcionamiento.
+
+[]()
