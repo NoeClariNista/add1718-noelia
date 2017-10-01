@@ -4,7 +4,7 @@
 
 El cliente ligero es un ordenador básico de dimensiones reducidas (1/3 de un PC normal), que realiza todas sus tareas contra otro más potente a través de la red, generalmente un servidor, adquiriendo la capacidad computacional de éste.
 
-El servidor concentra todo el procesamiento y envía respuesta a través de la red a los Thin Clients. Cada usuario posee una cuenta de acceso que le permite iniciar una sesión en cualquier terminal, dando mayor flexibilidad.
+El servidor concentra todo el procesamiento y envía respuesta a través de la red a los clientes ligeros. Cada usuario posee una cuenta de acceso que le permite iniciar una sesión en cualquier terminal, dando mayor flexibilidad.
 
 # **2. Preparativos.**
 
@@ -18,13 +18,13 @@ Para consultar o leer más información ir a su web oficial **[LTSP](http://www.
 
 Creamos la MV del servidor con dos interfaces de red.
 
-* La primera interfaz será la externa. Estará configurada en VirtualBox como adaptador puente y nos servirá para comunicarnos con Internet. La IP de esta interfaz de red deber ser estática y será 172.18.20.41, la máscara será de clase B, el gateway será 172.18.0.1 y Servidor DNS será 8.8.4.4. El nombre del equipo será hernandez20d y el nombre del dominio será curso1718.
+* La primera interfaz será la externa. Estará configurada en VirtualBox como adaptador puente y nos servirá para comunicarnos con Internet. La IP de esta interfaz de red deber ser estática y será 172.18.20.41, la máscara será de clase B, el gateway será 172.18.0.1 y el servidor DNS será 8.8.4.4. El nombre del equipo será hernandez20d y el nombre del dominio será curso1718.
 
 ![imagen01](./images/a1_clientes_ligeros/01.png)
 
 ![imagen12](./images/a1_clientes_ligeros/12.png)
 
-* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servírá para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y su máscara será de clase C.
+* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servírá para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y la máscara será de clase C.
 
 ![imagen02](./images/a1_clientes_ligeros/02.png)
 
@@ -40,13 +40,10 @@ Realizamos la siguiente configuración:
 nombre: noelia.
 nombre de equipo: hernandez20d.
 nombre de usuario: noelia.
+nombre de dominio: curso1718.
 ~~~
 
 ![imagen03](./images/a1_clientes_ligeros/03.png)
-
-![imagen04](./images/a1_clientes_ligeros/04.png)
-
-![imagen05](./images/a1_clientes_ligeros/05.png)
 
 ![imagen06](./images/a1_clientes_ligeros/06.png)
 
@@ -96,7 +93,7 @@ Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-
 ![imagen20](./images/a1_clientes_ligeros/20.png)
 
 ~~~
-A partir de este punto pondre los dos casos de hacer una máquina con imagen de 64 bits y una imagen de 32 bits.
+A partir de este punto pondré los dos casos, es decir, con una máquina con una imagen de 64 bits y con una máquina con una imagen de 32 bits.
 ~~~
 
 ### **64 Bits.**
