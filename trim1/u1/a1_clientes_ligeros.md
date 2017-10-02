@@ -47,7 +47,7 @@ nombre de dominio: curso1718.
 
 ![imagen06](./images/a1_clientes_ligeros/06.png)
 
-Vamos a los ficheros de configuración de /etc/hostsname y de /etc/hosts y añadimos las líneas que podemos ver a continuación:
+Vamos a los ficheros de configuración /etc/hostsname y /etc/hosts y añadimos las líneas que podemos ver a continuación:
 
 ![imagen07](./images/a1_clientes_ligeros/07.png)
 
@@ -84,6 +84,8 @@ Modificamos el archivo de SSH y cambiamos la línea que pone PermitRootLogin y p
 
 ![imagen14](./images/a1_clientes_ligeros/14.png)
 
+Reiniciamos el servicio SSH con el comando service ssh restart.
+
 ![imagen15](./images/a1_clientes_ligeros/15.png)
 
 Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
@@ -112,7 +114,7 @@ Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para e
 
 # **4. Preparar MV Cliente.**
 
-Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM, floppy y la tarjeta de red PXE en modo de red interna.
+Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM y la tarjeta de red PXE en modo de red interna. Configuramos la memoria gráfica a 128MB y habilitamos el soporte 3D.
 
 ![imagen22](./images/a1_clientes_ligeros/22.png)
 
@@ -129,5 +131,3 @@ Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos q
 ![imagen27](./images/a1_clientes_ligeros/27.png)
 
 ![imagen28](./images/a1_clientes_ligeros/28.png)
-
-![imagen29](./images/a1_clientes_ligeros/29.png)
