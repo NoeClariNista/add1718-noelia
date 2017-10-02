@@ -22,13 +22,13 @@ Creamos la MV del servidor con dos interfaces de red.
 
 ![imagen01](./images/a1_clientes_ligeros/01.png)
 
-![imagen12](./images/a1_clientes_ligeros/12.png)
-
-* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servírá para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, su IP será 192.168.67.1 y la máscara será de clase C.
-
 ![imagen02](./images/a1_clientes_ligeros/02.png)
 
-![imagen13](./images/a1_clientes_ligeros/13.png)
+* La segunda interfaz será la interna. Estará configurada en VirtualBox como red interna y nos servírá para conectarnos con los clientes ligeros. La IP de esta interfaz de red debe ser estática y debe estar en la misma red de los clientes, la IP será 192.168.67.1 y la máscara será de clase C.
+
+![imagen03](./images/a1_clientes_ligeros/03.png)
+
+![imagen04](./images/a1_clientes_ligeros/04.png)
 
 ## **3.2. Instalación Del SSOO.**
 
@@ -43,9 +43,11 @@ nombre de usuario: noelia.
 nombre de dominio: curso1718.
 ~~~
 
-![imagen03](./images/a1_clientes_ligeros/03.png)
+![imagen05](./images/a1_clientes_ligeros/05.png)
 
 ![imagen06](./images/a1_clientes_ligeros/06.png)
+
+Vamos a los ficheros de configuración de /etc/hostsname y de /etc/hosts y añadimos las líneas que podemos ver a continuación:
 
 ![imagen07](./images/a1_clientes_ligeros/07.png)
 
@@ -66,113 +68,66 @@ Comprobamos que todo este bien utilizando los siguientes comandos:
 
 ![imagen10](./images/a1_clientes_ligeros/10.png)
 
-![imagen11](./images/a1_clientes_ligeros/11.png)
-
 Finalmente creamos tres usuarios locales llamados: hernandez1, hernandez2 y hernandez3.
 
-![imagen14](./images/a1_clientes_ligeros/14.png)
-
-![imagen15](./images/a1_clientes_ligeros/15.png)
+![imagen11](./images/a1_clientes_ligeros/11.png)
 
 ## **3.3. Instalar El Servicio LTSP.**
 
 Para permitir acceso remoto a la máquina utilizamos el comando apt-get install openssh-server.
 
-![imagen16](./images/a1_clientes_ligeros/16.png)
+![imagen12](./images/a1_clientes_ligeros/12.png)
 
 Modificamos el archivo de SSH y cambiamos la línea que pone PermitRootLogin y ponemos Yes.
+
+![imagen13](./images/a1_clientes_ligeros/13.png)
+
+![imagen14](./images/a1_clientes_ligeros/14.png)
+
+![imagen15](./images/a1_clientes_ligeros/15.png)
+
+Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
+
+![imagen16](./images/a1_clientes_ligeros/16.png)
+
+Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
+
+Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
 
 ![imagen17](./images/a1_clientes_ligeros/17.png)
 
 ![imagen18](./images/a1_clientes_ligeros/18.png)
 
-![imagen19](./images/a1_clientes_ligeros/19.png)
-
-Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-get install ltsp-server-standalone.
-
-![imagen20](./images/a1_clientes_ligeros/20.png)
-
-~~~
-A partir de este punto pondré los dos casos, es decir, con una máquina con una imagen de 64 bits y con una máquina con una imagen de 32 bits.
-~~~
-
-### **64 Bits.**
-
-Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
-
-Revisamos la configuración de la tarjeta de red interna del servidor. La IP deberá ser estática compatible con la configuración DHCP.
-
-Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
-
-![imagen21](./images/a1_clientes_ligeros/21.png)
-
-![imagen22](./images/a1_clientes_ligeros/22.png)
-
 En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
 
-![imagen23](./images/a1_clientes_ligeros/23.png)
+![imagen19](./images/a1_clientes_ligeros/19.png)
 
 Ejecutamos el comando ltsp-info para consultar información sobre nuestra imagen que hemos realizado.
 
-![imagen24](./images/a1_clientes_ligeros/24.png)
+![imagen20](./images/a1_clientes_ligeros/20.png)
 
 Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para ello utilizamos los comandos ps -ef|grep dhcp y ps -ef|grep ftp.
 
-![imagen25](./images/a1_clientes_ligeros/25.png)
-
-### **32 Bits.**
+![imagen21](./images/a1_clientes_ligeros/21.png)
 
 # **4. Preparar MV Cliente.**
 
 Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM, floppy y la tarjeta de red PXE en modo de red interna.
 
-![imagen26](./images/a1_clientes_ligeros/26.png)
+![imagen22](./images/a1_clientes_ligeros/22.png)
 
-![imagen27](./images/a1_clientes_ligeros/27.png)
+![imagen23](./images/a1_clientes_ligeros/23.png)
 
-![imagen28](./images/a1_clientes_ligeros/28.png)
-
-### **64 Bits.**
+![imagen24](./images/a1_clientes_ligeros/24.png)
 
 Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
 
-![imagen29](./images/a1_clientes_ligeros/)
+![imagen25](./images/a1_clientes_ligeros/25.png)
 
-![imagen30](./images/a1_clientes_ligeros/30.png)
+![imagen26](./images/a1_clientes_ligeros/26.png)
 
-![imagen31](./images/a1_clientes_ligeros/)
+![imagen27](./images/a1_clientes_ligeros/27)
 
-![imagen32](./images/a1_clientes_ligeros/)
+![imagen28](./images/a1_clientes_ligeros/28)
 
-![imagen33](./images/a1_clientes_ligeros/33.png)
-
-### **32 Bits.**
-
-Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que todo funciona correctamente.
-
-[]()
-
-Cuando el cliente se conecte entramos con los usuarios hernandez1, hernandez2 y hernandez3.
-
-[]()
-
-[]()
-
-[]()
-
-Vamos al servidor como superusuario y en la consola de comandos ponemos los siguientes comandos:
-
-~~~
-* whoami, el cual muestra el usuario actual.
-* who, el cual muestra los usuarios conectados al sistema.
-* arp, el cual muestra la tabla de ARP (Asociaciones de IP con MAC).
-* netstat -ntap, el cual muestra las conexiones con el exterior.
-~~~
-
-[]()
-
-[]()
-
-Finalmente reiniciamos la MV cliente y grabamos un vídeo mostrando el funcionamiento.
-
-[]()
+![imagen29](./images/a1_clientes_ligeros/29.png)
