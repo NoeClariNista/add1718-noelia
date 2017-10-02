@@ -126,8 +126,8 @@ Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos q
 
 ![imagen26](./images/a1_clientes_ligeros/26.png)
 
-![imagen27](./images/a1_clientes_ligeros/27)
+![imagen27](./images/a1_clientes_ligeros/27.png)
 
-![imagen28](./images/a1_clientes_ligeros/28)
+![imagen28](./images/a1_clientes_ligeros/28.png)
 
 ![imagen29](./images/a1_clientes_ligeros/29.png)
