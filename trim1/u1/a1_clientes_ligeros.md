@@ -94,40 +94,42 @@ Instalamos el servidor de clientes ligeros, para ello utilizamos el comando apt-
 
 Ahora creamos una imagen del SO utilizando el comando ltsp-build-client, y dicha imagen se cargará en la memoria de los clientes ligeros.
 
-Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
-
 ![imagen17](./images/a1_clientes_ligeros/17.png)
+
+Revisamos la configuración del servicio DHCP instalado junto con LTSP, para ello vamos a consultar el fichero de configuración /etc/ltsp/dhcpd.conf y ahí comprobamos las rutas de option root-path /opt/ltsp/amd64 y filename /ltsp/amd64/pxelinux.0.
 
 ![imagen18](./images/a1_clientes_ligeros/18.png)
 
-En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
-
 ![imagen19](./images/a1_clientes_ligeros/19.png)
 
-Ejecutamos el comando ltsp-info para consultar información sobre nuestra imagen que hemos realizado.
+En el fichero /etc/ltsp/dhcpf.conf modificamos el valor de range por 192.168.67.120 192.168.67.220.
 
 ![imagen20](./images/a1_clientes_ligeros/20.png)
 
-Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para ello utilizamos los comandos ps -ef|grep dhcp y ps -ef|grep ftp.
+Ejecutamos el comando ltsp-info para consultar información sobre nuestra imagen que hemos realizado.
 
 ![imagen21](./images/a1_clientes_ligeros/21.png)
+
+Reiniciamos el servidor y comprobamos que los servicios están corriendo. Para ello utilizamos los comandos ps -ef|grep dhcp y ps -ef|grep ftp.
+
+![imagen22](./images/a1_clientes_ligeros/22.png)
 
 # **4. Preparar MV Cliente.**
 
 Creamos la MV cliente en VirtualBox sin disco duro y sin unidad de DVD, sólo tiene RAM y la tarjeta de red PXE en modo de red interna. Configuramos la memoria gráfica a 128MB y habilitamos el soporte 3D.
 
-![imagen22](./images/a1_clientes_ligeros/22.png)
-
 ![imagen23](./images/a1_clientes_ligeros/23.png)
 
 ![imagen24](./images/a1_clientes_ligeros/24.png)
 
-Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
-
 ![imagen25](./images/a1_clientes_ligeros/25.png)
+
+Con el servidor encendido, iniciamos la MV cliente desde red/PXE y comprobamos que funciona pero nos da un error.
 
 ![imagen26](./images/a1_clientes_ligeros/26.png)
 
 ![imagen27](./images/a1_clientes_ligeros/27.png)
 
 ![imagen28](./images/a1_clientes_ligeros/28.png)
+
+![imagen29](./images/a1_clientes_ligeros/29.png)
