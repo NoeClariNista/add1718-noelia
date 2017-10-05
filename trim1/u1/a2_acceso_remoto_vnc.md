@@ -66,11 +66,11 @@ Dicha herramienta necesita una contraseña para luego cuando nos conectemos desd
 
 ![imagen11](./images/a2_acceso_remoto_vnc/11.png)
 
-Revisar la configuración del cortafuegos del servidor VNC Windows para permitir VNC.
+Revisar la configuración del cortafuegos del Servidor VNC Windows para permitir VNC.
 
 ![imagen12](./images/a2_acceso_remoto_vnc/12.png)
 
-En el cliente usaremos TightVNC Viewer.
+En el Cliente usaremos TightVNC Viewer.
 
 ![imagen13](./images/a2_acceso_remoto_vnc/13.png)
 
@@ -80,7 +80,7 @@ En el cliente usaremos TightVNC Viewer.
 
 ## **3.1. Windows Cliente - Windows Server.**
 
-Introducimos la dirección IP del Windows Server y su contraseña y nos hará la conexión y podremos ver lo que pasa en la otra maquina simultáneamente.
+Introducimos la dirección IP del Windows Server y su contraseña, nos hará la conexión y podremos ver lo que pasa en la otra maquina simultáneamente.
 
 ![imagen16](./images/a2_acceso_remoto_vnc/16.png)
 
@@ -150,11 +150,11 @@ Para ambas máquina ponemos el mismo nombre de usuario, activamos el cortafuegos
 
 ![imagen35](./images/a2_acceso_remoto_vnc/35.png)
 
-En OpenSUSE tenemos el servidor VNC en el Yast y solo tenemos que activarlo.
+En OpenSUSE tenemos el Servidor VNC en el Yast y solo tenemos que activarlo.
 
 ![imagen36](./images/a2_acceso_remoto_vnc/36.png)
 
-Dentro del servidor VNC tenemos que permitir conexión remota y también abrimos los puertos VNC en el cortafuegos.
+Dentro del Servidor VNC tenemos que permitir conexión remota y también abrimos los puertos VNC en el cortafuegos.
 
 ![imagen37](./images/a2_acceso_remoto_vnc/37.png)
 
