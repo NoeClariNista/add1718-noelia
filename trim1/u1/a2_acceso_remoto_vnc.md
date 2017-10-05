@@ -20,7 +20,7 @@ Vamos a realizar las siguientes conexiones remotas VNC:
 
 * Acceder a GNU/Linux OpenSUSE Leap 42.2 Server desde Windows 10 Cliente.
 
-* Aceder a GNU/Linux OpenSUSE Leap 42.2 Server desde GNU/Linux OpenSUSE Leap 42.2 Cliente.
+* Acceder a GNU/Linux OpenSUSE Leap 42.2 Server desde GNU/Linux OpenSUSE Leap 42.2 Cliente.
 
 * Acceder a Windows 10 Server desde GNU/Linux OpenSUSE Leap 42.2 Cliente.
 
@@ -52,7 +52,7 @@ Ahora configuramos la máquina virtual de Windows 10 Cliente.
 
 ![imagen06](./images/a2_acceso_remoto_vnc/06.png)
 
-TightVNC es una herramienta libre disponible para Windows. En el servidor VNC usaremos TightVNC server.
+TightVNC es una herramienta libre disponible para Windows. En el Servidor VNC usaremos TightVNC Server.
 
 ![imagen07](./images/a2_acceso_remoto_vnc/07.png)
 
@@ -70,7 +70,7 @@ Revisar la configuración del cortafuegos del servidor VNC Windows para permitir
 
 ![imagen12](./images/a2_acceso_remoto_vnc/12.png)
 
-En el cliente usaremos TightVNC viewer.
+En el cliente usaremos TightVNC Viewer.
 
 ![imagen13](./images/a2_acceso_remoto_vnc/13.png)
 
@@ -80,7 +80,7 @@ En el cliente usaremos TightVNC viewer.
 
 ## **3.1. Windows Cliente - Windows Server.**
 
-Introducimos la dirección IP del Windows Server y su contraseña y nos hara la conexión y podremos ver lo que pasa en la otra maquina simultaneamente.
+Introducimos la dirección IP del Windows Server y su contraseña y nos hará la conexión y podremos ver lo que pasa en la otra maquina simultáneamente.
 
 ![imagen16](./images/a2_acceso_remoto_vnc/16.png)
 
@@ -90,13 +90,13 @@ Introducimos la dirección IP del Windows Server y su contraseña y nos hara la 
 
 ![imagen19](./images/a2_acceso_remoto_vnc/19.png)
 
-Ejecutamos el comando netstat -n desde la máquina del cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
+Ejecutamos el comando netstat -n desde la máquina del Cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
 
 ![imagen20](./images/a2_acceso_remoto_vnc/20.png)
 
 ## **3.2. Windows Cliente - OpenSUSE Server.**
 
-Ponemos en la máquina del cliente vncviewer 172.18.20.11:5901.
+Ponemos en la máquina del Cliente Vncviewer 172.18.20.11:5901.
 
 ![imagen21](./images/a2_acceso_remoto_vnc/21.png)
 
@@ -104,7 +104,7 @@ Ponemos en la máquina del cliente vncviewer 172.18.20.11:5901.
 
 ![imagen23](./images/a2_acceso_remoto_vnc/23.png)
 
-Ejecutamos el comando netstat -n desde la máquina del cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
+Ejecutamos el comando netstat -n desde la máquina del Cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
 
 ![imagen24](./images/a2_acceso_remoto_vnc/24.png)
 
@@ -170,17 +170,17 @@ Empezamos la instalación de dicho servicio, instalando los paquetes xorg-x11 y 
 
 ## **4.1. OpenSUSE Cliente - OpenSUSE Server.**
 
-vncviewer es un cliente VNC que viene con OpenSUSE. En la conexion remota, hay que especificar la IP, en mi caso la IP es 5901, para ello utilice el comando nmap -Pn 172.18.20.31, y ahí me sale el número de mi IP.
+Vncviewer es un Cliente VNC que viene con OpenSUSE. En la conexión remota, hay que especificar la IP, en mi caso la IP es 5901, para ello utilice el comando nmap -Pn 172.18.20.31, y ahí me sale el número de mi IP.
 
 ![imagen41](./images/a2_acceso_remoto_vnc/41.png)
 
-Ponemos en la máquina del cliente vncviewer 172.18.20.11:5901.
+Ponemos en la máquina del Cliente vncviewer 172.18.20.11:5901.
 
 ![imagen42](./images/a2_acceso_remoto_vnc/42.png)
 
 ![imagen43](./images/a2_acceso_remoto_vnc/43.png)
 
-Ejecutamos el comando netstat -ntap desde la máquina del cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
+Ejecutamos el comando netstat -ntap desde la máquina del Cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
 
 ![imagen44](./images/a2_acceso_remoto_vnc/44.png)
 
@@ -194,7 +194,7 @@ Introducimos la dirección IP del Windows Server.
 
 ![imagen47](./images/a2_acceso_remoto_vnc/47.png)
 
-Ejecutamos el comando netstat -ntap desde la máquina del cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
+Ejecutamos el comando netstat -ntap desde la máquina del Cliente para ver que se conectan entre ambas máquinas virtuales estableciendo conexiones remotas VNC.
 
 ![imagen48](./images/a2_acceso_remoto_vnc/48.png)
 
@@ -202,10 +202,10 @@ Ejecutamos el comando netstat -ntap desde la máquina del cliente para ver que s
 
 ~~~
 
-Hay varias formas de usar vncviewer:
-- vncviewer IP-vnc-server:590N
-- vncviewer IP-vnc-server:N
-- vncviewer IP-vnc-server::590N
+Hay varias formas de usar Vncviewer:
+- vncviewer IP-VNC-Server:590N
+- vncviewer IP-VNC-Server:N
+- vncviewer IP-VNC-Server::590N
 
 ~~~
 
