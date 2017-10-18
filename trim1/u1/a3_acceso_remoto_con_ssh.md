@@ -8,9 +8,9 @@ ___
 
 Vamos a necesitar las siguientes 3 MVs para esta práctica:
 
-* Un servidor GNU/Linux OpenSUSE (IP 172.18.20.31).
-* Un cliente GNU/Linux OpenSUSE (IP 172.18.20.32).
-* Un cliente Windows7 (IP 172.18.20.11).
+* Un servidor GNU/Linux OpenSUSE.
+* Un cliente GNU/Linux OpenSUSE.
+* Un cliente Windows 7.
 
 ___
 
@@ -30,18 +30,18 @@ Para comprobar los cambios ejecutamos varios comandos.
 
 ~~~
 
-ip a               #Comprobar IP y máscara
-route -n           #Comprobar puerta de enlace
-ping 8.8.4.4 -i 2  #Comprobar conectividad externa
-host www.google.es #Comprobar el servidor DNS
-ping ssh-clientXXa #Comprobar conectividad con cliente A
-ping ssh-clientXXb #Comprobar conectividad con cliente B
-lsblk              #Consultar particiones
-blkid              #Consultar UUID de la instalación
+ip a, comprobamos la IP y la máscara.
+route -n, comprobamos la puerta de enlace.
+ping 8.8.4.4 -i 2, comprobamos la conectividad externa.
+host www.google.es, comprobamos el servidor DNS.
+ping ssh-client20a, comprobamos la conectividad con el cliente A.
+ping ssh-client20b, comprobamos conectividad con el cliente B.
+lsblk, consultamos las particiones.
+blkid, consultamos UUID de la instalación.
 
 ~~~
 
-Creamos los siguientes usuarios en ssh-server20:
+Creamos los siguientes usuarios en ssh-server20.
 
 * hernandez1.
 * hernandez2.
