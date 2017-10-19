@@ -6,7 +6,7 @@ ___
 
 # **1. Introducción.**
 
-Vamos a necesitar las siguientes 3 MVs para esta práctica:
+Vamos a necesitar las siguientes 3 MVs para esta práctica.
 
 * Un Servidor GNU/Linux OpenSUSE.
 * Un Cliente GNU/Linux OpenSUSE.
@@ -43,7 +43,7 @@ route -n, comprobamos la puerta de enlace.
 ping 8.8.4.4 -i 2, comprobamos la conectividad externa.
 host www.google.es, comprobamos el servidor DNS.
 ping ssh-client20a, comprobamos la conectividad con el cliente A.
-ping ssh-client20b, comprobamos conectividad con el cliente B.
+ping ssh-client20b, comprobamos la conectividad con el cliente B.
 lsblk, consultamos las particiones.
 blkid, consultamos UUID de la instalación.
 
@@ -64,19 +64,23 @@ Creamos los siguientes usuarios en ssh-server20.
 
 ![imagen08](./images/a3_acceso_remoto_con_ssh/08.png)
 
+Comprobamos haciendo ping a ambos equipos.
+
+![imagen14](./images/a3_acceso_remoto_con_ssh/14.png)
+
 ## **2.2. Cliente GNU/Linux.**
 
 Configuramos el cliente1 GNU/Linux con los siguientes valores.
 
-* SO OpenSUSE.
-* IP estática 172.18.20.32.
+* SO GNU/Linux: OpenSUSE.
+* IP estática: 172.18.20.32.
 * Nombre de equipo: ssh-client20a.
 
 ![imagen09](./images/a3_acceso_remoto_con_ssh/09.png)
 
 ![imagen10](./images/a3_acceso_remoto_con_ssh/10.png)
 
-Añadimos en /etc/hosts el equipo ssh-server20, y ssh-client20b.
+Añadimos en /etc/hosts los equipos ssh-server20 y ssh-client20b.
 
 ![imagen11](./images/a3_acceso_remoto_con_ssh/11.png)
 
@@ -92,9 +96,15 @@ Comprobamos haciendo ping a ambos equipos.
 
 Instalamos el software cliente SSH en Windows. Para este ejemplo usaremos PuTTY.
 
+Vamos a su página web.
+
 ![imagen15](./images/a3_acceso_remoto_con_ssh/15.png)
 
+Nos descargamos la versión para Windows.
+
 ![imagen16](./images/a3_acceso_remoto_con_ssh/16.png)
+
+Empezamos a instalar PuTTY siguiendo las siguientes imagenes.
 
 ![imagen17](./images/a3_acceso_remoto_con_ssh/17.png)
 
@@ -104,17 +114,17 @@ Instalamos el software cliente SSH en Windows. Para este ejemplo usaremos PuTTY.
 
 ![imagen20](./images/a3_acceso_remoto_con_ssh/20.png)
 
-Configuramos el cliente2 Windows con los siguientes valores:
+Configuramos el cliente2 Windows con los siguientes valores.
 
-* SO Windows 7.
-* IP estática 172.18.20.11.
+* SO Windows: Windows 7.
+* IP estática: 172.18.20.11.
 * Nombre de equipo: ssh-client20b.
 
 ![imagen21](./images/a3_acceso_remoto_con_ssh/21.png)
 
 ![imagen22](./images/a3_acceso_remoto_con_ssh/22.png)
 
-Añadimos en C:\Windows\System32\drivers\etc\hosts el equipo ssh-server20 y ssh-client20a.
+Añadimos en C:\Windows\System32\drivers\etc\hosts los equipos ssh-server20 y ssh-client20a.
 
 ![imagen23](./images/a3_acceso_remoto_con_ssh/23.png)
 
@@ -128,48 +138,41 @@ Comprobamos haciendo ping a ambos equipos.
 
 Instalamos el servicio SSH en la máquina ssh-server.
 
-Desde terminal zypper search openssh muestra los paquetes instalados o no con nombre openssh*.
+Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o no con nombre openssh*.
 
 ![imagen25](./images/a3_acceso_remoto_con_ssh/25.png)
 
-Desde terminal zypper install openssh, instala el paquete OpenSSH.
+Ahora utilizamos el comando zypper install openssh y nos instalara el paquete OpenSSH.
 
 ![imagen26](./images/a3_acceso_remoto_con_ssh/26.png)
 
 ## **3.1 Comprobación.**
 
-Desde el propio ssh-server, verificamos que el servicio está en ejecución. Para ello utilizamos el comando systemctl status sshd, esta es la forma de comprobarlo en systemd.
+Desde el propio ssh-server tenemos que verificar que el servicio está en ejecución. Para ello utilizamos el comando systemctl status sshd.
 
 ![imagen27](./images/a3_acceso_remoto_con_ssh/27.png)
 
-ps -ef|grep sshd, esta es la forma de comprobarlo mirando los procesos del sistema.
+Utilizamos el comando ps -ef|grep sshd y miraremos los procesos del sistema.
 
 ![imagen28](./images/a3_acceso_remoto_con_ssh/28.png)
 
-netstat -ntap: Comprobar que el servicio está escuchando por el puerto 22.
+Ahora utilizamos el comando netstat -ntap para comprobar que el servicio está escuchando por el puerto 22.
 
 ![imagen29](./images/a3_acceso_remoto_con_ssh/29.png)
 
 ## **3.2. Primera Conexión SSH Desde ssh-client20a.**
 
-Comprobamos la conectividad con el servidor desde el cliente con ping ssh-server.
+Comprobamos la conectividad con el servidor desde el cliente con un ping ssh-server.
 
 ![imagen30](./images/a3_acceso_remoto_con_ssh/30.png)
 
-Desde el cliente comprobamos que el servicio SSH es visible con nmap ssh-server. Debe mostrarnos que el puerto 22 está abierto. Primero instalamos el nmap.
+Desde el cliente comprobamos que el servicio SSH es visible con el comando nmap ssh-server, al utilizar este comando nos debe mostrar que el puerto 22 está abierto. Primero instalamos el nmap en el cliente20a.
 
 ![imagen31](./images/a3_acceso_remoto_con_ssh/31.png)
 
 ![imagen32](./images/a3_acceso_remoto_con_ssh/32.png)
 
-Si esto falla debemos comprobar en el servidor la configuración del cortafuegos.
-
-![imagen33](./images/a3_acceso_remoto_con_ssh/33.png)
-
-![imagen34](./images/a3_acceso_remoto_con_ssh/34.png)
-
 Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usando el usuario hernandez1.
-
 
 Desde el ssh-client1 nos conectamos mediante ssh hernandez1@ssh-server.
 
@@ -181,7 +184,9 @@ Si nos volvemos a conectar tendremos.
 
 ![imagen37](./images/a3_acceso_remoto_con_ssh/37.png)
 
-Comprobamos contenido del fichero $HOME/.ssh/known_hosts en el equipo ssh-client1. OJO si el prompt pone ssh-server están el el servidor, y si pone ssh-client1 están el el cliente1.
+![imagen37](./images/a3_acceso_remoto_con_ssh/.png)
+
+Comprobamos el contenido del fichero $HOME/.ssh/known_hosts en el equipo ssh-client1.
 
 ![imagen38](./images/a3_acceso_remoto_con_ssh/38.png)
 
@@ -193,11 +198,11 @@ Una vez llegados a este punto deben de funcionar correctamente las conexiones SS
 
 # **4. ¿Y Si Cambiamos Las Claves Del Servidor?.**
 
-Confirmamos que existen los siguientes ficheros en /etc/ssh, Los ficheros ssh_host*key y ssh_host*key.pub, son ficheros de clave pública/privada que identifican a nuestro servidor frente a nuestros clientes:
+Confirmamos que existen los siguientes ficheros en /etc/ssh, los ficheros ssh_host*key y ssh_host*key.pub, son ficheros de clave pública/privada que identifican a nuestro servidor frente a nuestros clientes.
 
 ![imagen39](./images/a3_acceso_remoto_con_ssh/39.png)
 
-Modificamos el fichero de configuración SSH (/etc/ssh/sshd_config) para dejar una única línea: HostKey /etc/ssh/ssh_host_rsa_key. Comentar el resto de líneas con configuración HostKey. Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro servidor. Con este cambio decimos que sólo vamos a usar las claves del tipo RSA.
+Modificamos el fichero de configuración SSH (/etc/ssh/sshd_config) para dejar una única línea: HostKey /etc/ssh/ssh_host_rsa_key. Comentamos el resto de líneas con configuración HostKey. Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro servidor. Con este cambio decimos que sólo vamos a usar las claves del tipo RSA.
 
 ![imagen40](./images/a3_acceso_remoto_con_ssh/40.png)
 
@@ -207,23 +212,23 @@ Modificamos el fichero de configuración SSH (/etc/ssh/sshd_config) para dejar u
 
 Vamos a cambiar o volver a generar nuevas claves públicas/privadas para la identificación de nuestro servidor.
 
-En ssh-server, como usuario root ejecutamos: ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key.
+En ssh-server, como usuario root ejecutamos el comando ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key.
 
 ![imagen42](./images/a3_acceso_remoto_con_ssh/42.png)
 
 No ponemos password al certificado de la máquina.
 
-Reiniciamos el servicio SSH: systemctl restart sshd.
-
-Comprobamos que el servicio está en ejecución correctamente: systemctl status sshd.
+Reiniciamos el servicio SSH con el comando systemctl restart sshd y también comprobamos que el servicio está en ejecución correctamente con el comando systemctl status sshd.
 
 ![imagen43](./images/a3_acceso_remoto_con_ssh/43.png)
 
 ## **4.2. Comprobamos.**
 
-Comprobamos qué sucede al volver a conectarnos desde los dos clientes, usando los usuarios hernandez2 y hernandez1. ¿Qué sucede?
+Comprobamos qué sucede al volver a conectarnos desde los dos clientes, usando los usuarios hernandez2 y hernandez1.
 
 ![imagen44](./images/a3_acceso_remoto_con_ssh/44.png)
+
+¿Qué sucede?
 
 ---
 
@@ -245,7 +250,7 @@ fi
 
 ![imagen46](./images/a3_acceso_remoto_con_ssh/46.png)
 
-Además, creamos el fichero /home/hernandez1/.alias con el siguiente contenido:
+Además, creamos el fichero /home/hernandez1/.alias con el siguiente contenido.
 
 ![imagen47](./images/a3_acceso_remoto_con_ssh/47.png)
 
@@ -259,7 +264,7 @@ alias s='ssh'
 
 ![imagen48](./images/a3_acceso_remoto_con_ssh/48.png)
 
-Comprobamos funcionamiento de la conexión SSH desde cada cliente.
+Comprobamos el funcionamiento de la conexión SSH desde cada cliente.
 
 ![imagen49](./images/a3_acceso_remoto_con_ssh/49.png)
 
@@ -271,7 +276,7 @@ Comprobamos funcionamiento de la conexión SSH desde cada cliente.
 
 El objetivo de este apartado es el de configurar SSH para poder acceder desde el cliente1, usando el hernandez4 sin poner password, pero usando claves pública/privada.
 
-Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo cliente al servidor con el usuario 1er-apellido-alumno4.
+Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo cliente al servidor con el usuario hernandez4.
 
 Vamos a la máquina ss-client20a.
 
@@ -324,7 +329,6 @@ Comprobamos que no está instalada APP1: zypper se APP1.
 ![imagen62](./images/a3_acceso_remoto_con_ssh/62.png)
 
 Comprobamos desde el cliente20a, que funciona APP1(del servidor).
-
 Con el comando ssh -X remoteuser1@ssh-server, podemos conectarnos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
 
 ![imagen63](./images/a3_acceso_remoto_con_ssh/63.png)
@@ -360,29 +364,37 @@ ___
 # **9. Restricciones De Uso.**
 
 Vamos a modificar los usuarios del servidor SSH para añadir algunas restricciones de uso del servicio.
-Restricción sobre un usuario
 
-Vamos a crear una restricción de uso del SSH para un usuario:
+## **9.1. Restricción Sobre Un Usuario.**
 
-En el servidor tenemos el usuario remoteuser2. Desde local en el servidor podemos usar sin problemas el usuario.
+Vamos a crear una restricción de uso del SSH para un usuario.
+
+En el servidor tenemos el usuario hernandez2. Desde local en el servidor podemos usar sin problemas el usuario.
 
 Vamos a modificar SSH de modo que al usar el usuario por ssh desde los clientes tendremos permiso denegado.
 
-Capturar imagen de los siguientes pasos:
+Consultamos o modificamos el fichero de configuración del servidor SSH (/etc/ssh/sshd_config) para restringir el acceso a determinados usuarios.
 
-    Consultar/modificar fichero de configuración del servidor SSH (/etc/ssh/sshd_config) para restringir el acceso a determinados usuarios. Consultar las opciones AllowUsers, DenyUsers. Más información en: man sshd_config y en el Anexo de este enunciado.
-    Comprobarlo la restricción al acceder desde los clientes.
+Consultamos las opciones AllowUsers, DenyUsers, para ello vamos a la terminal y ponemos el comando man sshd_config y buscamos AllowUsers y DenyUsers.
 
-Restricción sobre una aplicación
+Comprobamos la restricción al acceder desde los clientes.
+
+## **9.2. Restricción Sobre Una Aplicación.**
 
 Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 
-    Crear grupo remoteapps
-    Incluir al usuario remoteuser4 en el grupo remoteapps.
-    Localizar el programa APP1. Posiblemente tenga permisos 755.
-    Poner al programa APP1 el grupo propietario a remoteapps.
-    Poner los permisos del ejecutable de APP1 a 750. Para impedir que los usurios que no pertenezcan al grupo puedan ejecutar el programa.
-    Comprobamos el funcionamiento en el servidor.
-    Comprobamos el funcionamiento desde el cliente.
+Creamos un grupo remoteapps.
+
+Incluimos al usuario hernandez4 en el grupo remoteapps.
+
+Localizamos el programa APP1. Posiblemente tenga permisos 755.
+
+Ponemos al programa APP1 el grupo propietario a remoteapps.
+
+Ponemos los permisos del ejecutable de APP1 a 750. Para impedir que los usurios que no pertenezcan al grupo puedan ejecutar el programa.
+
+Comprobamos el funcionamiento en el servidor.
+
+Comprobamos el funcionamiento desde el cliente.
 
 ---
