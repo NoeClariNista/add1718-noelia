@@ -18,7 +18,7 @@ ___
 
 ## **2.1. Servidor SSH.**
 
-Configuramos el servidor GNU/Linux con siguientes valores.
+Configuramos el Servidor GNU/Linux con siguientes valores.
 
 * SO GNU/Linux: OpenSUSE.
 * IP estática: 172.18.20.31.
@@ -50,10 +50,6 @@ blkid, consultamos UUID de la instalación.
 ~~~
 
 ![imagen05](./images/a3_acceso_remoto_con_ssh/05.png)
-
-![imagen06](./images/a3_acceso_remoto_con_ssh/06.png)
-
-![imagen07](./images/a3_acceso_remoto_con_ssh/07.png)
 
 Creamos los siguientes usuarios en ssh-server20.
 
@@ -90,13 +86,11 @@ Comprobamos haciendo ping a ambos equipos.
 
 ![imagen13](./images/a3_acceso_remoto_con_ssh/13.png)
 
-![imagen14](./images/a3_acceso_remoto_con_ssh/14.png)
-
 ## **2.3 Cliente Windows.**
 
 Instalamos el software cliente SSH en Windows. Para este ejemplo usaremos PuTTY.
 
-Vamos a su página web.
+Vamos a la página web de [Putty](http://www.putty.org/)
 
 ![imagen15](./images/a3_acceso_remoto_con_ssh/15.png)
 
@@ -152,7 +146,7 @@ Desde el propio ssh-server tenemos que verificar que el servicio está en ejecuc
 
 ![imagen27](./images/a3_acceso_remoto_con_ssh/27.png)
 
-Utilizamos el comando ps -ef|grep sshd y miraremos los procesos del sistema.
+Utilizamos el comando ps -ef | grep sshd para mirar los procesos del sistema.
 
 ![imagen28](./images/a3_acceso_remoto_con_ssh/28.png)
 
@@ -178,7 +172,7 @@ Desde el ssh-client1 nos conectamos mediante ssh hernandez1@ssh-server.
 
 ![imagen35](./images/a3_acceso_remoto_con_ssh/35.png)
 
-![imagen36](./images/a3_acceso_remoto_con_ssh/36.png) > revisar la imagenes. mirar desde windows cliente.
+![imagen36](./images/a3_acceso_remoto_con_ssh/36.png)
 
 Si nos volvemos a conectar tendremos.
 
@@ -190,9 +184,9 @@ Comprobamos el contenido del fichero $HOME/.ssh/known_hosts en el equipo ssh-cli
 
 ![imagen38](./images/a3_acceso_remoto_con_ssh/38.png)
 
-¿Te suena la clave que aparece? Es la clave de identificación de la máquina ssh-server.
+Lo que nos aparece es la clave de identificación de la máquina ssh-server.
 
-Una vez llegados a este punto deben de funcionar correctamente las conexiones SSH desde los dos clientes.
+Ya llegados a este punto podemos ver que funciionan correctamente las conexiones SSH desde los dos clientes.
 
 ---
 
@@ -203,8 +197,6 @@ Confirmamos que existen los siguientes ficheros en /etc/ssh, los ficheros ssh_ho
 ![imagen39](./images/a3_acceso_remoto_con_ssh/39.png)
 
 Modificamos el fichero de configuración SSH (/etc/ssh/sshd_config) para dejar una única línea: HostKey /etc/ssh/ssh_host_rsa_key. Comentamos el resto de líneas con configuración HostKey. Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro servidor. Con este cambio decimos que sólo vamos a usar las claves del tipo RSA.
-
-![imagen40](./images/a3_acceso_remoto_con_ssh/40.png)
 
 ![imagen41](./images/a3_acceso_remoto_con_ssh/41.png)
 
@@ -375,26 +367,46 @@ Vamos a modificar SSH de modo que al usar el usuario por ssh desde los clientes 
 
 Consultamos o modificamos el fichero de configuración del servidor SSH (/etc/ssh/sshd_config) para restringir el acceso a determinados usuarios.
 
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
 Consultamos las opciones AllowUsers, DenyUsers, para ello vamos a la terminal y ponemos el comando man sshd_config y buscamos AllowUsers y DenyUsers.
 
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
 Comprobamos la restricción al acceder desde los clientes.
+
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
 
 ## **9.2. Restricción Sobre Una Aplicación.**
 
 Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 
-Creamos un grupo remoteapps.
+Creamos un grupo remoteapps e incluimos al usuario hernandez4 en el grupo remoteapps.
 
-Incluimos al usuario hernandez4 en el grupo remoteapps.
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
 
 Localizamos el programa APP1. Posiblemente tenga permisos 755.
 
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
 Ponemos al programa APP1 el grupo propietario a remoteapps.
+
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
 
 Ponemos los permisos del ejecutable de APP1 a 750. Para impedir que los usurios que no pertenezcan al grupo puedan ejecutar el programa.
 
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
 Comprobamos el funcionamiento en el servidor.
 
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
+
 Comprobamos el funcionamiento desde el cliente.
+
+![imagen](./images/a3_acceso_remoto_con_ssh/.png)
 
 ---
