@@ -66,7 +66,7 @@ Comprobamos haciendo ping a ambos equipos.
 
 ## **2.2. Cliente GNU/Linux.**
 
-Configuramos el cliente1 GNU/Linux con los siguientes valores.
+Configuramos el Cliente GNU/Linux con los siguientes valores.
 
 * SO GNU/Linux: OpenSUSE.
 * IP estática: 172.18.20.32.
@@ -88,7 +88,7 @@ Comprobamos haciendo ping a ambos equipos.
 
 ## **2.3 Cliente Windows.**
 
-Instalamos el software cliente SSH en Windows. Para este ejemplo usaremos PuTTY.
+Instalamos el software Cliente SSH en Windows. Para este ejemplo usaremos PuTTY.
 
 Vamos a la página web de [Putty](http://www.putty.org/)
 
@@ -108,7 +108,7 @@ Empezamos a instalar PuTTY siguiendo las siguientes imagenes.
 
 ![imagen18](./images/a3_acceso_remoto_con_ssh/18.png)
 
-Configuramos el cliente2 Windows con los siguientes valores.
+Configuramos el Cliente Windows con los siguientes valores.
 
 * SO Windows: Windows 7.
 * IP estática: 172.18.20.11.
@@ -132,7 +132,7 @@ Comprobamos haciendo ping a ambos equipos.
 
 Instalamos el servicio SSH en la máquina ssh-server.
 
-Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o no con nombre openssh*.
+Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o los paquetes que no estan instalados con nombre openssh*.
 
 ![imagen23](./images/a3_acceso_remoto_con_ssh/23.png)
 
@@ -186,13 +186,13 @@ Comprobamos el contenido del fichero $HOME/.ssh/known_hosts en el equipo ssh-cli
 
 Lo que nos aparece es la clave de identificación de la máquina ssh-server.
 
-Ya llegados a este punto podemos ver que funciionan correctamente las conexiones SSH desde los dos clientes.
+Ya llegados a este punto podemos ver que funcionan correctamente las conexiones SSH desde los dos clientes.
 
 ---
 
 # **4. ¿Y Si Cambiamos Las Claves Del Servidor?.**
 
-Confirmamos que existen los siguientes ficheros en /etc/ssh, los ficheros ssh_host*key y ssh_host*key.pub, son ficheros de clave pública/privada que identifican a nuestro servidor frente a nuestros clientes.
+Confirmamos que existen los siguientes ficheros en /etc/ssh, los ficheros ssh_host_key y ssh_host_key.pub, son ficheros de clave pública/privada que identifican a nuestro servidor frente a nuestros clientes.
 
 ![imagen36](./images/a3_acceso_remoto_con_ssh/36.png)
 
@@ -272,7 +272,7 @@ Para ello, vamos a configurar la autenticación mediante clave pública para acc
 
 Vamos a la máquina ss-client20a.
 
-Iniciamos sesión con nuestro usuario nombre-alumno de la máquina ssh-client20a.
+Iniciamos sesión con nuestro usuario noelia de la máquina ssh-client20a.
 
 Ejecutamos ssh-keygen -t rsa para generar un nuevo par de claves para el usuario en /home/nuestro-usuario/.ssh/id_rsa y /home/nuestro-usuario/.ssh/id_rsa.pub.
 
@@ -280,7 +280,7 @@ Ejecutamos ssh-keygen -t rsa para generar un nuevo par de claves para el usuario
 
 ![imagen48](./images/a3_acceso_remoto_con_ssh/48.png)
 
-Ahora vamos a copiar la clave pública (id_rsa.pub) del usuario (nombre-de-alumno) de la máquina cliente, al fichero "authorized_keys" del usuario remoto hernandez4 (que está definido en el servidor.
+Ahora vamos a copiar la clave pública (id_rsa.pub) del usuario noelia de la máquina cliente, al fichero "authorized_keys" del usuario remoto hernandez4 (que está definido en el servidor).
 
 Usamos el comando ssh-copy-id. Ejemplo para copiar la clave pública del usuario actual al usuario remoto en la máquina remota: ssh-copy-id usuario-remoto@hostname-remoto.
 
