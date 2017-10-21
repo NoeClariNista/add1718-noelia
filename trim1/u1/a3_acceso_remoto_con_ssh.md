@@ -96,7 +96,7 @@ Nos descargamos la versión para Windows.
 
 ![imagen14](./images/a3_acceso_remoto_con_ssh/14.png)
 
-Empezamos a instalar PuTTY siguiendo las siguientes imagenes.
+Empezamos a instalar PuTTY siguiendo las siguientes imágenes.
 
 ![imagen15](./images/a3_acceso_remoto_con_ssh/15.png)
 
@@ -130,7 +130,7 @@ Comprobamos haciendo ping a ambos equipos.
 
 Instalamos el servicio SSH en la máquina ssh-server.
 
-Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o los paquetes que no estan instalados con nombre openssh*.
+Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o los paquetes que no están instalados con nombre openssh*.
 
 ![imagen23](./images/a3_acceso_remoto_con_ssh/23.png)
 
@@ -154,11 +154,11 @@ Ahora utilizamos el comando netstat -ntap para comprobar que el servicio está e
 
 ## **3.2. Primera Conexión SSH Desde ssh-client20a.**
 
-Comprobamos la conectividad con el servidor desde el cliente con un ping ssh-server.
+Comprobamos la conectividad con el Servidor desde el Cliente con un ping ssh-server.
 
 ![imagen28](./images/a3_acceso_remoto_con_ssh/28.png)
 
-Desde el cliente comprobamos que el servicio SSH es visible con el comando nmap ssh-server, al utilizar este comando nos debe mostrar que el puerto 22 está abierto. Antes de realizar esto tenemos que instalar el nmap en el cliente20a.
+Desde el Cliente comprobamos que el servicio SSH es visible con el comando nmap ssh-server, al utilizar este comando nos debe mostrar que el puerto 22 está abierto. Antes de realizar esto tenemos que instalar el nmap en el Cliente20a.
 
 ![imagen29](./images/a3_acceso_remoto_con_ssh/29.png)
 
@@ -166,19 +166,21 @@ Desde el cliente comprobamos que el servicio SSH es visible con el comando nmap 
 
 Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usando el usuario hernandez1.
 
-Desde el ssh-client1 nos conectamos mediante ssh hernandez1@ssh-server.
+Desde el ssh-client20a nos conectamos mediante ssh hernandez1@ssh-server.
 
 ![imagen31](./images/a3_acceso_remoto_con_ssh/31.png)
 
+Desde el ssh-client20b nos conectamos mediante el Putty.
+
 ![imagen32](./images/a3_acceso_remoto_con_ssh/32.png)
 
-Si nos volvemos a conectar tendremos.
+Si nos volvemos a conectar tendremos lo siguiente.
 
 ![imagen33](./images/a3_acceso_remoto_con_ssh/33.png)
 
 ![imagen34](./images/a3_acceso_remoto_con_ssh/34.png)
 
-Comprobamos el contenido del fichero `$HOME/.ssh/known_hosts` en el equipo ssh-client1.
+Comprobamos el contenido del fichero `$HOME/.ssh/known_hosts` en el equipo ssh-client20a.
 
 ![imagen35](./images/a3_acceso_remoto_con_ssh/35.png)
 
@@ -190,11 +192,11 @@ Ya llegados a este punto podemos ver que funcionan correctamente las conexiones 
 
 # **4. ¿Y Si Cambiamos Las Claves Del Servidor?.**
 
-Confirmamos que existen los siguientes ficheros en `/etc/ssh`, los ficheros ssh_host_key y ssh_host_key.pub, los cuales son ficheros de clave pública/privada que identifican a nuestro servidor frente a nuestros clientes.
+Confirmamos que existen los siguientes ficheros en `/etc/ssh`, los ficheros ssh_host_key y ssh_host_key.pub, los cuales son ficheros de clave pública/privada que identifican a nuestro Servidor frente a nuestros Clientes.
 
 ![imagen36](./images/a3_acceso_remoto_con_ssh/36.png)
 
-Modificamos el fichero de configuración SSH, es decir, `/etc/ssh/sshd_config`, para dejar una única línea: HostKey `/etc/ssh/ssh_host_rsa_key`. Comentamos el resto de líneas con configuración HostKey. Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro servidor. Con este cambio decimos que sólo vamos a usar las claves del tipo RSA.
+Modificamos el fichero de configuración SSH, es decir, `/etc/ssh/sshd_config`, para dejar una única línea: HostKey `/etc/ssh/ssh_host_rsa_key`. Comentamos el resto de líneas con configuración HostKey. Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro Servidor. Con este cambio decimos que sólo vamos a usar las claves del tipo RSA.
 
 ![imagen37](./images/a3_acceso_remoto_con_ssh/37.png)
 
@@ -202,7 +204,7 @@ Modificamos el fichero de configuración SSH, es decir, `/etc/ssh/sshd_config`, 
 
 ## **4.1. Regenerar Certificados.**
 
-Vamos a cambiar o volver a generar nuevas claves públicas/privadas para la identificación de nuestro servidor.
+Vamos a cambiar o volver a generar nuevas claves públicas/privadas para la identificación de nuestro Servidor.
 
 En ssh-server, como usuario root ejecutamos el comando ssh-keygen -t rsa -f `/etc/ssh/ssh_host_rsa_key`. No ponemos password al certificado de la máquina.
 
@@ -214,19 +216,17 @@ Reiniciamos el servicio SSH con el comando systemctl restart sshd y también com
 
 ## **4.2. Comprobamos.**
 
-Comprobamos qué sucede al volver a conectarnos desde los dos clientes, usando los usuarios hernandez2 y hernandez1.
+Comprobamos qué sucede al volver a conectarnos desde los dos Clientes, usando los usuarios hernandez2 y hernandez1.
 
 ![imagen41](./images/a3_acceso_remoto_con_ssh/41.png)
 
 ![imagen42](./images/a3_acceso_remoto_con_ssh/42.png)
 
-Lo que sucede es que al generar nuevas claves públicas/privadas con el tipo RSA no nos lo reconoce bien para poder conectarnos.
-
 ---
 
 # **5. Personalización Del Prompt Bash.**
 
-Podemos añadir las siguientes líneas al fichero de configuración del usuario1 en la máquina servidor, al fichero `/home/hernandez1/.bashrc`.
+Podemos añadir las siguientes líneas al fichero de configuración del usuario1 en la máquina Servidor, al fichero `/home/hernandez1/.bashrc`.
 
 ![imagen43](./images/a3_acceso_remoto_con_ssh/43.png)
 
@@ -256,7 +256,7 @@ alias s='ssh'
 
 ![imagen46](./images/a3_acceso_remoto_con_ssh/46.png)
 
-Comprobamos el funcionamiento de la conexión SSH desde cada cliente.
+Comprobamos el funcionamiento de la conexión SSH desde cada Cliente.
 
 ![imagen47](./images/a3_acceso_remoto_con_ssh/47.png)
 
@@ -266,9 +266,9 @@ Comprobamos el funcionamiento de la conexión SSH desde cada cliente.
 
 # **6. Autenticación Mediante Claves Públicas.**
 
-El objetivo de este apartado es el de configurar SSH para poder acceder desde el cliente1, usando el hernandez4 sin poner password, pero usando claves pública/privada.
+El objetivo de este apartado es el de configurar SSH para poder acceder desde el Cliente20a, usando el hernandez4 sin poner password, pero usando claves pública/privada.
 
-Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo cliente al servidor con el usuario hernandez4.
+Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo Cliente al Servidor con el usuario hernandez4.
 
 Vamos a la máquina ss-client20a.
 
@@ -280,7 +280,7 @@ Ejecutamos ssh-keygen -t rsa para generar un nuevo par de claves para el usuario
 
 ![imagen50](./images/a3_acceso_remoto_con_ssh/50.png)
 
-Ahora vamos a copiar la clave pública (id_rsa.pub) del usuario noelia de la máquina cliente, al fichero "authorized_keys" del usuario remoto hernandez4, el cual está definido en el servidor.
+Ahora vamos a copiar la clave pública, id_rsa.pub, del usuario noelia de la máquina Cliente, al fichero "authorized_keys" del usuario remoto hernandez4, el cual está definido en el Servidor.
 
 Usamos el comando ssh-copy-id hernandez4@ssh-server20, para copiar la clave pública del usuario actual al usuario remoto en la máquina remota.
 
@@ -302,25 +302,25 @@ Desde ssh-client20b, si se pide el password.
 
 # **7. Uso De SSH Como Túnel Para X.**
 
-Instalamos en el servidor una aplicación de entorno gráfico que no esté en los clientes, por ejemplo, geany.
+Instalamos en el servidor una aplicación de entorno gráfico que no esté en los Clientes, por ejemplo, geany.
 
 ![imagen55](./images/a3_acceso_remoto_con_ssh/55.png)
 
 ![imagen56](./images/a3_acceso_remoto_con_ssh/56.png)
 
-Modificamos servidor SSH para permitir la ejecución de aplicaciones gráficas, desde los clientes. Consultar fichero de configuración `/etc/ssh/sshd_config`, opción X11Forwarding yes.
+Modificamos servidor SSH para permitir la ejecución de aplicaciones gráficas, desde los Clientes. Consultamos el fichero de configuración `/etc/ssh/sshd_config`, opción X11Forwarding yes.
 
 ![imagen57](./images/a3_acceso_remoto_con_ssh/57.png)
 
 ![imagen58](./images/a3_acceso_remoto_con_ssh/58.png)
 
-Vamos al cliente20a.
+Vamos al ssh-client20a.
 
 Comprobamos que no este instalada geany con el comando zypper se geany.
 
 ![imagen59](./images/a3_acceso_remoto_con_ssh/59.png)
 
-Comprobamos desde el cliente20a, que funciona geany.
+Comprobamos desde el ssh-client20a, que funciona geany.
 
 Con el comando ssh -X hernandez1@ssh-server20, podemos conectarnos de forma remota al servidor, y ahora ejecutamos geany de forma remota.
 
@@ -334,23 +334,23 @@ Con el comando ssh -X hernandez1@ssh-server20, podemos conectarnos de forma remo
 
 # **8. Aplicaciones Windows Nativas.**
 
-Podemos tener aplicaciones Windows nativas instaladas en ssh-server mediante el emulador WINE.
+Podemos tener aplicaciones Windows nativas instaladas en ssh-server20 mediante el emulador WINE.
 
-Instalamos el emulador Wine en el ssh-server.
+Instalamos el emulador Wine en el ssh-server20.
 
 ![imagen63](./images/a3_acceso_remoto_con_ssh/63.png)
 
-Ahora podríamos instalar alguna aplicación de Windows en el servidor SSH usando el emulador Wine, en mi caso voy a usar el Block de Notas que viene con Wine: wine notepad.
+Ahora podríamos instalar alguna aplicación de Windows en el servidor SSH usando el emulador Wine, en mi caso voy a usar el Block de Notas que viene con Wine, wine notepad.
 
 ![imagen64](./images/a3_acceso_remoto_con_ssh/64.png)
 
 ![imagen65](./images/a3_acceso_remoto_con_ssh/65.png)
 
-Comprobamos el funcionamiento de notepad en ssh-server.
+Comprobamos el funcionamiento de notepad en ssh-server20.
 
 ![imagen66](./images/a3_acceso_remoto_con_ssh/66.png)
 
-Comprobamos funcionamiento de wine notepad, accediendo desde ssh-client1.
+Comprobamos funcionamiento de wine notepad, accediendo desde ssh-client20a.
 
 ![imagen67](./images/a3_acceso_remoto_con_ssh/67.png)
 
@@ -360,13 +360,13 @@ ___
 
 # **9. Restricciones De Uso.**
 
-Vamos a modificar los usuarios del servidor SSH para añadir algunas restricciones de uso del servicio.
+Vamos a modificar los usuarios del Servidor SSH para añadir algunas restricciones de uso del servicio.
 
 ## **9.1. Restricción Sobre Un Usuario.**
 
 Vamos a crear una restricción de uso del SSH para un usuario.
 
-En el servidor tenemos el usuario hernandez2. Desde local en el servidor podemos usar sin problemas el usuario.
+En el servidor tenemos el usuario hernandez2. Desde local en el Servidor podemos usar sin problemas el usuario.
 
 Vamos a modificar SSH de modo que al usar el usuario por ssh desde los clientes tendremos permiso denegado.
 
@@ -382,7 +382,7 @@ Consultamos las opciones AllowUsers, DenyUsers, para ello vamos a la terminal y 
 
 ![imagen72](./images/a3_acceso_remoto_con_ssh/72.png)
 
-Comprobamos la restricción al acceder desde los clientes.
+Comprobamos la restricción al acceder desde los Clientes.
 
 ![imagen73](./images/a3_acceso_remoto_con_ssh/73.png)
 
@@ -404,7 +404,7 @@ Ponemos al programa geany el grupo propietario a remoteapps.
 
 ![imagen77](./images/a3_acceso_remoto_con_ssh/77.png)
 
-Ponemos los permisos del ejecutable de geany a 750. Esto es para poder impedir que los usurios que no pertenezcan al grupo puedan ejecutar el programa.
+Ponemos los permisos del ejecutable de geany a 750. Esto es para poder impedir que los usuarios que no pertenezcan al grupo puedan ejecutar el programa.
 
 ![imagen78](./images/a3_acceso_remoto_con_ssh/78.png)
 
