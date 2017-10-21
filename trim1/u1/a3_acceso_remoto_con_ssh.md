@@ -128,7 +128,7 @@ Comprobamos haciendo ping a ambos equipos.
 
 # **3. Instalación Del Servicio SSH.**
 
-Instalamos el servicio SSH en la máquina ssh-server.
+Instalamos el servicio SSH en la máquina ssh-server20.
 
 Para ello vamos a a la terminal y ponemos el comando zypper search openssh y nos mostrara los paquetes instalados o los paquetes que no están instalados con nombre openssh*.
 
@@ -140,7 +140,7 @@ Ahora utilizamos el comando zypper install openssh y nos instalara el paquete Op
 
 ## **3.1 Comprobación.**
 
-Desde el propio ssh-server tenemos que verificar que el servicio está en ejecución. Para ello utilizamos el comando systemctl status sshd.
+Desde el propio ssh-server20 tenemos que verificar que el servicio está en ejecución. Para ello utilizamos el comando systemctl status sshd.
 
 ![imagen25](./images/a3_acceso_remoto_con_ssh/25.png)
 
@@ -158,13 +158,13 @@ Comprobamos la conectividad con el Servidor desde el Cliente con un ping ssh-ser
 
 ![imagen28](./images/a3_acceso_remoto_con_ssh/28.png)
 
-Desde el Cliente comprobamos que el servicio SSH es visible con el comando nmap ssh-server, al utilizar este comando nos debe mostrar que el puerto 22 está abierto. Antes de realizar esto tenemos que instalar el nmap en el Cliente20a.
+Desde el Cliente comprobamos que el servicio SSH es visible con el comando nmap ssh-server, al utilizar este comando nos debe mostrar que el puerto 22 está abierto. Antes de realizar esto tenemos que instalar el nmap en el ssh-client20a.
 
 ![imagen29](./images/a3_acceso_remoto_con_ssh/29.png)
 
 ![imagen30](./images/a3_acceso_remoto_con_ssh/30.png)
 
-Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usando el usuario hernandez1.
+Vamos a comprobar el funcionamiento de la conexión SSH desde cada Cliente usando el usuario hernandez1.
 
 Desde el ssh-client20a nos conectamos mediante ssh hernandez1@ssh-server.
 
@@ -184,7 +184,7 @@ Comprobamos el contenido del fichero `$HOME/.ssh/known_hosts` en el equipo ssh-c
 
 ![imagen35](./images/a3_acceso_remoto_con_ssh/35.png)
 
-Lo que nos aparece es la clave de identificación de la máquina ssh-server.
+Lo que nos aparece es la clave de identificación de la máquina ssh-server20.
 
 Ya llegados a este punto podemos ver que funcionan correctamente las conexiones SSH desde los dos clientes.
 
@@ -206,7 +206,7 @@ Modificamos el fichero de configuración SSH, es decir, `/etc/ssh/sshd_config`, 
 
 Vamos a cambiar o volver a generar nuevas claves públicas/privadas para la identificación de nuestro Servidor.
 
-En ssh-server, como usuario root ejecutamos el comando ssh-keygen -t rsa -f `/etc/ssh/ssh_host_rsa_key`. No ponemos password al certificado de la máquina.
+En ssh-server20, como usuario root ejecutamos el comando ssh-keygen -t rsa -f `/etc/ssh/ssh_host_rsa_key`. No ponemos password al certificado de la máquina.
 
 ![imagen39](./images/a3_acceso_remoto_con_ssh/39.png)
 
@@ -266,7 +266,7 @@ Comprobamos el funcionamiento de la conexión SSH desde cada Cliente.
 
 # **6. Autenticación Mediante Claves Públicas.**
 
-El objetivo de este apartado es el de configurar SSH para poder acceder desde el Cliente20a, usando el hernandez4 sin poner password, pero usando claves pública/privada.
+El objetivo de este apartado es el de configurar SSH para poder acceder desde el ssh-cliente20a, usando el hernandez4 sin poner password, pero usando claves pública/privada.
 
 Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo Cliente al Servidor con el usuario hernandez4.
 
@@ -366,11 +366,11 @@ Vamos a modificar los usuarios del Servidor SSH para añadir algunas restriccion
 
 Vamos a crear una restricción de uso del SSH para un usuario.
 
-En el servidor tenemos el usuario hernandez2. Desde local en el Servidor podemos usar sin problemas el usuario.
+En el servidor tenemos el usuario hernandez1. Desde local en el Servidor podemos usar sin problemas el usuario.
 
-Vamos a modificar SSH de modo que al usar el usuario por ssh desde los clientes tendremos permiso denegado.
+Vamos a modificar SSH de modo que al usar el usuario por ssh desde los Clientes tendremos permiso denegado.
 
-Consultamos o modificamos el fichero de configuración del servidor SSH, `/etc/ssh/sshd_config`, para restringir el acceso a determinados usuarios.
+Modificamos el fichero de configuración del servidor SSH, `/etc/ssh/sshd_config`, para restringir el acceso al usuario hernandez1.
 
 ![imagen69](./images/a3_acceso_remoto_con_ssh/69.png)
 
