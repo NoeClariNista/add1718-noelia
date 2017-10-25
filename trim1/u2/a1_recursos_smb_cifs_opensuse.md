@@ -2,15 +2,7 @@ ___
 
 # **Recursos SMB/CIFS (OpenSUSE).**
 
-Samba con OpenSUSE y Windows 7/10.
-
-
-
-Entrega:
-
-    La entrega la realizaremos a través del repositorio Git.
-    Al terminar etiquetaremos la entrega con samba.
-
+Samba con OpenSUSE y Windows 10.
 
 ---
 
@@ -20,7 +12,7 @@ Vamos a necesitar las siguientes 3 MVs.
 
 * MV1: Un Servidor GNU/Linux OpenSUSE con IP estática, 172.18.20.31.
 * MV2: Un Cliente GNU/Linux OpenSUSE con IP estática, 172.18.20.32.
-* MV3: Un Cliente Windows con IP estática, 172.18.20.11.
+* MV3: Un Cliente Windows 10 con IP estática, 172.18.20.11.
 
 ---
 
@@ -28,37 +20,46 @@ Vamos a necesitar las siguientes 3 MVs.
 
 ## **2.1. Preparativos.**
 
-    Configurar el servidor GNU/Linux. Usar los siguientes valores:
-        Nombre de equipo: smb-serverXX (Donde XX es el número del puesto de cada uno).
-    Añadir en /etc/hosts los equipos smb-cliXXa y smb-cliXXb (Donde XX es el número del puesto de cada uno).
+Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
 
-Capturar salida de los comandos siguientes en el servidor:
+* Nombre de equipo: smb-server20.
+* Añadimos en /etc/hosts los equipos smb-cli20a y smb-cli20b.
 
-hostname -f
-ip a
-lsblk
-sudo blkid
+Capturamos salida de los comandos siguientes en el servidor:
+
+~~~
+hostname -f.
+ip a.
+lsblk.
+sudo blkid.
+~~~
 
 ## **2.2. Usuarios Locales.**
 
-    Capturar imágenes del resultado final.
-    Podemos usar comandos o entorno gráfico Yast.
+Capturar imágenes del resultado final.
+
+Podemos usar comandos o entorno gráfico Yast.
 
 Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios:
 
     Crear los grupos piratas, soldados y todos.
+
     Crear el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
+
         Por entorno gráfico lo cambiamos usando Yast.
+
         Por comandos el cambio se hace editando el fichero /etc/passwd.
     Dentro del grupo piratas incluir a los usuarios pirata1, pirata2 y supersamba.
     Dentro del grupo soldados incluir a los usuarios soldado1 y soldado2 y supersamba.
     Dentro del grupo todos, poner a todos los usuarios soldados, pitatas, supersamba y a smbguest.
 
-1.3 Crear las carpetas para los futuros recursos compartidos
+## **2.3. Crear Las Carpetas Para Los Futuros Recursos Compartidos.**
 
-    Capturar imagen del resultado final.
-    Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes:
-        /srv/sambaXX/public.d
+Capturar imagen del resultado final.
+
+Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes:
+
+/srv/sambaXX/public.d
             Usuario propietario supersamba.
             Grupo propietario todos.
             Poner permisos 775.
@@ -71,7 +72,7 @@ Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios:
             Grupo propietario piratas.
             Poner permisos 770.
 
-1.4 Instalar Samba Server
+## **2.4. Instalar Samba Server.**
 
     Capturar imágenes del proceso.
     Vamos a hacer una copia de seguridad del fichero de configuración existente cp /etc/samba/smb.conf /etc/samba/smb.conf.000.
@@ -85,7 +86,7 @@ Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios:
         Iniciar el servicio durante el arranque de la máquina.
         Ajustes del cortafuegos -> Abrir puertos
 
-1.5 Configurar el servidor Samba
+## **2.5. Configurar El Servidor Samba.**
 
 Vamos a configurar los recursos compartido del servidor Samba. Podemos hacerlo modificando el fichero de configuración o por entorno gráfico con Yast.
 
@@ -131,7 +132,7 @@ Vamos a configurar los recursos compartido del servidor Samba. Podemos hacerlo m
         cat /etc/samba/smb.conf
         testparm
 
-1.6 Usuarios Samba
+## **2.6. Usuarios Samba.**
 
 Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
 
@@ -139,7 +140,7 @@ Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
     pdbedit -L, para comprobar la lista de usuarios Samba.
     Capturar imagen del comando anterior.
 
-1.7 Reiniciar
+## **2.7. Reiniciar.**
 
     Ahora que hemos terminado con el servidor, hay que reiniciar el servicio para que se lean los cambios de configuración.
     Podemos hacerlo por Yast -> Servicios, o usar los comandos.:
@@ -165,14 +166,16 @@ Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
 
     Para descartar un problema con el cortafuegos del servidor Samba. Probamos el comando nmap -Pn smb-serverXX desde la máquina real, u otra máquina GNU/Linux. Deberían verse los puertos SMB/CIFS(139 y 445) abiertos.
 
-2. Windows (MV3 smb-cliXXb)
+---
 
-    Configurar el cliente Windows.
-    Usar nombre smb-cliXXb y la IP que hemos establecido.
-    Configurar el fichero ...\etc\hosts de Windows.
-    En los clientes Windows el software necesario viene preinstalado.
+# **3. Windows (MV3 smb-cli20b).**
 
-2.1 Cliente Windows GUI
+Configurar el cliente Windows.
+Usar nombre smb-cli20b y la IP que hemos establecido.
+Configurar el fichero ...\etc\hosts de Windows.
+En los clientes Windows el software necesario viene preinstalado.
+
+## **3.1. Cliente Windows GUI.**
 
 Desde un cliente Windows vamos a acceder a los recursos compartidos del servidor Samba.
 
@@ -191,7 +194,7 @@ samba-win7-cliente-gui
         netstat -ntap, desde el servidor Samba.
         netstat -n, desde el cliente Windows.
 
-2.2 Cliente Windows comandos
+## **3.2. Cliente Windows Comandos.**
 
     En el cliente Windows, para consultar todas las conexiones/recursos conectados hacemos C:>net use.
     Si hubiera alguna conexión abierta la cerramos.
@@ -204,7 +207,7 @@ Capturar imagen de los comandos siguientes:
     Vamos a conectarnos desde la máquina Windows al servidor Samba usando el comando net.
     Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por la red.
 
-2.3 Montaje automático
+## **3.3. Montaje Automático.**
 
     El comando net use S: \\ip-servidor-samba\recurso /USER:clave establece una conexión del rescurso panaderos y lo monta en la unidad S.
 
@@ -215,13 +218,15 @@ Capturar imagen de los comandos siguientes:
         netstat -ntap, desde el servidor Samba.
         netstat -n, desde el cliente Windows.
 
-3 Cliente GNU/Linux (MV2 smb-cliXXa)
+---
+
+# **4. Cliente GNU/Linux (MV2 smb-cli20a).**
 
     Configurar el cliente GNU/Linux.
-    Usar nombre smb-cliXXa y la IP que hemos establecido.
+    Usar nombre smb-cli20a y la IP que hemos establecido.
     Configurar el fichero /etc/hosts de la máquina.
 
-3.1 Cliente GNU/Linux GUI
+## **4.1. Cliente GNU/Linux GUI.**
 
 Desde en entorno gráfico, podemos comprobar el acceso a recursos compartidos SMB/CIFS.
 
@@ -249,7 +254,7 @@ Capturar imagen de lo siguiente:
         netstat -ntap, desde el servidor Samba.
         netstat -n, desde el cliente.
 
-3.2 Cliente GNU/Linux comandos
+## **4.2. Cliente GNU/Linux Comandos.**
 
 Capturar imagenes de todo el proceso.
 
@@ -279,7 +284,7 @@ samba-linux-mount-cifs
         netstat -ntap, desde el servidor Samba.
         netstat -n, desde el cliente Windows.
 
-3.3 Montaje automático
+## **4.3. Montaje Automático.**
 
 Capturar imágenes del proceso.
 
@@ -292,9 +297,16 @@ Acabamos de acceder a los recursos remotos, realizando un montaje de forma manua
     Reiniciar el equipo y comprobar que se realiza el montaje automático al inicio.
     Incluir contenido del fichero /etc/fstab en la entrega.
 
-4. Preguntas para resolver
+---
 
-    ¿Las claves de los usuarios en GNU/Linux deben ser las mismas que las que usa Samba?
-    ¿Puedo definir un usuario en Samba llamado soldado3, y que no exista como usuario del sistema?
-    ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba? (Consultar /etc/passwd)
-    Añadir el recurso [homes] al fichero smb.conf según los apuntes. ¿Qué efecto tiene?
+# **5. Preguntas Para Resolver.**
+
+* ¿Las claves de los usuarios en GNU/Linux deben ser las mismas que las que usa Samba?.
+
+* ¿Puedo definir un usuario en Samba llamado soldado3, y que no exista como usuario del sistema?.
+
+* ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba? (Consultar /etc/passwd).
+
+* Añadir el recurso [homes] al fichero smb.conf según los apuntes. ¿Qué efecto tiene?
+
+---
