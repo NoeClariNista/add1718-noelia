@@ -25,7 +25,7 @@ Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
 * Nombre de equipo: smb-server20.
 * Añadimos en /etc/hosts los equipos smb-cli20a y smb-cli20b.
 
-Capturamos salida de los comandos siguientes en el servidor:
+Capturamos salida de los comandos siguientes en el servidor.
 
 ~~~
 hostname -f.
@@ -34,50 +34,50 @@ lsblk.
 sudo blkid.
 ~~~
 
+---
+
 ## **2.2. Usuarios Locales.**
 
-Capturar imágenes del resultado final.
+En este caso utilizare entorno gráfico Yast.
 
-Podemos usar comandos o entorno gráfico Yast.
+Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios.
 
-Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios:
+Crear los grupos piratas, soldados y todos.
 
-    Crear los grupos piratas, soldados y todos.
+Crear el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
 
-    Crear el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
+Por entorno gráfico lo cambiamos usando Yast.
 
-        Por entorno gráfico lo cambiamos usando Yast.
+Dentro del grupo piratas incluir a los usuarios pirata1, pirata2 y supersamba.
 
-        Por comandos el cambio se hace editando el fichero /etc/passwd.
-    Dentro del grupo piratas incluir a los usuarios pirata1, pirata2 y supersamba.
-    Dentro del grupo soldados incluir a los usuarios soldado1 y soldado2 y supersamba.
-    Dentro del grupo todos, poner a todos los usuarios soldados, pitatas, supersamba y a smbguest.
+Dentro del grupo soldados incluir a los usuarios soldado1 y soldado2 y supersamba.
+
+Dentro del grupo todos, poner a todos los usuarios soldados, pitatas, supersamba y a smbguest.
 
 ## **2.3. Crear Las Carpetas Para Los Futuros Recursos Compartidos.**
 
-Capturar imagen del resultado final.
+Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes.
 
-Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes:
+/srv/samba20/public.d
+ Usuario propietario supersamba.
+ Grupo propietario todos.
+ Poner permisos 775.
 
-/srv/sambaXX/public.d
-            Usuario propietario supersamba.
-            Grupo propietario todos.
-            Poner permisos 775.
-        /srv/sambaXX/castillo.d
-            Usuario propietario supersamba.
-            Grupo propietario soldados.
-            Poner permisos 770.
-        /srv/sambaXX/barco.d
-            Usuario propietario supersamba.
-            Grupo propietario piratas.
-            Poner permisos 770.
+ /srv/samba20/castillo.d
+  Usuario propietario supersamba.
+  Grupo propietario soldados.
+  Poner permisos 770.
+
+/srv/samba20/barco.d
+  Usuario propietario supersamba.
+  Grupo propietario piratas.
+  Poner permisos 770.
 
 ## **2.4. Instalar Samba Server.**
 
-    Capturar imágenes del proceso.
-    Vamos a hacer una copia de seguridad del fichero de configuración existente cp /etc/samba/smb.conf /etc/samba/smb.conf.000.
+Vamos a hacer una copia de seguridad del fichero de configuración existente cp /etc/samba/smb.conf /etc/samba/smb.conf.000.
 
-    Podemos usar comandos o el entorno gráfico para instalar y configurar el servicio Samba. Como estamos en OpenSUSE vamos a usar Yast.
+Podemos usar comandos o el entorno gráfico para instalar y configurar el servicio Samba. Como estamos en OpenSUSE vamos a usar Yast.
 
     Yast -> Samba Server
         Workgroup: mar1718
@@ -90,47 +90,12 @@ Vamos a crear las carpetas de los recursos compartidos con los permisos siguient
 
 Vamos a configurar los recursos compartido del servidor Samba. Podemos hacerlo modificando el fichero de configuración o por entorno gráfico con Yast.
 
-    Capturar imágenes del proceso.
-
     Yast -> Samba Server -> Recursos compartidos
 
-    Tenemos que montar una configuración como la siguiente:
+Abrimos una consola para comprobar los resultados.
+* cat /etc/samba/smb.conf
+* testparm
 
-        Donde pone XX, sustituir por el núméro del puesto de cada uno
-        public, será un recurso compartido accesible para todos los usuarios en modo lectura.
-        cdrom, es el recurso dispositivo cdrom de la máquina donde está instalado el servidor samba.
-
-[global]
-  netbios name = smb-serverXX
-  workgroup = mar1617
-  server string = Servidor de nombre-alumno-XX
-  security = user
-  map to guest = bad user
-  guest account = smbguest
-
-[cdrom]
-  path = /dev/cdrom
-  guest ok = yes
-  read only = yes
-
-[public]
-  path = /srv/sambaXX/public.d
-  guest ok = yes
-  read only = yes
-
-[castillo]
-  path = /srv/sambaXX/castillo.d
-  read only = no
-  valid users = @soldados
-
-[barco]
-  path = /srv/sambaXX/piratas.d
-  read only = no
-  valid users = pirata1, pirata2
-
-    Abrimos una consola para comprobar los resultados.
-        cat /etc/samba/smb.conf
-        testparm
 
 ## **2.6. Usuarios Samba.**
 
@@ -138,11 +103,11 @@ Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
 
     smbpasswd -a nombreusuario, para crear clave de Samba para un usuario del sistema.
     pdbedit -L, para comprobar la lista de usuarios Samba.
-    Capturar imagen del comando anterior.
 
 ## **2.7. Reiniciar.**
 
     Ahora que hemos terminado con el servidor, hay que reiniciar el servicio para que se lean los cambios de configuración.
+
     Podemos hacerlo por Yast -> Servicios, o usar los comandos.:
         Servicio smb
             systemctl stop smb
@@ -153,9 +118,6 @@ Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
             systemctl start nmb
             systemctl status nmb
 
-    Enlaces de interés:
-
-        Demonios Samba y servicios relacionados
 
     Capturar imagen de los siguientes comando de comprobación:
 
@@ -172,6 +134,7 @@ Después de crear los usuarios en el sistema, hay que añadirlos a Samba.
 
 Configurar el cliente Windows.
 Usar nombre smb-cli20b y la IP que hemos establecido.
+C:\Windows\System32\drivers\etc\hosts
 Configurar el fichero ...\etc\hosts de Windows.
 En los clientes Windows el software necesario viene preinstalado.
 
@@ -204,12 +167,16 @@ samba-win7-cliente-gui
 Capturar imagen de los comandos siguientes:
 
     Abrir una shell de windows. Usar el comando net use /?, para consultar la ayuda del comando.
+
+-------------------------------------------------------------
+
     Vamos a conectarnos desde la máquina Windows al servidor Samba usando el comando net.
     Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por la red.
 
 ## **3.3. Montaje Automático.**
 
     El comando net use S: \\ip-servidor-samba\recurso /USER:clave establece una conexión del rescurso panaderos y lo monta en la unidad S.
+
 
     Ahora podemos entrar en la unidad S ("s:") y crear carpetas, etc.
 
