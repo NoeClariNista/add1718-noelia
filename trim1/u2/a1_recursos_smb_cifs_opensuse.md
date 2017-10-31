@@ -25,7 +25,15 @@ Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
 * Nombre de equipo: smb-server20.
 * Añadimos en /etc/hosts los equipos smb-cli20a y smb-cli20b.
 
-Capturamos salida de los comandos siguientes en el servidor.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/01.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/02.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/03.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/04.png)
+
+Capturamos salida de los comandos siguientes en el Servidor.
 
 ~~~
 hostname -f.
@@ -33,6 +41,8 @@ ip a.
 lsblk.
 sudo blkid.
 ~~~
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/05.png)
 
 ---
 
@@ -42,49 +52,104 @@ En este caso utilizare entorno gráfico Yast.
 
 Vamos a GNU/Linux, y creamos los siguientes grupos y usuarios.
 
-Crear los grupos piratas, soldados y todos.
+Creamos el usuario supersamba.
 
-Crear el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/06.png)
 
-Por entorno gráfico lo cambiamos usando Yast.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/07.png)
 
-Dentro del grupo piratas incluir a los usuarios pirata1, pirata2 y supersamba.
+Creamos los usuarios pirata1, pirata2, luego creamos el grupo piratas y incluimos estos dos usuarios y también supersamba dentro del grupo.
 
-Dentro del grupo soldados incluir a los usuarios soldado1 y soldado2 y supersamba.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/08.png)
 
-Dentro del grupo todos, poner a todos los usuarios soldados, pitatas, supersamba y a smbguest.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/09.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/10.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/11.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/12.png)
+
+Creamos los usuarios soldado1 y soldado2, luego creamos el grupo soldados y incluimos estos dos usuarios y también supersamba dentro del grupo.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/13.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/14.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/15.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/16.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/17.png)
+
+Creamos el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/18.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/19.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/20.png)
+
+Creamos el grupo todos y dentro de este grupo ponemos a todos los usuarios soldados, pitatas, supersamba y a smbguest.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/21.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/22.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/23.png)
 
 ## **2.3. Crear Las Carpetas Para Los Futuros Recursos Compartidos.**
 
 Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes.
 
-/srv/samba20/public.d
+![imagen](./images/a1_recursos_smb_cifs_opensuse/24.png)
+
+* /srv/samba20/public.d
  Usuario propietario supersamba.
  Grupo propietario todos.
  Poner permisos 775.
 
- /srv/samba20/castillo.d
+ ![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png)
+
+ ![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png)
+
+* /srv/samba20/castillo.d
   Usuario propietario supersamba.
   Grupo propietario soldados.
   Poner permisos 770.
 
-/srv/samba20/barco.d
+  ![imagen](./images/a1_recursos_smb_cifs_opensuse/27.png)
+
+* /srv/samba20/barco.d
   Usuario propietario supersamba.
   Grupo propietario piratas.
   Poner permisos 770.
 
+  ![imagen](./images/a1_recursos_smb_cifs_opensuse/28.png)
+
 ## **2.4. Instalar Samba Server.**
 
 Vamos a hacer una copia de seguridad del fichero de configuración existente cp /etc/samba/smb.conf /etc/samba/smb.conf.000.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/29.png)
 
 Podemos usar comandos o el entorno gráfico para instalar y configurar el servicio Samba. Como estamos en OpenSUSE vamos a usar Yast.
 
     Yast -> Samba Server
         Workgroup: mar1718
         Sin controlador de dominio.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/30.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/31.png)
+
+
     En la pestaña de Inicio definimos
         Iniciar el servicio durante el arranque de la máquina.
         Ajustes del cortafuegos -> Abrir puertos
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/32.png)
+
 
 ## **2.5. Configurar El Servidor Samba.**
 
@@ -168,8 +233,6 @@ Capturar imagen de los comandos siguientes:
 
     Abrir una shell de windows. Usar el comando net use /?, para consultar la ayuda del comando.
 
--------------------------------------------------------------
-
     Vamos a conectarnos desde la máquina Windows al servidor Samba usando el comando net.
     Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por la red.
 
@@ -200,11 +263,6 @@ Desde en entorno gráfico, podemos comprobar el acceso a recursos compartidos SM
     Estas son algunas herramientas:
 
         Yast en OpenSUSE
-        Nautilus en GNOME
-        Konqueror en KDE
-        En Ubuntu podemos ir a "Lugares -> Conectar con el servidor..."
-        También podemos instalar "smb4k".
-        existen otras para otros entornos gráficos. Busca en tu GNU/Linux la forma de acceder vía GUI.
 
 Ejemplo accediendo al recurso prueba del servidor Samba, pulsamos CTRL+L y escribimos smb://ip-del-servidor-samba:
 
@@ -220,6 +278,8 @@ Capturar imagen de lo siguiente:
         smbstatus, desde el servidor Samba.
         netstat -ntap, desde el servidor Samba.
         netstat -n, desde el cliente.
+
+----------------------------------------------------------------------------------
 
 ## **4.2. Cliente GNU/Linux Comandos.**
 
