@@ -1,6 +1,6 @@
 ___
 
-# **Recursos SMB/CIFS (OpenSUSE).**
+# **Samba.**
 
 Samba con OpenSUSE y Windows 10.
 
@@ -23,11 +23,12 @@ Vamos a necesitar las siguientes 3 MVs.
 Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
 
 * Nombre de equipo: smb-server20.
-* Añadimos en /etc/hosts los equipos smb-cli20a y smb-cli20b.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/01.png)
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/02.png)
+
+* Añadimos en /etc/hosts los equipos smb-cli20a y smb-cli20b.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/03.png)
 
@@ -54,13 +55,15 @@ Creamos el usuario supersamba.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/06.png)
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/07.png)
-
 Creamos los usuarios pirata1, pirata2, luego creamos el grupo piratas y incluimos estos dos usuarios y también supersamba dentro del grupo.
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/07.png)
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/08.png)
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/09.png)
+
+Creamos los usuarios soldado1 y soldado2, luego creamos el grupo soldados y incluimos estos dos usuarios y también supersamba dentro del grupo.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/10.png)
 
@@ -68,37 +71,24 @@ Creamos los usuarios pirata1, pirata2, luego creamos el grupo piratas y incluimo
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/12.png)
 
-Creamos los usuarios soldado1 y soldado2, luego creamos el grupo soldados y incluimos estos dos usuarios y también supersamba dentro del grupo.
+Creamos el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/13.png)
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/14.png)
 
+Creamos el grupo todos y dentro de este grupo ponemos a todos los usuarios soldados, pitatas, supersamba y a smbguest.
+
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/15.png)
+
+---
+> Ahora añadimos todos los usuarios de Samba al grupo cdrom.  <-- FALTA.
+---
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/16.png)
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/17.png)
 
-Creamos el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/18.png)
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/19.png)
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/20.png)
-
-Creamos el grupo todos y dentro de este grupo ponemos a todos los usuarios soldados, pitatas, supersamba y a smbguest.
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/21.png)
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/22.png)
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/23.png)
-
----
-> Ahora añadimos todos los usuarios de Samba al grupo cdrom.  <-- FALTA.
----
 
 ## **2.3. Crear Las Carpetas Para Los Futuros Recursos Compartidos.**
 
