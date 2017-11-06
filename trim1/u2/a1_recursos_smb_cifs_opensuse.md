@@ -360,25 +360,42 @@ Si hubiera alguna conexión abierta la cerramos.
 
 ![imagen](.images/a1_recursos_smb_cifs_opensuse/75.png)
 
-Capturar imagen de los comandos siguientes:
+Abrir una shell de windows. Usar el comando net use /?, para consultar la ayuda del comando.
 
-    Abrir una shell de windows. Usar el comando net use /?, para consultar la ayuda del comando.
+![imagen](.images/a1_recursos_smb_cifs_opensuse/76.png)
 
-    Vamos a conectarnos desde la máquina Windows al servidor Samba usando el comando net.
-    Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por la red.
+Vamos a conectarnos desde la máquina Windows al servidor Samba usando el comando net.
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/77.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/78.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/79.png)
+
+Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por la red.
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/80.png)
 
 ## **3.3. Montaje Automático.**
 
-    El comando net use S: \\ip-servidor-samba\recurso /USER:clave establece una conexión del rescurso panaderos y lo monta en la unidad S.
+El comando net use S: \\ip-servidor-samba\recurso /USER:clave establece una conexión del rescurso panaderos y lo monta en la unidad S.
 
+![imagen](.images/a1_recursos_smb_cifs_opensuse/81.png)
 
-    Ahora podemos entrar en la unidad S ("s:") y crear carpetas, etc.
+Ahora podemos entrar en la unidad S ("s:") y crear carpetas, etc.
 
-    Capturar imagen de los siguientes comandos para comprobar los resultados:
-        smbstatus, desde el servidor Samba.
-        netstat -ntap, desde el servidor Samba.
-        netstat -n, desde el cliente Windows.
+Capturar imagen de los siguientes comandos para comprobar los resultados:
+smbstatus, desde el servidor Samba.
+netstat -ntap, desde el servidor Samba.
+netstat -n, desde el cliente Windows.
 
+![imagen](.images/a1_recursos_smb_cifs_opensuse/82.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/83.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/84.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/85.png)
 
 ~~~
 
@@ -411,54 +428,93 @@ Capturar imagen de los comandos siguientes:
 
 # **4. Cliente GNU/Linux (MV2 smb-cli20a).**
 
-    Configurar el cliente GNU/Linux.
-    Usar nombre smb-cli20a y la IP que hemos establecido.
-    Configurar el fichero /etc/hosts de la máquina.
+Configurar el cliente GNU/Linux.
+Usar nombre smb-cli20a y la IP que hemos establecido.
+Configurar el fichero /etc/hosts de la máquina.
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/86.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/87.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/88.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/89.png)
+
 
 ## **4.1. Cliente GNU/Linux GUI.**
 
 Desde en entorno gráfico, podemos comprobar el acceso a recursos compartidos SMB/CIFS.
 
-    Estas son algunas herramientas:
+Estas son algunas herramientas:
 
-        Yast en OpenSUSE
+Yast en OpenSUSE
 
 Ejemplo accediendo al recurso prueba del servidor Samba, pulsamos CTRL+L y escribimos smb://ip-del-servidor-samba:
 
-linux-gui-client
+![imagen](.images/a1_recursos_smb_cifs_opensuse/90.png)
 
-    En el momento de autenticarse para acceder al recurso remoto, poner en Dominio el nombre-netbios-del-servidor-samba.
+En el momento de autenticarse para acceder al recurso remoto, poner en Dominio el nombre-netbios-del-servidor-samba.
 
 Capturar imagen de lo siguiente:
 
-    Probar a crear carpetas/archivos en castillo y en barco.
-    Comprobar que el recurso public es de sólo lectura.
-    Capturar imagen de los siguientes comandos para comprobar los resultados:
-        smbstatus, desde el servidor Samba.
-        netstat -ntap, desde el servidor Samba.
-        netstat -n, desde el cliente.
+Probar a crear carpetas/archivos en castillo y en barco.
 
-----------------------------------------------------------------------------------
+![imagen](.images/a1_recursos_smb_cifs_opensuse/91.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/92.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/93.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/94.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/95.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/96.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/97.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/98.png)
+
+
+    Comprobar que el recurso public es de sólo lectura.
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/99.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/100.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/101.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/102.png)
+
+Capturar imagen de los siguientes comandos para comprobar los resultados:
+smbstatus, desde el servidor Samba.
+netstat -ntap, desde el servidor Samba.
+netstat -n, desde el cliente.
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/103.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/104.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/105.png)
 
 ## **4.2. Cliente GNU/Linux Comandos.**
 
-Capturar imagenes de todo el proceso.
+Existen comandos (smbclient, mount , smbmount, etc.) para ayudarnos a acceder vía comandos al servidor Samba desde el cliente. Puede ser que con las nuevas actualizaciones y cambios de las distribuciones alguno haya cambiado de nombre. ¡Ya lo veremos!
 
-    Existen comandos (smbclient, mount , smbmount, etc.) para ayudarnos a acceder vía comandos al servidor Samba desde el cliente. Puede ser que con las nuevas actualizaciones y cambios de las distribuciones alguno haya cambiado de nombre. ¡Ya lo veremos!
+Vamos a un equipo GNU/Linux que será nuestro cliente Samba. Desde este equipo usaremos comandos para acceder a la carpeta compartida.
 
-    Vamos a un equipo GNU/Linux que será nuestro cliente Samba. Desde este equipo usaremos comandos para acceder a la carpeta compartida.
-    Primero comprobar el uso de las siguientes herramientas:
+Primero comprobar el uso de las siguientes herramientas:
 
 sudo smbtree                       # Muestra todos los equipos/recursos de la red SMB/CIFS
-                                   # Hay que abroir el cortafuegos para que funcione.
+                                   # Hay que abrir el cortafuegos para que funcione.
 smbclient --list ip-servidor-samba # Muestra los recursos SMB/CIFS de un equipo concreto
 
-    Ahora crearemos en local la carpeta /mnt/sambaXX-remoto/corusant.
-    MONTAJE: Con el usuario root, usamos el siguiente comando para montar un recurso compartido de Samba Server, como si fuera una carpeta más de nuestro sistema: mount -t cifs //172.18.XX.55/castillo /mnt/sambaXX-remoto/castillo -o username=soldado1
+Ahora crearemos en local la carpeta /mnt/sambaXX-remoto/corusant.
+MONTAJE: Con el usuario root, usamos el siguiente comando para montar un recurso compartido de Samba Server, como si fuera una carpeta más de nuestro sistema: mount -t cifs //172.18.XX.55/castillo /mnt/sambaXX-remoto/castillo -o username=soldado1
 
-    En versiones anteriores de GNU/Linux se usaba el comando smbmount //smb-serverXX/public /mnt/remotoXX/public/ -o -username=smbguest.
+En versiones anteriores de GNU/Linux se usaba el comando smbmount //smb-serverXX/public /mnt/remotoXX/public/ -o -username=smbguest.
 
-    COMPROBAR: Ejecutar el comando df -hT. Veremos que el recurso ha sido montado.
+COMPROBAR: Ejecutar el comando df -hT. Veremos que el recurso ha sido montado.
 
 samba-linux-mount-cifs
 
@@ -472,11 +528,13 @@ samba-linux-mount-cifs
 
 ## **4.3. Montaje Automático.**
 
-Capturar imágenes del proceso.
 
 Acabamos de acceder a los recursos remotos, realizando un montaje de forma manual (comandos mount/umount). Si reiniciamos el equipo cliente, podremos ver que los montajes realizados de forma manual ya no están (df -hT). Si queremos volver a acceder a los recursos remotos debemos repetir el proceso de montaje manual, a no ser que hagamos una configuración de montaje permanente o automática.
 
     Para configurar acciones de montaje automáticos cada vez que se inicie el equipo, debemos configurar el fichero /etc/fstab. Veamos un ejemplo:
+
+----------------------------------------------------------------------------------------
+
 
 //smb-serverXX/public /mnt/remotoXX/public cifs username=soldado1,password=clave 0 0
 
@@ -489,10 +547,18 @@ Acabamos de acceder a los recursos remotos, realizando un montaje de forma manua
 
 * ¿Las claves de los usuarios en GNU/Linux deben ser las mismas que las que usa Samba?.
 
+
+
 * ¿Puedo definir un usuario en Samba llamado soldado3, y que no exista como usuario del sistema?.
+
+
 
 * ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba? (Consultar /etc/passwd).
 
+
+
 * Añadir el recurso [homes] al fichero smb.conf según los apuntes. ¿Qué efecto tiene?
+
+
 
 ---
