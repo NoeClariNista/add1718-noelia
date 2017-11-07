@@ -81,60 +81,51 @@ Creamos el grupo todos y dentro de este grupo ponemos a todos los usuarios solda
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/15.png)
 
----
 > Ahora añadimos todos los usuarios de Samba al grupo cdrom.  <-- FALTA.
----
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/16.png)
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/17.png)
-
 
 ## **2.3. Crear Las Carpetas Para Los Futuros Recursos Compartidos.**
 
 Vamos a crear las carpetas de los recursos compartidos con los permisos siguientes.
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/24.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/16.png)
 
 * /srv/samba20/public.d
  Usuario propietario: supersamba.
  Grupo propietario: Todos.
  Permisos: 775.
 
- ![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png)
-
- ![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/17.png)
 
 * /srv/samba20/castillo.d
   Usuario propietario: supersamba.
   Grupo propietario: soldados.
   Permisos: 770.
 
-  ![imagen](./images/a1_recursos_smb_cifs_opensuse/27.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/18.png)
 
 * /srv/samba20/barco.d
   Usuario propietario: supersamba.
   Grupo propietario: piratas.
   Permisos: 770.
 
-  ![imagen](./images/a1_recursos_smb_cifs_opensuse/28.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/19.png)
 
 ## **2.4. Instalar Samba Server.**
 
 Vamos a hacer una copia de seguridad del fichero de configuración existente cp /etc/samba/smb.conf /etc/samba/smb.conf.000.
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/29.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/20.png)
 
 Podemos usar comandos o el entorno gráfico para instalar y configurar el servicio Samba. En mi caso utilizare Yast. Dentro de Yast voy a Samba Server y le añado la siguiente configuración.
 
 ~~~
 Workgroup: mar1718
 Sin controlador de dominio.
-~~~~
+~~~
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/30.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/21.png)
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/31.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/22.png)
 
 En la pestaña de Inicio definimos lo siguiente.
 
@@ -143,15 +134,13 @@ Iniciar el servicio durante el arranque de la máquina.
 Ajustes del cortafuegos, Abrir los puertos.
 ~~~
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/32.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/33.png)
+![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png)
 
 ## **2.5. Configurar El Servidor Samba.**
 
 Vamos a configurar los recursos compartido del servidor Samba. Podemos hacerlo modificando el fichero de configuración o por entorno gráfico con Yast. Para ellos vamos a Yast -> Samba Server -> Recursos Compartidos.
 
-![imagen](.images/a1_recursos_smb_cifs_opensuse/34.png)
+![imagen](.images/a1_recursos_smb_cifs_opensuse/27.png)
 
 ~~~
 [global]
@@ -186,25 +175,25 @@ Vamos a configurar los recursos compartido del servidor Samba. Podemos hacerlo m
   valid users = pirata1, pirata2
 ~~~
 
+![imagen](.images/a1_recursos_smb_cifs_opensuse/28.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/29.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/30.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/31.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/32.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/33.png)
+
+![imagen](.images/a1_recursos_smb_cifs_opensuse/34.png)
+
 ![imagen](.images/a1_recursos_smb_cifs_opensuse/35.png)
 
 ![imagen](.images/a1_recursos_smb_cifs_opensuse/36.png)
 
 ![imagen](.images/a1_recursos_smb_cifs_opensuse/37.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/38.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/39.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/40.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/41.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/42.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/43.png)
-
-![imagen](.images/a1_recursos_smb_cifs_opensuse/44.png)
 
 Abrimos una consola para comprobar los resultados.
 

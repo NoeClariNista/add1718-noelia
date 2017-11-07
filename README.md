@@ -16,6 +16,6 @@ ___
 
 ## **Tema 2. Integración De Sistemas.**
 
-* ### **Actividad 1.** **[Recursos SMB/CIFS (OpenSUSE).](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim1/u2/a1_recursos_smb_cifs_opensuse.md)**
+* ### **Actividad 1.** **[Samba.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim1/u2/a1_recursos_smb_cifs_opensuse.md)**
 
 ---
