@@ -173,7 +173,7 @@ Vamos a configurar los recursos compartido del Servidor Samba. Podemos hacerlo m
   valid users = pirata1, pirata2
 ~~~
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png) <- retocar
+![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png) <- retocar, quitar heredar.
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png) <- retocar
 
