@@ -141,31 +141,41 @@ Vamos a configurar los recursos compartido del Servidor Samba. Podemos hacerlo m
 ![imagen24](./images/a1_recursos_smb_cifs_opensuse/24.png)
 
 ~~~
-* [global]
-  netbios name = smb-server20
-  workgroup = mar1718
-  server string = Servidor de noelia20
-  security = user
-  map to guest = bad user
-  guest account = smbguest
-
 * [cdrom]
   path = /dev/cdrom
   guest ok = yes
   read only = yes
+~~~
 
+![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png)
+
+~~~
 * [public]
   comment = public de noelia20
   path = /srv/samba20/public.d
   guest ok = yes
   read only = yes
+~~~
 
+![imagen](./images/a1_recursos_smb_cifs_opensuse/27.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/28.png)
+
+~~~
 * [castillo]
   comment = castillo de noelia20
   path = /srv/samba20/castillo.d
   read only = no
   valid users = @soldados
+~~~
 
+![imagen](./images/a1_recursos_smb_cifs_opensuse/29.png)
+
+![imagen](./images/a1_recursos_smb_cifs_opensuse/30.png)
+
+~~~
 * [barco]
   comment = barco de noelia20
   path = /srv/samba20/barco.d
@@ -173,23 +183,21 @@ Vamos a configurar los recursos compartido del Servidor Samba. Podemos hacerlo m
   valid users = pirata1, pirata2
 ~~~
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/25.png) <- retocar, quitar heredar.
+![imagen](./images/a1_recursos_smb_cifs_opensuse/31.png)
 
-![imagen](./images/a1_recursos_smb_cifs_opensuse/26.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/27.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/28.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/29.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/30.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/31.png) <- retocar
-
-![imagen](./images/a1_recursos_smb_cifs_opensuse/32.png) <- retocar
+![imagen](./images/a1_recursos_smb_cifs_opensuse/32.png)
 
 Vamos a configurar uno de los recursos compartidos del Servidor Samba por la linea de comandos, para ello vamos a cambiar el archivo que se encuentra en `/etc/samba/smb.conf`
+
+~~~
+* [global]
+  netbios name = smb-server20
+  workgroup = mar1718
+  server string = Servidor de noelia20
+  security = user
+  map to guest = bad user
+  guest account = smbguest
+~~~
 
 ![imagen33](./images/a1_recursos_smb_cifs_opensuse/33.png)
 
@@ -497,18 +505,18 @@ A continuación incluimos el contenido del fichero `/etc/fstab` en la entrega.
 
 * ¿Las claves de los usuarios en GNU/Linux deben ser las mismas que las que usa Samba?.
 
-
+No, los usuarios pueden tener distintas contraseñas en GNU/Linux y en Samba.
 
 * ¿Puedo definir un usuario en Samba llamado soldado3, y que no exista como usuario del sistema?.
 
-
+No, todos los usuarios que queramos que estén en Samba deben estar también en el sistema.
 
 * ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba? (Consultar /etc/passwd).
 
-
+Para que los usuarios soldado1 y soldado2 no puedan acceder al sismtea pero sí al Samba tenemos que ir al Yast y ponemos shell /bin/false.
 
 * Añadir el recurso [homes] al fichero smb.conf según los apuntes. ¿Qué efecto tiene?
 
-
+La sección [homes] nos permitirá compartir las carpetas home de cada usuario, para que cada usuario pueda acceder a su carpeta home por la red.
 
 ---
