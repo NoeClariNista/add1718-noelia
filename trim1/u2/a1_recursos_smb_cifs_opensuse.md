@@ -497,7 +497,7 @@ Reiniciamos el equipo y comprobamos que se realiza el montaje automático al ini
 
 A continuación incluimos el contenido del fichero `/etc/fstab` en la entrega.
 
-[Fichero /etc/fstab](./archivos/fstab.pdf)
+[Fichero `/etc/fstab`.](./archivos/fstab.pdf)
 
 ---
 
