@@ -20,7 +20,7 @@ Vamos a necesitar las siguientes 3 MVs.
 
 ## **2.1. Preparativos.**
 
-Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
+Configuramos el Servidor GNU/Linux usando los siguientes valores.
 
 * Nombre de equipo: smb-server20.
 
@@ -34,7 +34,7 @@ Configuramos el Servidor GNU/Linux. Usamos los siguientes valores.
 
 ![imagen04](./images/a1_recursos_smb_cifs_opensuse/04.png)
 
-Capturamos la salida de los comandos siguientes en el Servidor.
+Capturamos la salida de los siguientes comandos en el Servidor.
 
 ~~~
 hostname -f.
@@ -71,13 +71,13 @@ Creamos los usuarios soldado1 y soldado2, luego creamos el grupo soldados e incl
 
 ![imagen12](./images/a1_recursos_smb_cifs_opensuse/12.png)
 
-Creamos el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell /bin/false.
+Creamos el usuario smbguest. Para asegurarnos que nadie puede usar smbguest para entrar en nuestra máquina mediante login, vamos a modificar este usuario y le ponemos como shell `/bin/false`.
 
 ![imagen13](./images/a1_recursos_smb_cifs_opensuse/13.png)
 
 ![imagen14](./images/a1_recursos_smb_cifs_opensuse/14.png)
 
-Creamos el grupo Todos y dentro de este grupo ponemos a todos los usuarios soldados, pitatas, supersamba y smbguest.
+Creamos el grupo Todos y dentro de este grupo ponemos a todos los usuarios soldados, piratas, supersamba y smbguest.
 
 ![imagen15](./images/a1_recursos_smb_cifs_opensuse/15.png)
 
@@ -87,21 +87,21 @@ Vamos a crear las carpetas de los recursos compartidos con los permisos siguient
 
 ![imagen16](./images/a1_recursos_smb_cifs_opensuse/16.png)
 
-* `/srv/samba20/public.d`
+* `/srv/samba20/public.d`.
   Usuario propietario: supersamba.
   Grupo propietario: Todos.
   Permisos: 775.
 
 ![imagen17](./images/a1_recursos_smb_cifs_opensuse/17.png)
 
-* `/srv/samba20/castillo.d`
+* `/srv/samba20/castillo.d`.
   Usuario propietario: supersamba.
   Grupo propietario: soldados.
   Permisos: 770.
 
 ![imagen18](./images/a1_recursos_smb_cifs_opensuse/18.png)
 
-* `/srv/samba20/barco.d`
+* `/srv/samba20/barco.d`.
   Usuario propietario: supersamba.
   Grupo propietario: piratas.
   Permisos: 770.
@@ -114,7 +114,7 @@ Vamos a hacer una copia de seguridad del fichero de configuración existente par
 
 ![imagen20](./images/a1_recursos_smb_cifs_opensuse/20.png)
 
-Podemos usar comandos o el entorno gráfico para instalar y configurar el Servicio Samba. En mi caso utilizare Yast. Dentro de Yast voy a Samba Server y le añado la siguiente configuración.
+Podemos usar comandos o el entorno gráfico para instalar y configurar el Servicio Samba. En mi caso utilizare Yast. Dentro de Yast vamos a Samba Server y le añadimos la siguiente configuración.
 
 ~~~
 Workgroup: mar1718
@@ -187,7 +187,7 @@ Vamos a configurar los recursos compartido del Servidor Samba. Podemos hacerlo m
 
 ![imagen](./images/a1_recursos_smb_cifs_opensuse/32.png)
 
-Vamos a configurar uno de los recursos compartidos del Servidor Samba por la linea de comandos, para ello vamos a cambiar el archivo que se encuentra en `/etc/samba/smb.conf`
+Vamos a configurar uno de los recursos compartidos del Servidor Samba por linea de comandos, para ello vamos a cambiar el archivo que se encuentra en `/etc/samba/smb.conf`
 
 ~~~
 * [global]
@@ -205,11 +205,11 @@ Vamos a configurar uno de los recursos compartidos del Servidor Samba por la lin
 
 Abrimos una consola para comprobar los resultados con los siguientes comandos.
 
-* cat /etc/samba/smb.conf
+* cat `/etc/samba/smb.conf`.
 
 ![imagen35](./images/a1_recursos_smb_cifs_opensuse/35.png)
 
-* testparm
+* testparm.
 
 ![imagen36](./images/a1_recursos_smb_cifs_opensuse/36.png)
 
@@ -247,7 +247,7 @@ Utilizamos los siguientes comandos para la comprobación.
 
 ![imagen42](./images/a1_recursos_smb_cifs_opensuse/42.png)
 
-Para descartar un problema con el cortafuegos del Servidor Samba. Probamos el comando nmap -Pn smb-server20 desde la máquina real, u otra máquina GNU/Linux. Vemos los puertos SMB/CIFS (139 y 445) abiertos.
+Para descartar un problema con el cortafuegos del Servidor Samba. Probamos el comando nmap -Pn smb-server20 desde la máquina real, u otra máquina GNU/Linux. Veremos los puertos SMB/CIFS (139 y 445) abiertos.
 
 ![imagen43](./images/a1_recursos_smb_cifs_opensuse/43.png)
 
@@ -255,7 +255,7 @@ Para descartar un problema con el cortafuegos del Servidor Samba. Probamos el co
 
 # **3. Windows (MV3 smb-cli20b).**
 
-Configuramos el Cliente Windows. Usamos los siguientes valores.
+Configuramos el Cliente Windows usando los siguientes valores.
 
 * Nombre de equipo: smb-cli20b.
 
@@ -263,7 +263,7 @@ Configuramos el Cliente Windows. Usamos los siguientes valores.
 
 ![imagen45](./images/a1_recursos_smb_cifs_opensuse/45.png)
 
-* Añadimos en C:\Windows\System32\drivers\etc\hosts los equipos smb-server20 y smb-cli20a.
+* Añadimos en `C:\Windows\System32\drivers\etc\hosts` los equipos smb-server20 y smb-cli20a.
 
 ![imagen46](./images/a1_recursos_smb_cifs_opensuse/46.png)
 
@@ -271,11 +271,11 @@ En los clientes Windows el software necesario viene preinstalado.
 
 ## **3.1. Cliente Windows GUI.**
 
-Desde un Cliente Windows vamos a acceder a los recursos compartidos del servidor Samba. Escribimos \\172.18.20.31 y nos conectaremos a los recursos compartidos del Servidor OpenSUSE.
+Desde un Cliente Windows vamos a acceder a los recursos compartidos del servidor Samba. Escribimos \\\172.18.20.31 y nos conectaremos a los recursos compartidos del Servidor OpenSUSE.
 
 ![imagen47](./images/a1_recursos_smb_cifs_opensuse/47.png)
 
-Comprobamos los accesos de todas las formas posibles. Como si fuéramos:
+Comprobamos los accesos de todas las formas posibles. Como si fuéramos.
 
 * Un soldado.
 
@@ -325,7 +325,7 @@ Si hubiera alguna conexión abierta la cerramos con el comando net use * /d /y y
 
 ![imagen60](./images/a1_recursos_smb_cifs_opensuse/60.png)
 
-Abrir una shell de Windows. Usar el comando net use /?, para consultar la ayuda del comando.
+Abrimos una shell de Windows. Usamos el comando net use /?, para consultar la ayuda del comando.
 
 ![imagen61](./images/a1_recursos_smb_cifs_opensuse/61.png)
 
@@ -339,7 +339,7 @@ Con el comando net view, vemos las máquinas (con recursos CIFS) accesibles por 
 
 ## **3.3. Montaje Automático.**
 
-El comando net use S: \\ip-servidor-samba\recurso /USER:clave establece una conexión del rescurso panaderos y lo monta en la unidad S.
+El comando net use S: \\172.18.20.31\barco * /USER:pirata1 establece una conexión de barcos y pirata1 y lo monta en la unidad S.
 
 ![imagen64](./images/a1_recursos_smb_cifs_opensuse/64.png)
 
@@ -365,7 +365,7 @@ Comprobamos los resultados con los siguientes comandos.
 
 # **4. Cliente GNU/Linux (MV2 smb-cli20a).**
 
-Configuramos el Cliente GNU/Linux. Usamos los siguientes valores.
+Configuramos el Cliente GNU/Linux usando los siguientes valores.
 
 * Nombre de equipo: smb-cli20a.
 
@@ -383,7 +383,7 @@ Configuramos el Cliente GNU/Linux. Usamos los siguientes valores.
 
 Desde en entorno gráfico, podemos comprobar el acceso a recursos compartidos SMB/CIFS.
 
-Accediendo al recurso prueba del Servidor Samba, pulsamos CTRL+L y escribimos smb://ip-del-servidor-samba.
+Accediendo al recurso prueba del Servidor Samba, pulsamos CTRL+L y escribimos `smb://172.18.20.31`.
 
 ![imagen73](./images/a1_recursos_smb_cifs_opensuse/73.png)
 
@@ -441,7 +441,7 @@ Vamos a un equipo GNU/Linux que será nuestro Cliente Samba. Desde este equipo u
 
 Primero comprobamos el uso de las siguientes herramientas.
 
-* sudo smbtree, muestra todos los equipos/recursos de la red SMB/CIFS.Hay que abrir el cortafuegos para que funcione.
+* sudo smbtree, muestra todos los equipos/recursos de la red SMB/CIFS. Hay que abrir el cortafuegos para que funcione.
 
 ![imagen89](./images/a1_recursos_smb_cifs_opensuse/89.png)
 
@@ -449,11 +449,11 @@ Primero comprobamos el uso de las siguientes herramientas.
 
 ![imagen90](./images/a1_recursos_smb_cifs_opensuse/90.png)
 
-Ahora crearemos en local la carpeta /mnt/samba20-remoto/castillo.
+Ahora crearemos en local la carpeta `/mnt/samba20-remoto/castillo.`
 
 ![imagen91](./images/a1_recursos_smb_cifs_opensuse/91.png)
 
-Con el usuario root, usamos el siguiente comando para montar un recurso compartido de Samba Server, como si fuera una carpeta más de nuestro sistema: mount -t cifs //172.18.20.31/castillo /mnt/samba20-remoto/castillo -o username=soldado1.
+Con el usuario root, usamos el siguiente comando para montar un recurso compartido de Samba Server, como si fuera una carpeta más de nuestro sistema: mount -t cifs `//172.18.20.31/castillo` `/mnt/samba20-remoto/castillo` -o username=soldado1.
 
 ![imagen92](./images/a1_recursos_smb_cifs_opensuse/92.png)
 
@@ -483,7 +483,7 @@ Acabamos de acceder a los recursos remotos, realizando un montaje de forma manua
 
 Para configurar acciones de montaje automáticos cada vez que se inicie el equipo, debemos configurar el fichero `/etc/fstab`.
 
-~~~~
+~~~
 //smb-server20/public /mnt/remoto20/public cifs username=soldado1,password=78646393d 0 0
 ~~~~
 
@@ -497,7 +497,7 @@ Reiniciamos el equipo y comprobamos que se realiza el montaje automático al ini
 
 A continuación incluimos el contenido del fichero `/etc/fstab` en la entrega.
 
-[Fichero /etc/fstab](./fstab)
+[Fichero /etc/fstab](./archivos/fstab.pdf)
 
 ---
 
@@ -511,9 +511,9 @@ No, los usuarios pueden tener distintas contraseñas en GNU/Linux y en Samba.
 
 No, todos los usuarios que queramos que estén en Samba deben estar también en el sistema.
 
-* ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba? (Consultar /etc/passwd).
+* ¿Cómo podemos hacer que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al samba?.
 
-Para que los usuarios soldado1 y soldado2 no puedan acceder al sismtea pero sí al Samba tenemos que ir al Yast y ponemos shell /bin/false.
+Para que los usuarios soldado1 y soldado2 no puedan acceder al sistema pero sí al Samba tenemos que ir al Yast y en cada usuario ponemos en shell de inicio de sesión `/bin/false`.
 
 * Añadir el recurso [homes] al fichero smb.conf según los apuntes. ¿Qué efecto tiene?
 
