@@ -25,125 +25,118 @@ Vamos a usar una MV OpenSUSE para montar nuestro servidor LDAP con la siguiente 
 ![imagen03](./images/a1_servidor_ldap_opensuse/03.png)
 
 ~~~
-127.0.0.2   ldap-server20.curso1617   ldap-server20
-127.0.0.3   noelia20.curso1617  noelia20
+172.18.20.31    ldap-server20.curso1718   ldap-server20
+127.0.0.3       noelia20.curso1718        noelia20
 ~~~
 
 ![imagen04](./images/a1_servidor_ldap_opensuse/04.png)
 
 ## **1.2. Instalación Del Servidor LDAP.**
 
-Procedemos a la instalación del módulo Yast que sirve para gestionar el servidor LDAP (yast2-auth-server).
+Procedemos a la Instalación del módulo Yast que sirve para gestionar el servidor LDAP, para ello vamos a linea de comandos y escribimos zypper install yast2-auth-server.
 
 ![imagen05](./images/a1_servidor_ldap_opensuse/05.png)
 
-Hacemos lo siguiente:
-
-Ir a Yast -> Servidor de autenticación. Aparecerá como Authentication Server.
+A continuación vamos a Yast, Servidor de autenticación.
 
 ![imagen06](./images/a1_servidor_ldap_opensuse/06.png)
 
-Se requiere, además, instalar los paquetes: openldap2, krb5-server y krb5-client.
+Al entrar al Servidor de autenticación nos pedira instalar los paquetes: openldap2, krb5-server y krb5-client.
 
 ![imagen07](./images/a1_servidor_ldap_opensuse/07.png)
 
-Iniciar servidor LDAP -> Sí    
+Dentro del Servidor de autenticación seguimos los siguientes pasos.
+
+* Iniciar servidor LDAP -> Sí.
+
+* Registrar dameon SLP -> No.
+
+* Puerto abierto en el cortafuegos -> Sí.
 
 ![imagen08](./images/a1_servidor_ldap_opensuse/08.png)
 
-Registrar dameon SLP -> No
+* Tipo de servidor -> autónomo.
 
 ![imagen09](./images/a1_servidor_ldap_opensuse/09.png)
 
-Puerto abierto en el cortafuegos -> Sí -> Siguiente
+* Configuración TLS -> No habilitar.
 
 ![imagen10](./images/a1_servidor_ldap_opensuse/10.png)
 
-Tipo de servidor -> autónomo -> Siguiente
+* Tipo de BD -> hdb.
+
+* DN base -> dc=noelia20,dc=curso1617.
+
+* DN administrador -> dn=Administrator.
+
+* Añadir DN base -> Sí.
+
+* Contraseña del administrador.
+
+* Directorio de BD -> /var/lib/ldap.
+
+* Usar esta BD predeterminada para clientes LDAP -> Sí.
 
 ![imagen11](./images/a1_servidor_ldap_opensuse/11.png)
 
-Configuración TLS -> NO habilitar -> Siguiente
+* Habilitar kerberos -> No.
 
 ![imagen12](./images/a1_servidor_ldap_opensuse/12.png)
-
-Tipo de BD -> hdb
-
-![imagen13](./images/a1_servidor_ldap_opensuse/13.png)
-
-DN base -> dc=noelia20,dc=curso1617.
-
-![imagen14](./images/a1_servidor_ldap_opensuse/14.png)
-
-DN administrador -> dn=Administrator
-
-![imagen15](./images/a1_servidor_ldap_opensuse/15.png)
-
-Añadir DN base -> Sí
-
-![imagen16](./images/a1_servidor_ldap_opensuse/16.png)
-
-Contraseña del administrador
-
-![imagen17](./images/a1_servidor_ldap_opensuse/17.png)
-
-Directorio de BD -> /var/lib/ldap
-
-![imagen18](./images/a1_servidor_ldap_opensuse/18.png)
-
-Usar esta BD predeterminada para clientes LDAP -> Sí -> Siguiente
-
-![imagen19](./images/a1_servidor_ldap_opensuse/19.png)
-
-No Habilitar kerberos.
-
-![imagen20](./images/a1_servidor_ldap_opensuse/20.png)
 
 Ahora haremos una serie de comprobaciones con los siguientes comandos.
 
 * slaptest -f /etc/openldap/slapd.conf para comprobar la sintaxis del fichero do configuración.
 
-![imagen21](./images/a1_servidor_ldap_opensuse/21.png)
+![imagen13](./images/a1_servidor_ldap_opensuse/13.png)
 
 * systemctl status slapd, para comprobar el estado del servicio.
 
-![imagen22](./images/a1_servidor_ldap_opensuse/22.png)
+![imagen14](./images/a1_servidor_ldap_opensuse/14.png)
 
 * nmap localhost | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde la red.
 
-![imagen23](./images/a1_servidor_ldap_opensuse/23.png)
+![imagen15](./images/a1_servidor_ldap_opensuse/15.png)
 
 * slapcat para comprobar que la base de datos está bien configurada.
 
-![imagen24](./images/a1_servidor_ldap_opensuse/24.png)
+![imagen16](./images/a1_servidor_ldap_opensuse/16.png)
 
 Podemos comprobar el contenido de la base de datos LDAP usando la herramienta gq. Esta herramienta es un browser LDAP.
 
-![imagen25](./images/a1_servidor_ldap_opensuse/25.png)
+Primero instalamos gq poniendo en linea de comandos zypper install gq.
 
-![imagen26](./images/a1_servidor_ldap_opensuse/26.png)
+![imagen17](./images/a1_servidor_ldap_opensuse/17.png)
 
-Comprobar que tenemos creadas las unidades organizativas: groups y people.
+Dentro de gq nos aparece lo siguiente.
 
-![imagen27](./images/a1_servidor_ldap_opensuse/27.png)
+![imagen26](./images/a1_servidor_ldap_opensuse/18.png)
 
-![imagen28](./images/a1_servidor_ldap_opensuse/28.png)
+Comprobamos que tenemos creadas las unidades organizativas: groups y people.
 
-![imagen29](./images/a1_servidor_ldap_opensuse/29.png)
+![imagen19](./images/a1_servidor_ldap_opensuse/19.png) <- falta
 
-![imagen30](./images/a1_servidor_ldap_opensuse/30.png)
+![imagen20](./images/a1_servidor_ldap_opensuse/20.png) <- falta
 
 ## **1.3. Crear Usuarios Y Grupos LDAP.**
 
-Yast -> Usuarios Grupos -> Filtro -> LDAP.
+Vamos a Yast, Usuarios Grupos, Filtro, LDAP.
 
-![imagen31](./images/a1_servidor_ldap_opensuse/31.png)
+![imagen21](./images/a1_servidor_ldap_opensuse/21.png) <- revisar
 
-Crear los grupos piratas (Estos se crearán dentro de la ou=groups).
+Creamos el grupos piratas20, esto se creará dentro de la ou=groups.
 
-![imagen32](./images/a1_servidor_ldap_opensuse/32.png)
+![imagen22](./images/a1_servidor_ldap_opensuse/22.png)
 
-Crear los usuarios pirata21, pirata21 (Estos se crearán dentro de la ou=people).
+Creamos los usuarios pirata21, pirata21, estos se crearán dentro de la ou=people.
+
+![imagen23](./images/a1_servidor_ldap_opensuse/23.png)
+
+![imagen24](./images/a1_servidor_ldap_opensuse/24.png)
+
+Usar gq para consultar/comprobar el contenido de la base de datos LDAP.
+
+
+ldapsearch -x -L -u -t "(uid=nombre-del-usuario)", comando para consultar en la base de datos LDAP la información del usuario con uid concreto.
 
 ![imagen33](./images/a1_servidor_ldap_opensuse/33.png)
 
@@ -188,12 +181,12 @@ Comprobamos el resultado con los siguientes comandos.
 
 ![imagen40](./images/a1_servidor_ldap_opensuse/40.png)
 
-File -> Preferencias -> Servidor -> Nuevo
+File, Preferencias, Servidor, Nuevo.
 
 ![imagen41](./images/a1_servidor_ldap_opensuse/41.png)
 
-URI = ldap://ldap-server20
-Base DN = dc=noelia20,dc=curso1718
+* URI = ldap://ldap-server20
+* Base DN = dc=noelia20,dc=curso1718
 
 ![imagen42](./images/a1_servidor_ldap_opensuse/42.png)
 
@@ -205,7 +198,7 @@ Debemos instalar el paquete yast2-auth-client, que nos ayudará a configurar la 
 
 ![imagen43](./images/a1_servidor_ldap_opensuse/43.png)
 
-Ir a Yast -> LDAP y cliente Kerberos.
+Ir a Yast, LDAP y cliente Kerberos.
 
 ![imagen44](./images/a1_servidor_ldap_opensuse/44.png)
 
@@ -237,5 +230,7 @@ Con autenticacion LDAP prentendemos usar la máquina servidor LDAP, como reposit
 Entrar en la MV cliente con algún usuario LDAP.
 
 ![imagen48](./images/a1_servidor_ldap_opensuse/48.png)
+
+![imagen49](./images/a1_servidor_ldap_opensuse/49.png)
 
 ---
