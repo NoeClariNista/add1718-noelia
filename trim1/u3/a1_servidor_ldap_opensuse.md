@@ -96,55 +96,29 @@ File -> Preferencias -> Servidor -> Nuevo
 URI = ldap://ldap-server20
 Base DN = dc=noelia20,dc=curso1718
 
-# **2.2 Instalar Cliente LDAP.**
+## **2.2 Instalar Cliente LDAP.**
 
-Debemos instalar el paquete `yast2-auth-client`, que nos ayudará a configurar la máquina para autenticación. En Yast aparecerá como Authentication Client.
+Vamos a configurar de la conexión del cliente con el servidor LDAP.
 
-## Configuración de la conexión
+Debemos instalar el paquete yast2-auth-client, que nos ayudará a configurar la máquina para autenticación.
 
-Yast -> Authentication client
+Ir a Yast -> LDAP y cliente Kerberos.
 
-Hacemos click sobre el botón sssd.
-Aparece una ventana de configuración.
-config_file_version = 2
-services = nss, pam
-domains = LDAP, nombre-de-alumnoXX
-Escribir LDAP en la sección dominio.
-Pulsamos OK y cerramos la ventana.
+Configurar como la imagen de ejmplo. Al final usamos la opción de Probar conexión
 
-Creamos un nuevo dominios.
-domains = nombre-de-alumnoXX
-id_provider = ldap
-auth_provider = ldap
-chpass_provider = ldap
-ldap_schema = rfc2307bis
-ldap_uri = ldap://ldap-serverXX
-ldap_search base = dc=davidXX, dc=curso1617
-
-Consultar el fichero `/etc/sssd/sssd.conf` para confirmar el valor de ldap_schema.
-
-~~~
-# A native LDAP domain
-[domain/LDAP]
-enumerate = true
-cache_credentials = TRUE
-
-id_provider = ldap
-auth_provider = ldap
-chpass_provider = ldap
-
-ldap_uri = ldap://ldap-serverXX
-ldap_search_base = dc=davidXX,dc=curso1617
-~~~
+## **2.3 Comprobamos Desde El Cliente.**
 
 Vamos a la consola y probamos con los siguientes comandos.
 
-* systemctl status sssd | grep domain
 * getent passwd pirata21
 * getent group piratas
-* id pirata21
+* id pirata21.
 * finger pirata21
 * cat /etc/passwd | grep pirata21
 * su pirata21
 
----
+## **2.4. Autenticación.**
+
+Con autenticacion LDAP prentendemos usar la máquina servidor LDAP, como repositorio centralizado de la información de grupos, usuarios, claves, etc. Desde otras máquinas conseguiremos autenticarnos (entrar al sistema) con los usuarios definidos no en la máquina local, sino en la máquina remota con LDAP. Una especie de Domain Controller.
+
+Entrar en la MV cliente con algún usuario LDAP.
