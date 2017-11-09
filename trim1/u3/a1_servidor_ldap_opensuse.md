@@ -77,52 +77,53 @@ En este punto vamos a escribir información en el servidor LDAP.
 
 Vamos a otra MV OpenSUSE. Cliente LDAP con OpenSUSE con la siguiente configuración.
 
-* Nombre equipo: ldap-clientXX
-* Dominio: curso1617
-* Asegurarse que tenemos definido en el fichero /etc/hosts del cliente, el nombre DNS con su IP correspondiente.
+* Nombre equipo: ldap-client20.
+* Dominio: curso1718.
+* Asegurarse que tenemos definido en el fichero `/etc/hosts del cliente`, el nombre DNS con su IP correspondiente.
 
 ~~~
-127.0.0.2         ldap-client20.curso1617   ldap-client20
-172.18.20.31      ldap-server20.curso1617   ldap-server20   noelia20.curso1718   noelia20
+127.0.0.2         ldap-client20.curso1718   ldap-client20
+172.18.20.31      ldap-server20.curso1718   ldap-server20   noelia20.curso1718   noelia20
 ~~~
 
 Comprobamos el resultado con los siguientes comandos.
 
-* nmap ldap-serverXX | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde el cliente.
+* nmap -Pn ldap-server20 | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde el cliente.
 
 * Usar gq en el cliente para comprobar que se han creado bien los usuarios.
-        File -> Preferencias -> Servidor -> Nuevo
-        URI = ldap://ldap-serverXX
-        Base DN = dc=davidXX,dc=curso1617
 
-# 2.2 Instalar cliente LDAP
+File -> Preferencias -> Servidor -> Nuevo
+URI = ldap://ldap-server20
+Base DN = dc=noelia20,dc=curso1718
 
-Debemos instalar el paquete yast2-auth-client, que nos ayudará a configurar la máquina para autenticación. En Yast aparecerá como Authentication Client.
+# **2.2 Instalar Cliente LDAP.**
 
-Configuración de la conexión
+Debemos instalar el paquete `yast2-auth-client`, que nos ayudará a configurar la máquina para autenticación. En Yast aparecerá como Authentication Client.
 
-Información extraída de https://forums.opensuse.org/showthread.php/502305-Setting-up-LDAP-on-13-2
+## Configuración de la conexión
 
 Yast -> Authentication client
-    Hacemos click sobre el botón sssd.
-        Aparece una ventana de configuración.
-            config_file_version = 2
-            services = nss, pam
-            domains = LDAP, nombre-de-alumnoXX
-        Escribir LDAP en la sección dominio.
-        Pulsamos OK y cerramos la ventana.
+
+Hacemos click sobre el botón sssd.
+Aparece una ventana de configuración.
+config_file_version = 2
+services = nss, pam
+domains = LDAP, nombre-de-alumnoXX
+Escribir LDAP en la sección dominio.
+Pulsamos OK y cerramos la ventana.
 
 Creamos un nuevo dominios.
-        domains = nombre-de-alumnoXX
-        id_provider = ldap
-        auth_provider = ldap
-        chpass_provider = ldap
-        ldap_schema = rfc2307bis
-        ldap_uri = ldap://ldap-serverXX
-        ldap_search base = dc=davidXX, dc=curso1617
+domains = nombre-de-alumnoXX
+id_provider = ldap
+auth_provider = ldap
+chpass_provider = ldap
+ldap_schema = rfc2307bis
+ldap_uri = ldap://ldap-serverXX
+ldap_search base = dc=davidXX, dc=curso1617
 
 Consultar el fichero `/etc/sssd/sssd.conf` para confirmar el valor de ldap_schema.
 
+~~~
 # A native LDAP domain
 [domain/LDAP]
 enumerate = true
@@ -134,15 +135,16 @@ chpass_provider = ldap
 
 ldap_uri = ldap://ldap-serverXX
 ldap_search_base = dc=davidXX,dc=curso1617
+~~~
 
-    Vamos a la consola y probamos con
+Vamos a la consola y probamos con los siguientes comandos.
 
-$ systemctl status sssd | grep domain
-$ getent passwd pirata21
-$ getent group piratas
-$ id pirata21
-$ finger pirata21
-$ cat /etc/passwd | grep pirata21
-$ su pirata21
+* systemctl status sssd | grep domain
+* getent passwd pirata21
+* getent group piratas
+* id pirata21
+* finger pirata21
+* cat /etc/passwd | grep pirata21
+* su pirata21
 
 ---
