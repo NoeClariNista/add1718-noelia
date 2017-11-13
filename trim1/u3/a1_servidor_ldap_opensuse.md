@@ -14,13 +14,13 @@ En esta práctica vamos a Instalar y Configurar el Servidor LDAP con OpenLDAP.
 
 Vamos a usar una MV OpenSUSE para montar nuestro servidor LDAP con la siguiente configuración.
 
-* Nombre equipo: ldap-server20.
+* Nombre de equipo: ldap-server20.
 
 ![imagen01](./images/a1_servidor_ldap_opensuse/01.png)
 
 ![imagen02](./images/a1_servidor_ldap_opensuse/02.png)
 
-* Además en /etc/hosts añadiremos lo siguiente.
+* Además en `/etc/hosts` añadiremos lo siguiente.
 
 ![imagen03](./images/a1_servidor_ldap_opensuse/03.png)
 
@@ -85,7 +85,7 @@ Dentro del Servidor de autenticación seguimos los siguientes pasos.
 
 Ahora haremos una serie de comprobaciones con los siguientes comandos.
 
-* slaptest -f /etc/openldap/slapd.conf para comprobar la sintaxis del fichero do configuración.
+* slaptest -f /etc/openldap/slapd.conf, para comprobar la sintaxis del fichero de configuración.
 
 ![imagen13](./images/a1_servidor_ldap_opensuse/13.png)
 
@@ -107,44 +107,43 @@ Primero instalamos gq poniendo en linea de comandos zypper install gq.
 
 ![imagen17](./images/a1_servidor_ldap_opensuse/17.png)
 
-Dentro de gq nos aparece lo siguiente.
+Dentro de gq comprobamos que tenemos creadas las unidades organizativas groups y people.
 
-![imagen26](./images/a1_servidor_ldap_opensuse/18.png)
-
-Comprobamos que tenemos creadas las unidades organizativas: groups y people.
-
-![imagen19](./images/a1_servidor_ldap_opensuse/19.png) <- falta
-
-![imagen20](./images/a1_servidor_ldap_opensuse/20.png) <- falta
+![imagen18](./images/a1_servidor_ldap_opensuse/18.png)
 
 ## **1.3. Crear Usuarios Y Grupos LDAP.**
 
-Vamos a Yast, Usuarios Grupos, Filtro, LDAP.
+Vamos a Yast, Usuarios y Grupos, Filtro, Usuarios LDAP.
 
-![imagen21](./images/a1_servidor_ldap_opensuse/21.png) <- revisar
+![imagen19](./images/a1_servidor_ldap_opensuse/19.png)
 
-Creamos el grupos piratas20, esto se creará dentro de la ou=groups.
+Creamos los usuarios pirata21 y pirata22, estos se crearán dentro de la ou=people.
+
+![imagen20](./images/a1_servidor_ldap_opensuse/20.png)
+
+![imagen21](./images/a1_servidor_ldap_opensuse/21.png)
+
+Ahora vamos a Grupos, Filtro, Grupos LDAP.
 
 ![imagen22](./images/a1_servidor_ldap_opensuse/22.png)
 
-Creamos los usuarios pirata21, pirata21, estos se crearán dentro de la ou=people.
+Creamos el grupos piratas20, esto se creará dentro de la ou=groups.
 
 ![imagen23](./images/a1_servidor_ldap_opensuse/23.png)
 
+Usamos gq para consultar/comprobar el contenido de la base de datos LDAP.
+
 ![imagen24](./images/a1_servidor_ldap_opensuse/24.png)
 
-Usar gq para consultar/comprobar el contenido de la base de datos LDAP.
+Utilizamos el comando ldapsearch -x -L -u -t "(uid=nombre-del-usuario)", para consultar en la base de datos LDAP la información del usuario con uid concreto.
 
+![imagen25](./images/a1_servidor_ldap_opensuse/25.png)
 
-ldapsearch -x -L -u -t "(uid=nombre-del-usuario)", comando para consultar en la base de datos LDAP la información del usuario con uid concreto.
-
-![imagen33](./images/a1_servidor_ldap_opensuse/33.png)
-
-![imagen34](./images/a1_servidor_ldap_opensuse/34.png)
+![imagen26](./images/a1_servidor_ldap_opensuse/26.png)
 
 ---
 
-# **2. Autenticación.**
+# **2. Cliente LDAP.**
 
 En este punto vamos a escribir información en el servidor LDAP.
 
@@ -152,24 +151,24 @@ En este punto vamos a escribir información en el servidor LDAP.
 
 Vamos a otra MV OpenSUSE. Cliente LDAP con OpenSUSE con la siguiente configuración.
 
-* Nombre equipo: ldap-client20.
+* Nombre de equipo: ldap-client20.
 
-![imagen35](./images/a1_servidor_ldap_opensuse/35.png)
+![imagen27](./images/a1_servidor_ldap_opensuse/27.png)
 
 * Dominio: curso1718.
 
-![imagen36](./images/a1_servidor_ldap_opensuse/36.png)
+![imagen28](./images/a1_servidor_ldap_opensuse/28.png)
 
-* Asegurarse que tenemos definido en el fichero `/etc/hosts del cliente`, el nombre DNS con su IP correspondiente.
+* Asegurarse que tenemos definido en el fichero `/etc/hosts` del cliente, el nombre DNS con su IP correspondiente.
 
-![imagen37](./images/a1_servidor_ldap_opensuse/37.png)
+![imagen29](./images/a1_servidor_ldap_opensuse/29.png)
 
 ~~~
 127.0.0.2         ldap-client20.curso1718   ldap-client20
 172.18.20.31      ldap-server20.curso1718   ldap-server20   noelia20.curso1718   noelia20
 ~~~
 
-![imagen38](./images/a1_servidor_ldap_opensuse/38.png)
+![imagen30](./images/a1_servidor_ldap_opensuse/30.png)
 
 Comprobamos el resultado con los siguientes comandos.
 
@@ -177,7 +176,7 @@ Comprobamos el resultado con los siguientes comandos.
 
 ![imagen39](./images/a1_servidor_ldap_opensuse/39.png)
 
-* Usar gq en el cliente para comprobar que se han creado bien los usuarios.
+* Usamos gq en el cliente para comprobar que se han creado bien los usuarios. Primero instalamos gq y luego lo comprobamos.
 
 ![imagen40](./images/a1_servidor_ldap_opensuse/40.png)
 
