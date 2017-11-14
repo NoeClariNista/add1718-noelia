@@ -33,7 +33,7 @@ Vamos a usar una MV OpenSUSE para montar nuestro Servidor LDAP con la siguiente 
 
 ## **1.2. Instalación Del Servidor LDAP.**
 
-Procedemos a la Instalación del módulo Yast que sirve para gestionar el servidor LDAP, para ello vamos a linea de comandos y escribimos zypper install yast2-auth-server.
+Procedemos a la Instalación del módulo Yast que sirve para gestionar el Servidor LDAP, para ello vamos a linea de comandos y escribimos zypper install yast2-auth-server.
 
 ![imagen05](./images/a1_servidor_ldap_opensuse/05.png)
 
@@ -41,7 +41,7 @@ A continuación vamos a Yast, Servidor de autenticación.
 
 ![imagen06](./images/a1_servidor_ldap_opensuse/06.png)
 
-Al entrar al Servidor de autenticación nos pedira instalar los paquetes: openldap2, krb5-server y krb5-client.
+Al entrar al Servidor de autenticación nos pedirá instalar los paquetes: openldap2, krb5-server y krb5-client.
 
 ![imagen07](./images/a1_servidor_ldap_opensuse/07.png)
 
@@ -67,15 +67,15 @@ Dentro del Servidor de autenticación seguimos los siguientes pasos.
 
 * DN base -> dc=noelia20,dc=curso1617.
 
-* DN administrador -> dn=Administrator.
+* DN de administrador -> dn=Administrator.
 
 * Añadir DN base -> Sí.
 
-* Contraseña del administrador.
+* Contraseña del Administrador.
 
 * Directorio de BD -> `/var/lib/ldap`.
 
-* Usar esta BD predeterminada para clientes LDAP -> Sí.
+* Usar esta BD como predeterminada para los clientes LDAP -> Sí.
 
 ![imagen11](./images/a1_servidor_ldap_opensuse/11.png)
 
@@ -113,7 +113,7 @@ Dentro de gq comprobamos que tenemos creadas las unidades organizativas groups y
 
 ## **1.3. Crear Usuarios Y Grupos LDAP.**
 
-Vamos a Yast, Usuarios y Grupos, Filtro, Usuarios LDAP.
+Vamos a Yast, Usuarios y Grupos, Definir filtro, Usuarios LDAP.
 
 ![imagen19](./images/a1_servidor_ldap_opensuse/19.png)
 
@@ -123,7 +123,7 @@ Creamos los usuarios pirata21 y pirata22, estos se crearán dentro de la ou=peop
 
 ![imagen21](./images/a1_servidor_ldap_opensuse/21.png)
 
-Ahora vamos a Grupos, Filtro, Grupos LDAP.
+Ahora vamos a Grupos, Definir filtro, Grupos LDAP.
 
 ![imagen22](./images/a1_servidor_ldap_opensuse/22.png)
 
@@ -159,7 +159,7 @@ Vamos a otra MV OpenSUSE. Cliente LDAP con OpenSUSE con la siguiente configuraci
 
 ![imagen28](./images/a1_servidor_ldap_opensuse/28.png)
 
-* Asegurarse que tenemos definido en el fichero `/etc/hosts` del cliente, el nombre DNS con su IP correspondiente.
+* Asegurarse que tenemos definido en el fichero `/etc/hosts` del Cliente, el nombre DNS con su IP correspondiente.
 
 ![imagen29](./images/a1_servidor_ldap_opensuse/29.png)
 
@@ -172,11 +172,11 @@ Vamos a otra MV OpenSUSE. Cliente LDAP con OpenSUSE con la siguiente configuraci
 
 Comprobamos el resultado con los siguientes comandos.
 
-* nmap -Pn ldap-server20 | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde el cliente.
+* nmap -Pn ldap-server20 | grep -P '389|636', para comprobar que el Servidor LDAP es accesible desde el Cliente.
 
 ![imagen31](./images/a1_servidor_ldap_opensuse/31.png)
 
-* Usamos gq en el cliente para comprobar que se han creado bien los usuarios. Primero instalamos gq.
+* Usamos gq en el Cliente para comprobar que se han creado bien los usuarios. Primero instalamos gq.
 
 ![imagen32](./images/a1_servidor_ldap_opensuse/32.png)
 
@@ -205,7 +205,7 @@ Ponemos los siguientes datos en la configuración.
 
 ## **2.2 Instalar Cliente LDAP.**
 
-Vamos a configurar de la conexión del cliente con el servidor LDAP.
+Vamos a configurar de la conexión del Cliente con el Servidor LDAP.
 
 Debemos instalar el paquete yast2-auth-client, que nos ayudará a configurar la máquina para autenticación.
 
@@ -229,6 +229,7 @@ Configuramos como hemos visto. Al final usamos la opción de Probar conexión.
 
 Vamos a la consola con nuestro usuario normal y probamos con los siguientes comandos.
 
+~~~
 * getent passwd pirata21.
 * getent group piratas20.
 * id pirata21.
@@ -236,6 +237,7 @@ Vamos a la consola con nuestro usuario normal y probamos con los siguientes coma
 * cat /etc/passwd | grep pirata21.
 * cat /etc/group | grep piratas20.
 * su pirata21
+~~~
 
 ![imagen46](./images/a1_servidor_ldap_opensuse/46.png)
 
