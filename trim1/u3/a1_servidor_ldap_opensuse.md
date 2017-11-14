@@ -65,7 +65,7 @@ Dentro del Servidor de autenticación seguimos los siguientes pasos.
 
 * Tipo de BD -> hdb.
 
-* DN base -> dc=noelia20,dc=curso1617.
+* DN base -> dc=noelia20,dc=curso1718.
 
 * DN de administrador -> dn=Administrator.
 
@@ -93,7 +93,7 @@ Ahora haremos una serie de comprobaciones con los siguientes comandos.
 
 ![imagen14](./images/a1_servidor_ldap_opensuse/14.png)
 
-* nmap localhost | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde la red.
+* nmap localhost | grep -P '389|636', para comprobar que el Servidor LDAP es accesible desde la red.
 
 ![imagen15](./images/a1_servidor_ldap_opensuse/15.png)
 
@@ -103,7 +103,7 @@ Ahora haremos una serie de comprobaciones con los siguientes comandos.
 
 Podemos comprobar el contenido de la base de datos LDAP usando la herramienta gq. Esta herramienta es un browser LDAP.
 
-Primero instalamos gq poniendo en linea de comandos zypper install gq.
+Primero instalamos gq poniendo por linea de comandos zypper install gq.
 
 ![imagen17](./images/a1_servidor_ldap_opensuse/17.png)
 
@@ -159,7 +159,7 @@ Vamos a otra MV OpenSUSE. Cliente LDAP con OpenSUSE con la siguiente configuraci
 
 ![imagen28](./images/a1_servidor_ldap_opensuse/28.png)
 
-* Asegurarse que tenemos definido en el fichero `/etc/hosts` del Cliente, el nombre DNS con su IP correspondiente.
+* Nos aseguramos que tenemos definido en el fichero `/etc/hosts` del Cliente, el nombre DNS con su IP correspondiente, es decir, 172.18.20.31.
 
 ![imagen29](./images/a1_servidor_ldap_opensuse/29.png)
 
@@ -184,24 +184,26 @@ Ahora lo comprobamos para ello hacemos lo siguiente.
 
 Vamos gq, File, Preferencias, Servidor, Nuevo.
 
-![imagen33](./images/a1_servidor_ldap_opensuse/32.png)
+![imagen33](./images/a1_servidor_ldap_opensuse/33.png)
 
-![imagen34](./images/a1_servidor_ldap_opensuse/32.png)
+![imagen34](./images/a1_servidor_ldap_opensuse/34.png)
 
-![imagen35](./images/a1_servidor_ldap_opensuse/32.png)
+![imagen35](./images/a1_servidor_ldap_opensuse/35.png)
 
 Ponemos los siguientes datos en la configuración.
 
 * URI = ldap://ldap-server20
 * Base DN = dc=noelia20,dc=curso1718
 
-![imagen36](./images/a1_servidor_ldap_opensuse/41.png)
+![imagen36](./images/a1_servidor_ldap_opensuse/36.png)
 
-![imagen37](./images/a1_servidor_ldap_opensuse/41.png)
+![imagen37](./images/a1_servidor_ldap_opensuse/37.png)
 
-![imagen38](./images/a1_servidor_ldap_opensuse/41.png)
+![imagen38](./images/a1_servidor_ldap_opensuse/38.png)
 
-![imagen39](./images/a1_servidor_ldap_opensuse/41.png)
+Finalmente nos aparecen nuestros usuarios y nuestro grupo creados en ldap.
+
+![imagen39](./images/a1_servidor_ldap_opensuse/39.png)
 
 ## **2.2 Instalar Cliente LDAP.**
 
@@ -215,11 +217,13 @@ Vamos a Yast, LDAP y Cliente Kerberos.
 
 ![imagen41](./images/a1_servidor_ldap_opensuse/41.png)
 
-Configuramos como hemos visto. Al final usamos la opción de Probar conexión.
-
 ![imagen42](./images/a1_servidor_ldap_opensuse/42.png)
 
+Configuramos las opciones como hemos visto.
+
 ![imagen43](./images/a1_servidor_ldap_opensuse/43.png)
+
+Pinchamos en la opción de Probar conexión.
 
 ![imagen44](./images/a1_servidor_ldap_opensuse/44.png)
 
@@ -245,7 +249,7 @@ Vamos a la consola con nuestro usuario normal y probamos con los siguientes coma
 
 ## **2.4. Autenticación.**
 
-Con autenticacion LDAP prentendemos usar la máquina servidor LDAP, como repositorio centralizado de la información de grupos, usuarios, claves, etc. Desde otras máquinas conseguiremos autenticarnos (entrar al sistema) con los usuarios definidos no en la máquina local, sino en la máquina remota con LDAP. Una especie de Domain Controller.
+Con autenticacion LDAP pretendemos usar la máquina servidor LDAP, como repositorio centralizado de la información de grupos, usuarios, claves, etc. Desde otras máquinas conseguiremos autenticarnos (entrar al sistema) con los usuarios definidos no en la máquina local, sino en la máquina remota con LDAP. Una especie de Domain Controller.
 
 Entramos en la MV cliente con algún usuario LDAP.
 
