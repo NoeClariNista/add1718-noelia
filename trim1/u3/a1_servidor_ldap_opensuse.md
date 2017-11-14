@@ -182,7 +182,7 @@ Comprobamos el resultado con los siguientes comandos.
 
 Ahora lo comprobamos, para ello hacemos lo siguiente.
 
-Vamos a gq, File, Preferencias, Servidor, Nuevo.
+Vamos a gq, File, Preferencias, Servidor, Nuevo. 
 
 ![imagen33](./images/a1_servidor_ldap_opensuse/33.png)
 
