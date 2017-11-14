@@ -127,7 +127,7 @@ Ahora vamos a Grupos, Definir filtro, Grupos LDAP.
 
 ![imagen22](./images/a1_servidor_ldap_opensuse/22.png)
 
-Creamos el grupos piratas20, esto se creará dentro de la ou=groups.
+Creamos el grupo piratas20, esto se creará dentro de la ou=groups.
 
 ![imagen23](./images/a1_servidor_ldap_opensuse/23.png)
 
@@ -180,9 +180,9 @@ Comprobamos el resultado con los siguientes comandos.
 
 ![imagen32](./images/a1_servidor_ldap_opensuse/32.png)
 
-Ahora lo comprobamos para ello hacemos lo siguiente.
+Ahora lo comprobamos, para ello hacemos lo siguiente.
 
-Vamos gq, File, Preferencias, Servidor, Nuevo.
+Vamos a gq, File, Preferencias, Servidor, Nuevo.
 
 ![imagen33](./images/a1_servidor_ldap_opensuse/33.png)
 
