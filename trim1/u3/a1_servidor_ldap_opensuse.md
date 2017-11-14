@@ -192,8 +192,9 @@ Vamos a gq, File, Preferencias, Servidor, Nuevo.
 
 Ponemos los siguientes datos en la configuración.
 
-* URI = ldap://ldap-server20
-* Base DN = dc=noelia20,dc=curso1718
+* URI = ldap://ldap-server20.
+
+* Base DN = dc=noelia20,dc=curso1718.
 
 ![imagen36](./images/a1_servidor_ldap_opensuse/36.png)
 
