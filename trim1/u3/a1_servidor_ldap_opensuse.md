@@ -12,7 +12,7 @@ En esta práctica vamos a Instalar y Configurar el Servidor LDAP con OpenLDAP.
 
 ## **1.1. Preparar La Máquina.**
 
-Vamos a usar una MV OpenSUSE para montar nuestro servidor LDAP con la siguiente configuración.
+Vamos a usar una MV OpenSUSE para montar nuestro Servidor LDAP con la siguiente configuración.
 
 * Nombre de equipo: ldap-server20.
 
@@ -55,7 +55,7 @@ Dentro del Servidor de autenticación seguimos los siguientes pasos.
 
 ![imagen08](./images/a1_servidor_ldap_opensuse/08.png)
 
-* Tipo de servidor -> autónomo.
+* Tipo de servidor -> Servidor autónomo.
 
 ![imagen09](./images/a1_servidor_ldap_opensuse/09.png)
 
@@ -73,7 +73,7 @@ Dentro del Servidor de autenticación seguimos los siguientes pasos.
 
 * Contraseña del administrador.
 
-* Directorio de BD -> /var/lib/ldap.
+* Directorio de BD -> `/var/lib/ldap`.
 
 * Usar esta BD predeterminada para clientes LDAP -> Sí.
 
@@ -97,7 +97,7 @@ Ahora haremos una serie de comprobaciones con los siguientes comandos.
 
 ![imagen15](./images/a1_servidor_ldap_opensuse/15.png)
 
-* slapcat para comprobar que la base de datos está bien configurada.
+* slapcat, para comprobar que la base de datos está bien configurada.
 
 ![imagen16](./images/a1_servidor_ldap_opensuse/16.png)
 
@@ -145,7 +145,7 @@ Utilizamos el comando ldapsearch -x -L -u -t "(uid=nombre-del-usuario)", para co
 
 # **2. Cliente LDAP.**
 
-En este punto vamos a escribir información en el servidor LDAP.
+En este punto vamos a escribir información en el Servidor LDAP.
 
 ## **2.1. Preparativos.**
 
@@ -174,20 +174,34 @@ Comprobamos el resultado con los siguientes comandos.
 
 * nmap -Pn ldap-server20 | grep -P '389|636', para comprobar que el servidor LDAP es accesible desde el cliente.
 
-![imagen39](./images/a1_servidor_ldap_opensuse/39.png)
+![imagen31](./images/a1_servidor_ldap_opensuse/31.png)
 
-* Usamos gq en el cliente para comprobar que se han creado bien los usuarios. Primero instalamos gq y luego lo comprobamos.
+* Usamos gq en el cliente para comprobar que se han creado bien los usuarios. Primero instalamos gq.
 
-![imagen40](./images/a1_servidor_ldap_opensuse/40.png)
+![imagen32](./images/a1_servidor_ldap_opensuse/32.png)
 
-File, Preferencias, Servidor, Nuevo.
+Ahora lo comprobamos para ello hacemos lo siguiente.
 
-![imagen41](./images/a1_servidor_ldap_opensuse/41.png)
+Vamos gq, File, Preferencias, Servidor, Nuevo.
+
+![imagen33](./images/a1_servidor_ldap_opensuse/32.png)
+
+![imagen34](./images/a1_servidor_ldap_opensuse/32.png)
+
+![imagen35](./images/a1_servidor_ldap_opensuse/32.png)
+
+Ponemos los siguientes datos en la configuración.
 
 * URI = ldap://ldap-server20
 * Base DN = dc=noelia20,dc=curso1718
 
-![imagen42](./images/a1_servidor_ldap_opensuse/42.png)
+![imagen36](./images/a1_servidor_ldap_opensuse/41.png)
+
+![imagen37](./images/a1_servidor_ldap_opensuse/41.png)
+
+![imagen38](./images/a1_servidor_ldap_opensuse/41.png)
+
+![imagen39](./images/a1_servidor_ldap_opensuse/41.png)
 
 ## **2.2 Instalar Cliente LDAP.**
 
@@ -195,30 +209,35 @@ Vamos a configurar de la conexión del cliente con el servidor LDAP.
 
 Debemos instalar el paquete yast2-auth-client, que nos ayudará a configurar la máquina para autenticación.
 
-![imagen43](./images/a1_servidor_ldap_opensuse/43.png)
+![imagen40](./images/a1_servidor_ldap_opensuse/40.png)
 
-Ir a Yast, LDAP y cliente Kerberos.
+Vamos a Yast, LDAP y Cliente Kerberos.
+
+![imagen41](./images/a1_servidor_ldap_opensuse/41.png)
+
+Configuramos como hemos visto. Al final usamos la opción de Probar conexión.
+
+![imagen42](./images/a1_servidor_ldap_opensuse/42.png)
+
+![imagen43](./images/a1_servidor_ldap_opensuse/43.png)
 
 ![imagen44](./images/a1_servidor_ldap_opensuse/44.png)
 
-Configurar como la imagen de ejmplo. Al final usamos la opción de Probar conexión
-
 ![imagen45](./images/a1_servidor_ldap_opensuse/45.png)
-
-![imagen46](./images/a1_servidor_ldap_opensuse/46.png)
 
 ## **2.3 Comprobamos Desde El Cliente.**
 
-Vamos a la consola y probamos con los siguientes comandos.
+Vamos a la consola con nuestro usuario normal y probamos con los siguientes comandos.
 
-* getent passwd pirata21
-* getent group piratas
+* getent passwd pirata21.
+* getent group piratas20.
 * id pirata21.
-* finger pirata21
-* cat /etc/passwd | grep pirata21
+* finger pirata21.
+* cat /etc/passwd | grep pirata21.
+* cat /etc/group | grep piratas20.
 * su pirata21
 
-![imagen47](./images/a1_servidor_ldap_opensuse/47.png)
+![imagen46](./images/a1_servidor_ldap_opensuse/46.png)
 
 ---
 
@@ -226,7 +245,9 @@ Vamos a la consola y probamos con los siguientes comandos.
 
 Con autenticacion LDAP prentendemos usar la máquina servidor LDAP, como repositorio centralizado de la información de grupos, usuarios, claves, etc. Desde otras máquinas conseguiremos autenticarnos (entrar al sistema) con los usuarios definidos no en la máquina local, sino en la máquina remota con LDAP. Una especie de Domain Controller.
 
-Entrar en la MV cliente con algún usuario LDAP.
+Entramos en la MV cliente con algún usuario LDAP.
+
+![imagen47](./images/a1_servidor_ldap_opensuse/47.png)
 
 ![imagen48](./images/a1_servidor_ldap_opensuse/48.png)
 
