@@ -7,7 +7,16 @@ ___
 Necesitaremos 2 MV:
 
 * 1 Windows Server.
+
+  * Nombre de equipo:
+
+![imagen01](./images/a1_servidor_impresion_windows/01.png)
+
 * 1 Windows Cliente.
+
+  * Nombre de equipo:
+
+![imagen02](./images/a1_servidor_impresion_windows/02.png)
 
 ---
 
@@ -17,7 +26,19 @@ Necesitaremos 2 MV:
 
 Vamos al Servidor.
 
+![imagen03](./images/a1_servidor_impresion_windows/03.png)
+
 Instalamos rol/función de servidor de impresión. Incluimos impresión por internet.
+
+![imagen04](./images/a1_servidor_impresion_windows/04.png)
+
+![imagen05](./images/a1_servidor_impresion_windows/05.png)
+
+![imagen06](./images/a1_servidor_impresion_windows/06.png)
+
+![imagen07](./images/a1_servidor_impresion_windows/07.png)
+
+![imagen08](./images/a1_servidor_impresion_windows/08.png)
 
 ## **1.2 Instalar Impresora.**
 
