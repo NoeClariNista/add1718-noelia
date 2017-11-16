@@ -20,7 +20,7 @@ ___
 
 ---
 
-## **Tema 3.
+## **Tema 3.**
 
 * ### **Actividad 1.** **[Servidor LDAP - OpenSUSE.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim1/u3/a1_servidor_ldap_opensuse.md)**
 
