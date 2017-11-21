@@ -96,7 +96,9 @@ Vamos al Cliente.
 
 ![imagen]
 
-Debemos acceder a la dirección http://<nombre-del-servidor>/printers para que aparezca en nuestro navegador un entorno que permite gestionar las impresoras de dicho equipo, previa autenticación como uno de los usuarios del habilitados para dicho fin (por ejemplo el "Administrador"). Pincha en la opción propiedades y se muestra la siguiente pantalla.
+Debemos acceder a la dirección `http://hernandez20s/printers` para que aparezca en nuestro navegador un entorno que permite gestionar las impresoras de dicho equipo, previa autenticación como uno de los usuarios del habilitados para dicho fin (por ejemplo el "Administrador"). Pincha en la opción propiedades y se muestra la siguiente pantalla.
+
+![imagen]
 
 ![imagen]
 
