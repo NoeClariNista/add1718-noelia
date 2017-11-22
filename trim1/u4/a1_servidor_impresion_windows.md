@@ -117,11 +117,3 @@ Finalmente pulsa en reanudar el trabajo para que tu documento se convierta a PDF
 ![imagen]
 
 ---
-
-# **3. Servidor De Impresión En El Servidor.**
-
-Configurar cola de impresión con dos impresoras iguales.
-
-Configurar colas/usuarios/prioridades.
-
----
