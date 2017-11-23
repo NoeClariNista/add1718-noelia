@@ -104,14 +104,6 @@ Ir a un Cliente Windows y probamos la impresora remota.
 
 ~~~
 
-1. Impresora compartida
-1.1 Rol impresión
-
-    Vamos al servidor
-    Instalar rol/función de servidor de impresión. Incluir impresión por Internet.
-
-    DUDA: Instalar rol/función de cliente de impresión por Internet.
-
 1.2 Instalar impresora PDF
 
 Vamos a conectar e instalar localmente una impresora al servidor Windows Server, de modo que estén disponibles para ser accedidas por los clientes del dominio.
