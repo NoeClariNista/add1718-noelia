@@ -108,11 +108,11 @@ Ya tenemos la impresora en los recursos compartidos del Servidor.
 
 ![imagen26](./images/a1_servidor_impresion_windows/26.png)
 
-Vamos al Cliente. Buscamos recursos de red del Servidor. Como nos tarda en aparecer ponemos \\172.18.20.21 en la barra de navegación.
+Vamos al Cliente. Buscamos recursos de red del Servidor. Como nos tarda en aparecer ponemos \\\172.18.20.21 en la barra de navegación.
 
 ![imagen27](./images/a1_servidor_impresion_windows/27.png)
 
-Seleccionamos impresora, botón derecho, conectar.
+Seleccionamos la impresora, botón derecho, conectar.
 
 ![imagen28](./images/a1_servidor_impresion_windows/28.png)
 
@@ -152,7 +152,7 @@ Abrimos un navegador Web. Ponemos la URL `http://172.18.20.21/printers` para que
 
 ![imagen35](./images/a1_servidor_impresion_windows/35.png)
 
-Pinchamos en la opción propiedades.
+Pinchamos en la opción de propiedades.
 
 ![imagen36](./images/a1_servidor_impresion_windows/36.png)
 
@@ -172,20 +172,18 @@ Vamos a realizar seguidamente una prueba sencilla en la impresora de red.
 
 A través del navegador pausamos todos los trabajos en la impresora.
 
-Enviamos a imprimir en la impresora compartida un documento del Bloc de notas.
-
 ![imagen41](./images/a1_servidor_impresion_windows/41.png)
+
+Enviamos a imprimir en la impresora compartida un documento del Bloc de notas.
 
 ![imagen42](./images/a1_servidor_impresion_windows/42.png)
 
 ![imagen43](./images/a1_servidor_impresion_windows/43.png)
 
-![imagen44](./images/a1_servidor_impresion_windows/44.png)
-
 Finalmente pulsamos en reanudar el trabajo para que el documento se convierta a PDF. Comprobamos que se puede imprimir desde un Cliente Windows.
 
-![imagen45](./images/a1_servidor_impresion_windows/45.png)
+![imagen44](./images/a1_servidor_impresion_windows/44.png)
 
-![imagen46](./images/a1_servidor_impresion_windows/46.png)
+![imagen45](./images/a1_servidor_impresion_windows/45.png)
 
 ---
