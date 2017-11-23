@@ -20,7 +20,7 @@ Vamos al Servidor. Concretamente al Panel de Administrador del Servidor.
 
 ![imagen01](./images/a1_servidor_impresion_windows/01.png)
 
-Instalamos rol/función de Servidor de impresión. Incluimos impresión por internet.
+Instalamos rol/función de Servidor de impresión. También incluimos impresión por internet.
 
 Tenemos que ir a Administrar y vamos a Agregar roles y características.
 
@@ -58,9 +58,9 @@ Vamos a conectarnos e instalar localmente una impresora al Servidor Windows Serv
 
 En nuestro caso, dado que es posible de que no tengan una impresora física en casa y no es de mucho interés forzar la instalación de una impresora que no se tiene, vamos a instalar un programa que simule una impresora de PDF.
 
-PDFCreator es una utilidad completamente gratuita con la que podrás crear archivos PDF desde cualquier aplicación, desde el Bloc de notas hasta Word, Excel, etc. Este programa funciona simulando ser una impresora, de esta forma, instalando PDFCreator todas tus aplicaciones con opción para imprimir te permitirán crear archivos PDF en cuestión de segundos.
+PDFCreator es una utilidad completamente gratuita con la que se pueden crear archivos PDF desde cualquier aplicación, desde el Bloc de notas hasta Word, Excel, etc. Este programa funciona simulando ser una impresora, de esta forma, instalando PDFCreator todas tus aplicaciones con opción para imprimir te permitirán crear archivos PDF en cuestión de segundos.
 
-Vamos a instalar PDFCreator. Vamos a la página oficial de [PDFCreator](https://pdfcreator.es/) para descargarlo y lo instalamos.
+Vamos a instalar PDFCreator. Para ello vamos a la página oficial de [PDFCreator](https://pdfcreator.es/) para descargarlo y lo instalamos.
 
 ![imagen14](./images/a1_servidor_impresion_windows/14.png)
 
@@ -80,7 +80,7 @@ Finalmente terminamos la instalación del PDFCreator en Windows 2012 Server.
 
 ## **1.3. Probar La Impresora En Local.**
 
-Para crear un archivo PDF no hará falta que cambies la aplicación que estés usando, simplemente ve a la opción de "imprimir" y selecciona "Impresora PDF", en segundos tendrás creado tu archivo PDF.
+Para crear un archivo PDF no hará falta que cambiemos la aplicación que estemos usando, simplemente vamos a la opción de "imprimir" y selecciona "Impresora PDF", en segundos tendremos creado un archivo PDF.
 
 Podemos probar la nueva impresora abriendo el Bloc de notas y creando un fichero luego seleccionamos imprimir. Cuando finalice el proceso se abrirá un fichero PDF con el resultado de la impresión.
 
@@ -92,9 +92,7 @@ Podemos probar la nueva impresora abriendo el Bloc de notas y creando un fichero
 
 ## **1.4. Compartir Por Red.**
 
-Vamos al servidor.
-
-Concretamente a Administración de impresión.
+Vamos al servidor. Concretamente a Administración de impresión.
 
 ![imagen23](./images/a1_servidor_impresion_windows/23.png)
 
@@ -102,27 +100,25 @@ Vamos al Botón derecho, Propiedades, Compartir.
 
 ![imagen24](./images/a1_servidor_impresion_windows/24.png)
 
-Como nombre del recurso compartido utilizar PDFnoelia20.
+Como nombre del recurso compartido utilizamos PDFnoelia20.
 
 ![imagen25](./images/a1_servidor_impresion_windows/25.png)
 
-La siguiente imagen muestra los recursos compartidos en el servidor incluido la impresora.
+Ya tenemos la impresora en los recursos compartidos del Servidor.
 
 ![imagen26](./images/a1_servidor_impresion_windows/26.png)
 
-Vamos al cliente.
-
-Buscar recursos de red del Servidor. Si tarda en aparecer ponemos \\172.18.20.21 en la barra de navegación.
+Vamos al cliente. Buscamos recursos de red del Servidor. Como nos tarda en aparecer ponemos \\172.18.20.21 en la barra de navegación.
 
 ![imagen27](./images/a1_servidor_impresion_windows/27.png)
 
-Seleccionar impresora -> botón derecho -> conectar.
+Seleccionamos impresora, botón derecho, conectar.
 
 ![imagen28](./images/a1_servidor_impresion_windows/28.png)
 
 Ya tenemos la impresora remota configurada en el cliente.
 
-Probar la impresora remota. Podemos probar abriendo el Bloc de notas y creando un fichero luego seleccionamos imprimir. Cuando finalice el proceso se creará un fichero PDF en el directorio donde se encuentran todos los archivos de PDFCreator.
+Probamos la impresora remota. Podemos probar abriendo el Bloc de notas y creando un fichero luego seleccionamos imprimir. Cuando finalice el proceso se creará un fichero PDF en el directorio donde se encuentran todos los archivos de PDFCreator.
 
 ![imagen29](./images/a1_servidor_impresion_windows/29.png)
 
@@ -156,11 +152,11 @@ Abrimos un navegador Web. Ponemos URL http://172.18.20.21/printers para que apar
 
 ![imagen35](./images/a1_servidor_impresion_windows/35.png)
 
-Pincha en la opción propiedades y se muestra la siguiente pantalla.
+Pinchamos en la opción propiedades.
 
 ![imagen36](./images/a1_servidor_impresion_windows/36.png)
 
-Agregamos la impresora en el cliente utilizando la URL, como se muestra en la siguiente pantalla.
+Agregamos la impresora en el cliente utilizando la URL.
 
 ![imagen37](./images/a1_servidor_impresion_windows/37.png)
 
@@ -172,11 +168,11 @@ Agregamos la impresora en el cliente utilizando la URL, como se muestra en la si
 
 ## **2.3. Comprobar Desde El Navegador.**
 
-Vamos a realizar seguidamente una prueba sencilla en tu impresora de red.
+Vamos a realizar seguidamente una prueba sencilla en la impresora de red.
 
-A través del navegador pausa todos los trabajos en la impresora.
+A través del navegador pausamos todos los trabajos en la impresora.
 
-Envía a imprimir en tu impresora compartida un documento del Bloc de notas. La siguiente pantalla muestra que la impresora esta en pausa y con el trabajo en cola de impresión.
+Enviamos a imprimir en la impresora compartida un documento del Bloc de notas.
 
 ![imagen41](./images/a1_servidor_impresion_windows/41.png)
 
@@ -186,7 +182,7 @@ Envía a imprimir en tu impresora compartida un documento del Bloc de notas. La 
 
 ![imagen44](./images/a1_servidor_impresion_windows/44.png)
 
-Finalmente pulsa en reanudar el trabajo para que tu documento se convierta a PDF. Comprobar que se puede imprimir desde un cliente Windows.
+Finalmente pulsamos en reanudar el trabajo para que el documento se convierta a PDF. Comprobamos que se puede imprimir desde un Cliente Windows.
 
 ![imagen45](./images/a1_servidor_impresion_windows/45.png)
 
