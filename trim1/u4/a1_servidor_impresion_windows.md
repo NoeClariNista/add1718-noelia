@@ -40,6 +40,20 @@ Instalamos rol/función de servidor de impresión. Incluimos impresión por inte
 
 ![imagen08](./images/a1_servidor_impresion_windows/08.png)
 
+![imagen09](./images/a1_servidor_impresion_windows/09.png)
+
+![imagen10](./images/a1_servidor_impresion_windows/10.png)
+
+![imagen11](./images/a1_servidor_impresion_windows/11.png)
+
+![imagen12](./images/a1_servidor_impresion_windows/12.png)
+
+![imagen13](./images/a1_servidor_impresion_windows/13.png)
+
+![imagen14](./images/a1_servidor_impresion_windows/14.png)
+
+![imagen15](./images/a1_servidor_impresion_windows/15.png)
+
 ## **1.2 Instalar Impresora PDF.**
 
 Vamos a conectarnos e instalar localmente una impresora al Servidor Windows Server, de modo que estén disponibles para ser accedidas por los Clientes del dominio.
@@ -52,15 +66,27 @@ PDF Creator: Para activar el modo AUTOSAVE vamos a Ajustes -> Autosave. Ahí con
 
 Vamos a instalar PDFCreator. Vamos a la página oficial de [PDFCreator](http://pdfcreator.es/) para descargarlo.
 
+![imagen16](./images/a1_servidor_impresion_windows/16.png)
+
 En PDFCreator, activar el modo AUTOSAVE vamos a Ajustes -> Autosave. Ahí configuramos carpeta destino.
 
 PDFCreator es una utilidad completamente gratuita con la que podrás crear archivos PDF desde cualquier aplicación, desde el Bloc de notas hasta Word, Excel, etc. Este programa funciona simulando ser una impresora, de esta forma, instalando PDFCreator todas tus aplicaciones con opción para imprimir te permitirán crear archivos PDF en cuestión de segundos.
 
 La instalación de este programa no tiene dificultad simplemente elegir la opción "Instalación estándar".
 
+![imagen17](./images/a1_servidor_impresion_windows/17.png)
+
+![imagen18](./images/a1_servidor_impresion_windows/18.png)
+
+![imagen19](./images/a1_servidor_impresion_windows/19.png)
+
 // Para crear un archivo PDF no hará falta que cambies la aplicación que estés usando, simplemente ve a la opción de "imprimir" y selecciona "PDFCreator", en segundos tendrás creado tu archivo PDF. Rápido y fácil. La instalación de este programa no tiene dificultad simplemente elegir la opción "Instalación estándar".
 
 Mientras se va instalando nos sale que PDFCreator requiere NET FrameWork v4.
+
+![imagen20](./images/a1_servidor_impresion_windows/20.png)
+
+![imagen21](./images/a1_servidor_impresion_windows/21.png)
 
 ## **1.3. Probar La Impresora En Local.**
 
