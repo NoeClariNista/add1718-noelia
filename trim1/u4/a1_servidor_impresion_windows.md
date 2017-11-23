@@ -4,19 +4,11 @@ ___
 
 ---
 
-Necesitaremos 2 MV.
+Necesitaremos 2 MVs.
 
 * 1 Windows Server.
 
-  * Nombre de equipo:
-
-![imagen01](./images/a1_servidor_impresion_windows/01.png)
-
 * 1 Windows Cliente.
-
-  * Nombre de equipo:
-
-![imagen02](./images/a1_servidor_impresion_windows/02.png)
 
 ---
 
