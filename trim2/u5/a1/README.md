@@ -129,7 +129,6 @@ config.vm.network :forwarded_port, host: 4567, guest: 80
 Luego iniciamos la MV (si ya se encuentra en ejecución lo podemos refrescar con vagrant reload)
 
 ![imagen18]
--------------------------------------------------------------------------------------------
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos:
 
