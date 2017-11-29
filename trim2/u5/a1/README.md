@@ -144,6 +144,8 @@ En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. 
 
 ![imagen21]
 
+![imagen22]
+
 ---
 
 # **4. Ejemplos De Configuración Vagrantfile.**
