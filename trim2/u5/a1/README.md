@@ -75,20 +75,12 @@ vagrant up: comando para iniciar una nueva instancia de la máquina.
 
 ![imagen07]
 
----------------------------------------------------
-
-* vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
-
+ > * vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
 Otros comandos últiles de Vagrant son.
-
 * vagrant suspend: Suspender la máquina virtual. Tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
-
 * vagrant resume : Volver a despertar la máquina virtual.
-
 * vagrant halt: Apagarla la máquina virtual.
-
 * vagrant status: Estado actual de la máquina virtual.
-
 * vagrant destroy: Para eliminar la máquina virtual (No los ficheros de configuración).
 
 ---
@@ -97,21 +89,25 @@ Otros comandos últiles de Vagrant son.
 
 ## **3.1. Carpetas Sincronizadas.**
 
-    La carpeta del proyecto que contiene el Vagrantfile es visible para el sistema el virtualizado, esto nos permite compartir archivos fácilmente entre los dos entornos.
+La carpeta del proyecto que contiene el Vagrantfile es visible para el sistema el virtualizado, esto nos permite compartir archivos fácilmente entre los dos entornos.
 
-    Para identificar las carpetas compartidas dentro del entorno virtual, hacemos:
+Para identificar las carpetas compartidas dentro del entorno virtual, hacemos:
 
 vagrant up
 vagrant ssh
 ls /vagrant
 
+![imagen08]
+
     Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
+
+![imagen09]
 
 ## **3.2 Redireccionamiento De Los Puertos.**
 
 Cuando trabajamos con máquinas virtuales, es frecuente usarlas para proyectos enfocados a la web, y para acceder a las páginas es necesario configurar el enrutamiento de puertos.
 
-    Entramos en la MV e instalamos apache.
+Entramos en la MV e instalamos apache.
         vagrant ssh
         apt-get install apache2
     Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
