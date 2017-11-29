@@ -117,29 +117,39 @@ vagrant ssh
 apt-get install apache2
 
 ![imagen12-15]
--------------------------------------------------------------------------------------------
 
 Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
 
+![imagen16]
+
 config.vm.network :forwarded_port, host: 4567, guest: 80
 
+![imagen17]
+
 Luego iniciamos la MV (si ya se encuentra en ejecución lo podemos refrescar con vagrant reload)
+
+![imagen18]
+-------------------------------------------------------------------------------------------
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos:
 
 nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
 
+![imagen19]
+
 netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
 
+![imagen20]
+
 En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. En realidad estamos accediendo al puerto 80 de nuestro sistema virtualizado.
+
+![imagen21]
 
 ---
 
 # **4. Ejemplos De Configuración Vagrantfile.**
 
 A continuación se muestran ejemplos de configuración Vagrantfile que NO ES NECESARIO hacer. Sólo es información.
-
-    Enlace de interés Tutorial Vagrant. ¿Qué es y cómo usarlo?
 
 Ejemplo para configurar la red:
 
