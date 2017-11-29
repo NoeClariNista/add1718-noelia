@@ -148,39 +148,14 @@ En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. 
 
 ---
 
-# **4. Ejemplos De Configuración Vagrantfile.**
-
-A continuación se muestran ejemplos de configuración Vagrantfile que NO ES NECESARIO hacer. Sólo es información.
-
-Ejemplo para configurar la red:
-
-config.vm.network "private_network", ip: "192.168.33.10"
-
-Ejemplo para configurar las carpetas compartidas:
-
-config.vm.synced_folder "htdocs", "/var/www/html"
-
-Ejemplo para configurar la conexión SSH de vagrant a nuestra máquina virtual:
-
-config.ssh.username = 'root'
-config.ssh.password = 'vagrant'
-config.ssh.insert_key = 'true'
-
-Ejemplo para configurar la ejecución remota de aplicaciones gráficas instaladas en la máquina virtual, mediante SSH:
-
-config.ssh.forward_agent = true
-config.ssh.forward_x11 = true
-
----
-
-## **5. Suministro.**
+## **4. Suministro.**
 
 Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. Esto es, ejecutar "una receta" o una serie de scripts durante el proceso de arranque del entorno virtual para instalar, configurar y personalizar un sin fin de aspectos del SO del sistema anfitrión.
 
     vagrant halt, apagamos la MV.
     vagrant destroy y la destruimos para volver a empezar.
 
-## **5.1. Suministro Mediante Shell Script.**
+## **4.1. Suministro Mediante Shell Script.**
 
 Ahora vamos a suministrar a la MV un pequeño script para instalar Apache.
 
@@ -214,7 +189,7 @@ Podremos notar, al iniciar la máquina, que en los mensajes de salida se muestra
 
     Para verificar que efectivamente el servidor Apache ha sido instalado e iniciado, abrimos navegador en la máquina real con URL http://127.0.0.1:4567.
 
-## **5.2. Suministro Mediante Puppet.**
+## **4.2. Suministro Mediante Puppet.**
 
     Enlace de interés:
 
@@ -253,11 +228,11 @@ Para que se apliquen los cambios de configuración, tenemos dos formas:
 
 ---
 
-# **6. Nuestra Caja Personalizada.**
+# **5. Nuestra Caja Personalizada.**
 
 En los apartados anteriores hemos descargado una caja/box de un repositorio de Internet, y luego la hemos provisionado para personalizarla. En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
 
-## **6.1 Preparar La MV VirtualBox.**
+## **5.1 Preparar La MV VirtualBox.**
 
 Lo primero que tenemos que hacer es preparar nuestra máquina virtual con una configuración por defecto, por si queremos publicar nuestro Box, ésto se realiza para seguir un estándar y que todo el mundo pueda usar dicho Box.
 
@@ -299,7 +274,7 @@ vermagic:       3.13.0-32-generic SMP mod_unload modversions
 root@hostname:~# modinfo vboxguest |grep version
 version:        4.3.20
 
-## **6.2. Crear La Caja Vagrant.**
+## **5.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
