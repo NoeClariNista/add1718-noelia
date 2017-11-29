@@ -99,7 +99,7 @@ ls /vagrant
 
 ![imagen08]
 
-    Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
+Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
 
 ![imagen09]
 
@@ -108,21 +108,23 @@ ls /vagrant
 Cuando trabajamos con máquinas virtuales, es frecuente usarlas para proyectos enfocados a la web, y para acceder a las páginas es necesario configurar el enrutamiento de puertos.
 
 Entramos en la MV e instalamos apache.
-        vagrant ssh
-        apt-get install apache2
-    Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
-        config.vm.network :forwarded_port, host: 4567, guest: 80
-    Luego iniciamos la MV (si ya se encuentra en ejecución lo podemos refrescar con vagrant reload)
+
+vagrant ssh
+apt-get install apache2
+
+Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
+
+config.vm.network :forwarded_port, host: 4567, guest: 80
+
+Luego iniciamos la MV (si ya se encuentra en ejecución lo podemos refrescar con vagrant reload)
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos:
 
-    nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
+nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
 
-    netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
+netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
 
-    En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. En realidad estamos accediendo al puerto 80 de nuestro sistema virtualizado.
-
-vagrant-forward-example
+En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. En realidad estamos accediendo al puerto 80 de nuestro sistema virtualizado.
 
 ---
 
