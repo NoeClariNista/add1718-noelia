@@ -70,33 +70,26 @@ Es más cómodo trabajar con el fichero si eliminamos todas las líneas de comen
 
 Vamos a iniciar una máquina virtual nueva usando Vagrant:
 
-
-    cd mivagrantXX
-    vagrant up: comando para iniciar una nueva instancia de la máquina.
+cd mivagrantXX
+vagrant up: comando para iniciar una nueva instancia de la máquina.
 
 ![imagen07]
 
 ---------------------------------------------------
 
-    vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
-    Otros comandos últiles de Vagrant son:
-        vagrant suspend: Suspender la máquina virtual. Tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
-        vagrant resume : Volver a despertar la máquina virtual.
-        vagrant halt: Apagarla la máquina virtual.
-        vagrant status: Estado actual de la máquina virtual.
-        vagrant destroy: Para eliminar la máquina virtual (No los ficheros de configuración).
+* vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
 
-    Ejemplos
+Otros comandos últiles de Vagrant son.
 
-    Crear un proyecto vagrant con Windows7 e iniciar la MV:
+* vagrant suspend: Suspender la máquina virtual. Tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
 
-        vagrant init opentable/win-7-professional-amd64-nocm
-        vagrant up --provider virtualbox
+* vagrant resume : Volver a despertar la máquina virtual.
 
-    Crear un proyecto vagrant con MV OpenSUSE 42.1 e iniciar la MV:
+* vagrant halt: Apagarla la máquina virtual.
 
-        vagrant init opensuse/openSUSE-42.1-x86_64
-        vagrant up --provider virtualbox
+* vagrant status: Estado actual de la máquina virtual.
+
+* vagrant destroy: Para eliminar la máquina virtual (No los ficheros de configuración).
 
 ---
 
