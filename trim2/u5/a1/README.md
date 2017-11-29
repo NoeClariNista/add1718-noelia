@@ -75,6 +75,8 @@ vagrant up: comando para iniciar una nueva instancia de la máquina.
 
 ![imagen07]
 
+![imagen10]
+
  > * vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
 Otros comandos últiles de Vagrant son.
 * vagrant suspend: Suspender la máquina virtual. Tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
@@ -99,6 +101,8 @@ ls /vagrant
 
 ![imagen08]
 
+![imagen11]
+
 Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
 
 ![imagen09]
@@ -111,6 +115,9 @@ Entramos en la MV e instalamos apache.
 
 vagrant ssh
 apt-get install apache2
+
+![imagen12-15]
+-------------------------------------------------------------------------------------------
 
 Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
 
