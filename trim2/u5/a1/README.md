@@ -6,24 +6,11 @@ ___
 
 # **1. Introducción.**
 
-Según Wikipedia:
+Vagrant es una herramienta para la creación y configuración de entornos de desarrollo virtualizados.
 
-Vagrant es una herramienta para la creación y configuración de entornos
-de desarrollo virtualizados.
+Originalmente se desarrolló para VirtualBox y sistemas de configuración tales como Chef, Salt y Puppet. Sin embargo desde la versión 1.1 Vagrant es capaz de trabajar con múltiples proveedores, como VMware, Amazon EC2, LXC, DigitalOcean, etc.
 
-Originalmente se desarrolló para VirtualBox y sistemas de configuración tales
-como Chef, Salt y Puppet. Sin embargo desde la versión 1.1 Vagrant es
-capaz de trabajar con múltiples proveedores, como VMware, Amazon EC2, LXC, DigitalOcean, etc.2
-
-Aunque Vagrant se ha desarrollado en Ruby se puede usar en multitud de
-proyectos escritos en otros lenguajes.
-
-Enlaces de interés:
-
-    Cómo instalar y configurar Vagrant
-    Instalar vagrant en OpenSUSE 13.2
-
-    Para desarrollar esta actividad se ha utilizado la información del enlace anterior publicado por Jonathan Wiesel, el 16/07/2013.
+Aunque Vagrant se ha desarrollado en Ruby se puede usar en multitud de proyectos escritos en otros lenguajes.
 
 ---
 
@@ -33,54 +20,63 @@ Enlaces de interés:
 
 La instalación debemos hacerla en una máquina real.
 
-    Hay varias formas de instalar Vagrant:
-        apt-get install vagrant o
-        Usando un paquete Vagrant-deb Disponible para descargar del servidor Leela.
-    vagrant version, para comprobar la versión actual de Vagrant.
-    VBoxManage -v, para comprobar la versión actual de VirtualBox.
-    Si vamos a trabajar Vagrant con MV de VirtualBox, hay que comprobar que las versiones de ambos son compatibles entre sí.
+Hay varias formas de instalar Vagrant.
 
-2.2. Proyecto
+apt-get install vagrant o Usando un paquete Vagrant-deb Disponible para descargar del servidor Leela.
 
-    Crear un directorio para nuestro proyecto vagrant (Donde XX es el número de cada alumno):
+vagrant version, para comprobar la versión actual de Vagrant.
 
-    mkdir mivagrantXX
-    cd mivagrantXX
+![imagen01]
+
+VBoxManage -v, para comprobar la versión actual de VirtualBox.
+
+![imagen02]
+
+Si vamos a trabajar Vagrant con MV de VirtualBox, hay que comprobar que las versiones de ambos son compatibles entre sí.
+
+## **2.2. Proyecto.**
+
+Creamos un directorio para nuestro proyecto vagrant.
+
+~~~
+    mkdir mivagrant20
+    cd mivagrant20
     vagrant init
+~~~
 
-vagrant-init
-2.3 Imagen, caja o box
+[imagen03]
 
-    Ahora necesitamos obtener una imagen(caja, box) de un sistema operativo. Vamos, por ejemplo, a conseguir una imagen de un Ubuntu Precise de 32 bits:
+## **2.3. Imagen, Caja O Box.**
 
-vagrant box add micajaXX_ubuntu_precise32 http://files.vagrantup.com/precise32.box
+Ahora necesitamos obtener una imagen(caja, box) de un sistema operativo. Vamos, por ejemplo, a conseguir una imagen de un Ubuntu Precise de 32 bits.
 
-vagrant-box-add
+`vagrant box add micajaXX_ubuntu_precise32 http://files.vagrantup.com/precise32.box`
 
-    vagrant box list: Lista las cajas/imágenes disponibles actualmente en nuestra máquina.
+vagrant box list: Lista las cajas/imágenes disponibles actualmente en nuestra máquina.
+
+![imagen04]
 
 Para usar una caja determinada en nuestro proyecto, modificamos el fichero Vagrantfile (dentro de la carpeta de nuestro proyecto).
 
-    Cambiamos la línea config.vm.box = "base" por config.vm.box = "micajaXX_ubuntu_precise32".
-    Es más cómodo trabajar con el fichero si eliminamos todas las líneas de comentarios. De modo que vamos a hacer una copia de seguridad del archivo Vagrantfile a Vagrantfile.bak, y vamos a quitar todas las líneas comentadas del Vagrantfile.
+Cambiamos la línea config.vm.box = "base" por config.vm.box = "micajaXX_ubuntu_precise32".
 
-vagrantfile
+![imagen05]
 
-    Existen muchos repositorios para descargar imágenes/cajas/boxes. Por ejemplo:
+![imagen06]
 
-        Vagrant Box List
-        HashiCorp's Atlas box catalog
+Es más cómodo trabajar con el fichero si eliminamos todas las líneas de comentarios. De modo que vamos a hacer una copia de seguridad del archivo Vagrantfile a Vagrantfile.bak, y vamos a quitar todas las líneas comentadas del Vagrantfile.
 
-    Incluso podemos descargarnos cajas con Windows, GNU/Linux con entorno gráfico, BSD, etc.
-
-2.4 Iniciar una nueva máquina
+## **2.4. Iniciar Una Nueva Máquina.**
 
 Vamos a iniciar una máquina virtual nueva usando Vagrant:
+
 
     cd mivagrantXX
     vagrant up: comando para iniciar una nueva instancia de la máquina.
 
-vagrant-up
+![imagen07]
+
+---------------------------------------------------
 
     vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
     Otros comandos últiles de Vagrant son:
@@ -104,8 +100,9 @@ vagrant-up
 
 ---
 
-3. Configuración del entorno virtual
-3.1 Carpetas sincronizadas
+# **3. Configuración Del Entorno Virtual.**
+
+## **3.1. Carpetas Sincronizadas.**
 
     La carpeta del proyecto que contiene el Vagrantfile es visible para el sistema el virtualizado, esto nos permite compartir archivos fácilmente entre los dos entornos.
 
@@ -117,7 +114,7 @@ ls /vagrant
 
     Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
 
-3.2 Redireccionamiento de los puertos
+## **3.2 Redireccionamiento De Los Puertos.**
 
 Cuando trabajamos con máquinas virtuales, es frecuente usarlas para proyectos enfocados a la web, y para acceder a las páginas es necesario configurar el enrutamiento de puertos.
 
@@ -140,7 +137,7 @@ vagrant-forward-example
 
 ---
 
-4. Ejemplos de configuración Vagrantfile
+# **4. Ejemplos De Configuración Vagrantfile.**
 
 A continuación se muestran ejemplos de configuración Vagrantfile que NO ES NECESARIO hacer. Sólo es información.
 
@@ -167,19 +164,20 @@ config.ssh.forward_x11 = true
 
 ---
 
-5. Suministro
+## **5. Suministro.**
 
 Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. Esto es, ejecutar "una receta" o una serie de scripts durante el proceso de arranque del entorno virtual para instalar, configurar y personalizar un sin fin de aspectos del SO del sistema anfitrión.
 
     vagrant halt, apagamos la MV.
     vagrant destroy y la destruimos para volver a empezar.
 
-5.1 Suministro mediante shell script
+## **5.1. Suministro Mediante Shell Script.**
 
 Ahora vamos a suministrar a la MV un pequeño script para instalar Apache.
 
     Crear el script install_apache.sh, dentro del proyecto con el siguiente contenido:
 
+~~~
 #!/usr/bin/env bash
 
 apt-get update
@@ -189,6 +187,7 @@ ln -fs /vagrant /var/www
 echo "<h1>Actividad de Vagrant</h1>" > /var/www/index.html
 echo "<p>Curso201516</p>" >> /var/www/index.html
 echo "<p>Nombre-del-alumno</p>" >> /var/www/index.html
+~~~
 
     Poner permisos de ejecución al script.
 
@@ -206,7 +205,7 @@ Podremos notar, al iniciar la máquina, que en los mensajes de salida se muestra
 
     Para verificar que efectivamente el servidor Apache ha sido instalado e iniciado, abrimos navegador en la máquina real con URL http://127.0.0.1:4567.
 
-5.2 Suministro mediante Puppet
+## **5.2. Suministro Mediante Puppet.**
 
     Enlace de interés:
 
@@ -245,10 +244,11 @@ Para que se apliquen los cambios de configuración, tenemos dos formas:
 
 ---
 
-6. Nuestra caja personalizada
+# **6. Nuestra Caja Personalizada.**
 
 En los apartados anteriores hemos descargado una caja/box de un repositorio de Internet, y luego la hemos provisionado para personalizarla. En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
-6.1 Preparar la MV VirtualBox
+
+## **6.1 Preparar La MV VirtualBox.**
 
 Lo primero que tenemos que hacer es preparar nuestra máquina virtual con una configuración por defecto, por si queremos publicar nuestro Box, ésto se realiza para seguir un estándar y que todo el mundo pueda usar dicho Box.
 
@@ -290,7 +290,7 @@ vermagic:       3.13.0-32-generic SMP mod_unload modversions
 root@hostname:~# modinfo vboxguest |grep version
 version:        4.3.20
 
-6.2 Crear la caja vagrant
+## **6.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
