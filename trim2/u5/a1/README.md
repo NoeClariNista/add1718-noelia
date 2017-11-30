@@ -18,13 +18,7 @@ Aunque Vagrant se ha desarrollado en Ruby se puede usar en multitud de proyectos
 
 ## **2.1. Instalar.**
 
-La instalación debemos hacerla en una máquina real.
-
-~~~
-Hay varias formas de instalar Vagrant.
-
-apt-get install vagrant.o Usando un paquete Vagrant-deb Disponible para descargar del servidor Leela.
-~~~
+La instalación debemos hacerla en una máquina real. En nuestra máquina real ya tenemos instalado Vagrant.
 
 Comprobamos la versión actual de Vagrant con el comando vagrant version.
 
@@ -41,51 +35,56 @@ Si vamos a trabajar Vagrant con MV de VirtualBox tenemos que comprobar que las v
 Creamos un directorio para nuestro proyecto vagrant.
 
 ~~~
-    mkdir mivagrant20
-    cd mivagrant20
-    vagrant init
+* mkdir mivagrant20.
+* cd mivagrant20.
+* vagrant init.
 ~~~
 
 [imagen03](./images/03.png)
 
 ## **2.3. Imagen, Caja O Box.**
 
-Ahora necesitamos obtener una imagen (caja, box) de un sistema operativo. Vamos, por ejemplo, a conseguir una imagen de un Ubuntu Precise de 32 bits.
+Ahora necesitaremos obtener una imagen (caja, box) de un sistema operativo. Vamos, por ejemplo, a conseguir una imagen de un Ubuntu Precise de 32 bits.
 
-`vagrant box add micajaXX_ubuntu_precise32 http://files.vagrantup.com/precise32.box`
+Utilizamos el comando vagrant box list para listar las cajas/imágenes disponibles actualmente en nuestra máquina, podemos comprobar que no hay ninguna.
 
-Utilizamos el comando vagrant box list para listar las cajas/imágenes disponibles actualmente en nuestra máquina.
+Utilizamos el comando vagrant box add micaja20_ubuntu_precise32 http://files.vagrantup.com/precise32.box para crear una caja.
+
+Utilizamos denuevo el comando vagrant box list.
 
 ![imagen04](./images/04.png)
 
 Para usar una caja determinada en nuestro proyecto, modificamos el fichero Vagrantfile (dentro de la carpeta de nuestro proyecto).
 
+![imagen05](./images/05.png)
+
 Cambiamos la línea config.vm.box = "base" por config.vm.box = "micaja20_ubuntu_precise32".
 
-![imagen05]
-
-![imagen06]
-
-Es más cómodo trabajar con el fichero si eliminamos todas las líneas de comentarios. De modo que vamos a hacer una copia de seguridad del archivo Vagrantfile a Vagrantfile.bak, y vamos a quitar todas las líneas comentadas del Vagrantfile.
+![imagen06](./images/06.png)
 
 ## **2.4. Iniciar Una Nueva Máquina.**
 
-Vamos a iniciar una máquina virtual nueva usando Vagrant:
+Vamos a iniciar una máquina virtual nueva usando Vagrant.
 
-cd mivagrantXX
-vagrant up: comando para iniciar una nueva instancia de la máquina.
+~~~
+* cd mivagrant20.
+* vagrant up: comando para iniciar una nueva instancia de la máquina.
+~~~
 
-![imagen07]
+![imagen07](./images/07.png)
 
-![imagen10]
+![imagen10](./images/10.png)
 
- > * vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
-Otros comandos últiles de Vagrant son.
+~~~
+Comandos útiles de Vagrant.
+
+* vagrant ssh: Conectar/entrar en nuestra máquina virtual usando SSH.
 * vagrant suspend: Suspender la máquina virtual. Tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
 * vagrant resume : Volver a despertar la máquina virtual.
 * vagrant halt: Apagarla la máquina virtual.
 * vagrant status: Estado actual de la máquina virtual.
 * vagrant destroy: Para eliminar la máquina virtual (No los ficheros de configuración).
+~~~
 
 ---
 
