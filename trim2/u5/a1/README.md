@@ -315,9 +315,7 @@ Vamos a crear una nueva carpeta mivagrantXXconmicaja, para este nuevo proyecto v
 
 Ejecutamos vagrant init para crear el fichero de configuración nuevo.
 
-Localizar el nombre de nuestra máquina VirtualBox (Por ejemplo, v1-opensuse132-xfce).
-
-VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
+Localizar el nombre de nuestra máquina VirtualBox. VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
 
 
 Crear la caja package.box a partir de la MV.
