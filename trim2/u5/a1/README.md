@@ -94,19 +94,21 @@ Comandos útiles de Vagrant.
 
 La carpeta del proyecto que contiene el Vagrantfile es visible para el sistema el virtualizado, esto nos permite compartir archivos fácilmente entre los dos entornos.
 
-Para identificar las carpetas compartidas dentro del entorno virtual, hacemos:
+Para identificar las carpetas compartidas dentro del entorno virtual, hacemos.
 
+~~~
 vagrant up
 vagrant ssh
 ls /vagrant
+~~~
 
-![imagen08]
+![imagen08](./images/08.png)
 
-![imagen11]
+![imagen11](./images/11.png)
 
 Esto nos mostrará que efectivamente el directorio /vagrant dentro del entorno virtual posee el mismo Vagrantfile que se encuentra en nuestro sistema anfitrión.
 
-![imagen09]
+![imagen09](./images/09.png)
 
 ## **3.2 Redireccionamiento De Los Puertos.**
 
@@ -114,38 +116,40 @@ Cuando trabajamos con máquinas virtuales, es frecuente usarlas para proyectos e
 
 Entramos en la MV e instalamos apache.
 
+~~~
 vagrant ssh
 apt-get install apache2
+~~~
 
-![imagen12-15]
+![imagen12-15](./images/12.png)
 
 Modificar el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
 
-![imagen16]
+![imagen16](./images/16.png)
 
 config.vm.network :forwarded_port, host: 4567, guest: 80
 
-![imagen17]
+![imagen17](./images/17.png)
 
 Luego iniciamos la MV (si ya se encuentra en ejecución lo podemos refrescar con vagrant reload)
 
-![imagen18]
+![imagen18](./images/18.png)
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos:
 
 nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
 
-![imagen19]
+![imagen19](./images/19.png)
 
 netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
 
-![imagen20]
+![imagen20](./images/20.png)
 
 En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. En realidad estamos accediendo al puerto 80 de nuestro sistema virtualizado.
 
-![imagen21]
+![imagen21](./images/21.png)
 
-![imagen22]
+![imagen22](./images/22.png)
 
 ---
 
@@ -153,13 +157,13 @@ En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. 
 
 Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. Esto es, ejecutar "una receta" o una serie de scripts durante el proceso de arranque del entorno virtual para instalar, configurar y personalizar un sin fin de aspectos del SO del sistema anfitrión.
 
-    vagrant halt, apagamos la MV.
+vagrant halt, apagamos la MV.
 
-    ![imagen31]
+![imagen31](./images/31.png)
 
-    vagrant destroy y la destruimos para volver a empezar.
+vagrant destroy y la destruimos para volver a empezar.
 
-    ![imagen30]
+![imagen30](./images/30.png)
 
 
 ## **4.1. Suministro Mediante Shell Script.**
@@ -180,45 +184,45 @@ echo "<p>Curso201718</p>" >> /var/www/index.html
 echo "<p>Noelia</p>" >> /var/www/index.html
 ~~~
 
-![imagen23]
+![imagen23](./images/23.png)
 
-![imagen24]
+![imagen24](./images/24.png)
 
 Poner permisos de ejecución al script.
 
-![imagen25]
+![imagen25](./images/25.png)
 
 Vamos a indicar a Vagrant que debe ejecutar dentro del entorno virtual un archivo install_apache.sh.
 
 Modificar Vagrantfile y agregar la siguiente línea a la configuración: config.vm.provision :shell, :path => "install_apache.sh"
 
-![imagen26]
+![imagen26](./images/26.png)
 
-![imagen27]
+![imagen27](./images/27.png)
 
 Volvemos a crear la MV. Podemos usar vagrant reload si está en ejecución para que coja el cambio de la configuración.
 
-![imagen28]
+![imagen28](./images/28.png)
 
-![imagen29]
+![imagen29](./images/29.png)
 
-![imagen32]
+![imagen32](./images/32.png)
 
-![imagen33]
+![imagen33](./images/33.png)
 
 Podremos notar, al iniciar la máquina, que en los mensajes de salida se muestran mensajes que indican cómo se va instalando el paquete de Apache que indicamos.
 
 Para verificar que efectivamente el servidor Apache ha sido instalado e iniciado, abrimos navegador en la máquina real con URL http://127.0.0.1:4567.
 
-![imagen34]
+![imagen34](./images/34.png)
 
 ## **4.2. Suministro Mediante Puppet.**
 
 Se pide hacer lo siguiente.
 
-![imagen35]
+![imagen35](./images/35.png)
 
-    Modificar el archivo el archivo Vagrantfile de la siguiente forma:
+Modificar el archivo el archivo Vagrantfile de la siguiente forma:
 
 ~~~
 Vagrant.configure(2) do |config|
@@ -229,11 +233,11 @@ Vagrant.configure(2) do |config|
  end
 ~~~
 
-![imagen36]
+![imagen36](./images/36.png)
 
 Crear un fichero manifests/default.pp, con las órdenes/instrucciones puppet para instalar el programa nmap. Ejemplo:
 
-![imagen37]
+![imagen37](./images/37.png)
 
 ~~~
 package { 'nmap':
@@ -241,7 +245,7 @@ package { 'nmap':
 }
 ~~~
 
-![imagen38]
+![imagen38](./images/38.png)
 
 Para que se apliquen los cambios de configuración, tenemos dos formas:
 
@@ -249,11 +253,11 @@ Para que se apliquen los cambios de configuración, tenemos dos formas:
 
 (B) Con la MV encendida recargar la configuración y volver a ejecutar la provisión (vagrant reload, vagrant provision).
 
-![imagen39]
+![imagen39](./images/39.png)
 
-![imagen0]
+![imagen0](./images/0.png)
 
-![imagen40]
+![imagen40](./images/40.png)
 
 ---
 
