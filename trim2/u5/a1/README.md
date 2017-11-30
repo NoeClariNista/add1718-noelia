@@ -271,18 +271,16 @@ Lo primero que tenemos que hacer es preparar nuestra máquina virtual con una co
 
 Crear una MV VirtualBox nueva o usar una que ya tengamos.
 
------------------------------------------
-
 Instalar OpenSSH Server en la MV.
 
 Crear el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A este usuario le agregamos una clave pública para autorizar el acceso sin clave desde Vagrant.
 
-useradd -m vagrant
-su - vagrant
-mkdir .ssh
-wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
-chmod 700 .ssh
-chmod 600 .ssh/authorized_keys
+* useradd -m vagrant
+* su vagrant
+* mkdir .ssh
+* wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
+* chmod 700 .ssh
+* chmod 600 .ssh/authorized_keys
 
 Poner clave vagrant al usuario vagrant y al usuario root.
 
@@ -292,9 +290,7 @@ Añadir vagrant ALL=(ALL) NOPASSWD: ALL a /etc/sudoers.
 
 Hay que comprobar que no existe una linea indicando requiretty si existe la comentamos.
 
-Debemos asegurarnos que tenemos instalado las VirtualBox Guest Additions con una versión compatible con el host anfitrion.
-
-~~~
+>Debemos asegurarnos que tenemos instalado las VirtualBox Guest Additions con una versión compatible con el host anfitrion.~~~
 root@hostname:~# modinfo vboxguest
 filename:       /lib/modules/3.13.0-32-generic/updates/dkms/vboxguest.ko
 version:        4.3.20
@@ -306,40 +302,38 @@ alias:          pci:v000080EEd0000CAFEsv00000000sd00000000bc*sc*i*
 depends:        
 vermagic:       3.13.0-32-generic SMP mod_unload modversions
 
-root@hostname:~# modinfo vboxguest |grep version
-version:        4.3.20
-~~~
+>root@hostname:~# modinfo vboxguest |grep version
+version:        4.3.20~~~
+
+-----------------------------------------
 
 ## **5.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
-    Vamos a crear una nueva carpeta mivagrantXXconmicaja, para este nuevo proyecto vagrant.
-    Ejecutamos vagrant init para crear el fichero de configuración nuevo.
-    Localizar el nombre de nuestra máquina VirtualBox (Por ejemplo, v1-opensuse132-xfce).
-        VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
-    Crear la caja package.box a partir de la MV.
+Vamos a crear una nueva carpeta mivagrantXXconmicaja, para este nuevo proyecto vagrant.
 
-vagrant-package
+Ejecutamos vagrant init para crear el fichero de configuración nuevo.
 
-    Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
+Localizar el nombre de nuestra máquina VirtualBox (Por ejemplo, v1-opensuse132-xfce).
 
-vagrant-package_box_file
+VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
 
-    Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
 
-vagrant-package
+Crear la caja package.box a partir de la MV.
 
-    Al levantar la máquina con esta nueva caja obtengo este error. Probablemente por tener mal las GuestAdittions.
+Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
 
-vagrant-package
+Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
 
-    Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
+Al levantar la máquina con esta nueva caja obtengo este error. Probablemente por tener mal las GuestAdittions.
 
-    Recordar que podemos cambiar los parámetros de configuración de acceso SSH. Ver ejemplo:
+Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
 
-    config.ssh.username = 'root'
-    config.ssh.password = 'vagrant'
-    config.ssh.insert_key = 'true'
+Recordar que podemos cambiar los parámetros de configuración de acceso SSH. Ver ejemplo:
+
+config.ssh.username = 'root'
+config.ssh.password = 'vagrant'
+config.ssh.insert_key = 'true'
 
 ---
