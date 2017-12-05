@@ -112,7 +112,7 @@ Modificamos el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfit
 
 ![imagen12](./images/12.png)
 
-config.vm.network :forwarded_port, host: 4567, guest: 80
+Añadimos config.vm.network :forwarded_port, host: 4567, guest: 80
 
 ![imagen13](./images/13.png)
 
