@@ -294,8 +294,6 @@ vermagic:       3.13.0-32-generic SMP mod_unload modversions
 >root@hostname:~# modinfo vboxguest |grep version
 version:        4.3.20~~~
 
------------------------------------------
-
 ## **5.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
