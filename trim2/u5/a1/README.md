@@ -258,24 +258,36 @@ En los apartados anteriores hemos descargado una caja/box de un repositorio de I
 
 Lo primero que tenemos que hacer es preparar nuestra máquina virtual con una configuración por defecto, por si queremos publicar nuestro Box, ésto se realiza para seguir un estándar y que todo el mundo pueda usar dicho Box.
 
-Crear una MV VirtualBox nueva o usar una que ya tengamos.
+Creamos una MV VirtualBox nueva.
 
-Instalar OpenSSH Server en la MV.
+Instalamos OpenSSH Server en la MV.
 
-Crear el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A este usuario le agregamos una clave pública para autorizar el acceso sin clave desde Vagrant.
+![imagen38](./images/38.png)
 
+Creamos el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A este usuario le agregamos una clave pública para autorizar el acceso sin clave desde Vagrant.
+
+~~~
 * useradd -m vagrant
 * su vagrant
 * mkdir .ssh
 * wget https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -O .ssh/authorized_keys
 * chmod 700 .ssh
 * chmod 600 .ssh/authorized_keys
+~~~
+
+![imagen39](./images/39.png)
+
+![imagen40](./images/40.png)
 
 Poner clave vagrant al usuario vagrant y al usuario root.
+
+![imagen41](./images/41.png)
 
 Tenemos que conceder permisos al usuario vagrant para que pueda configurar la red, instalar software, montar carpetas compartidas, etc. para ello debemos configurar /etc/sudoers (visudo) para que no nos solicite la password de root, cuando realicemos estas operación con el usuario vagrant.
 
 Añadir vagrant ALL=(ALL) NOPASSWD: ALL a /etc/sudoers.
+
+![imagen42](./images/42.png)
 
 Hay que comprobar que no existe una linea indicando requiretty si existe la comentamos.
 
@@ -294,31 +306,39 @@ vermagic:       3.13.0-32-generic SMP mod_unload modversions
 >root@hostname:~# modinfo vboxguest |grep version
 version:        4.3.20~~~
 
+![imagen43](./images/43.png)
+
+![imagen44](./images/44.png)
+
 ## **5.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
 Vamos a crear una nueva carpeta mivagrantXXconmicaja, para este nuevo proyecto vagrant.
 
+![imagen45](./images/45.png)
+
 Ejecutamos vagrant init para crear el fichero de configuración nuevo.
+
+![imagen46](./images/46.png)
 
 Localizar el nombre de nuestra máquina VirtualBox. VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
 
+![imagen46](./images/47.png)
 
 Crear la caja package.box a partir de la MV.
+
+![imagen48](./images/48.png)
 
 Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
 
 Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
 
-Al levantar la máquina con esta nueva caja obtengo este error. Probablemente por tener mal las GuestAdittions.
+![imagen49](./images/49.png)
 
 Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
 
-Recordar que podemos cambiar los parámetros de configuración de acceso SSH. Ver ejemplo:
+![imagen50](./images/50.png)
 
-config.ssh.username = 'root'
-config.ssh.password = 'vagrant'
-config.ssh.insert_key = 'true'
 
 ---
