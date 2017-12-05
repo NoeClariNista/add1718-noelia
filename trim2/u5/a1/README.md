@@ -246,13 +246,12 @@ Para que se apliquen los cambios de configuración con la MV encendida recargamo
 
 ![imagen36](./images/36.png)
 
+Probamos el comando nmap dentro de la máquina.
+
 ![imagen37](./images/37.png)
 
 ---
 
----------------------------------------------------------------------------------------------------------------
-
----
 # **5. Nuestra Caja Personalizada.**
 
 En los apartados anteriores hemos descargado una caja/box de un repositorio de Internet, y luego la hemos provisionado para personalizarla. En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
@@ -280,17 +279,19 @@ Creamos el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A 
 
 ![imagen39](./images/39.png)
 
-![imagen40](./images/40.png)
-
 Poner clave vagrant al usuario vagrant y al usuario root.
+
+![imagen40](./images/40.png)
 
 ![imagen41](./images/41.png)
 
 Tenemos que conceder permisos al usuario vagrant para que pueda configurar la red, instalar software, montar carpetas compartidas, etc. para ello debemos configurar /etc/sudoers (visudo) para que no nos solicite la password de root, cuando realicemos estas operación con el usuario vagrant.
 
+![imagen42](./images/42.png)
+
 Añadir vagrant ALL=(ALL) NOPASSWD: ALL a /etc/sudoers.
 
-![imagen42](./images/42.png)
+![imagen43](./images/43.png)
 
 Hay que comprobar que no existe una linea indicando requiretty si existe la comentamos.
 
@@ -309,39 +310,38 @@ vermagic:       3.13.0-32-generic SMP mod_unload modversions
 >root@hostname:~# modinfo vboxguest |grep version
 version:        4.3.20~~~
 
-![imagen43](./images/43.png)
-
 ![imagen44](./images/44.png)
+
+![imagen45](./images/45.png)
 
 ## **5.2. Crear La Caja Vagrant.**
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
-Vamos a crear una nueva carpeta mivagrantXXconmicaja, para este nuevo proyecto vagrant.
-
-![imagen45](./images/45.png)
-
-Ejecutamos vagrant init para crear el fichero de configuración nuevo.
+Vamos a crear una nueva carpeta mivagrant20conmicaja, para este nuevo proyecto vagrant. Ejecutamos vagrant init para crear el fichero de configuración nuevo.
 
 ![imagen46](./images/46.png)
 
-Localizar el nombre de nuestra máquina VirtualBox. VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
+Localizamos el nombre de nuestra máquina VirtualBox. VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
 
-![imagen46](./images/47.png)
+![imagen47](./images/47.png)
 
-Crear la caja package.box a partir de la MV.
+Creamos la caja package.box a partir de la MV.Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
 
 ![imagen48](./images/48.png)
-
-Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
 
 Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
 
 ![imagen49](./images/49.png)
 
-Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
-
 ![imagen50](./images/50.png)
 
+![imagen51](./images/51.png)
+
+![imagen52](./images/52.png)
+
+Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
+
+![imagen53](./images/53.png)
 
 ---
