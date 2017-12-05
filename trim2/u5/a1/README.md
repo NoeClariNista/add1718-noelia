@@ -250,6 +250,9 @@ Para que se apliquen los cambios de configuración con la MV encendida recargamo
 
 ---
 
+---------------------------------------------------------------------------------------------------------------
+
+---
 # **5. Nuestra Caja Personalizada.**
 
 En los apartados anteriores hemos descargado una caja/box de un repositorio de Internet, y luego la hemos provisionado para personalizarla. En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
