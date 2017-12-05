@@ -76,11 +76,11 @@ Podemos ver en VirtualBox que nuestra máquina esta en ejecución.
 >Comandos útiles de Vagrant.
 >
 >* vagrant ssh, conectar/entrar en nuestra máquina virtual usando SSH.
->* vagrant suspend, suspender la máquina virtual. Hay que tener en cuenta que la MV en modo suspendido consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
+>* vagrant suspend, suspender la máquina virtual.
 >* vagrant resume, volver a despertar la máquina virtual.
->* vagrant halt, apagarla la máquina virtual.
+>* vagrant halt, apagar la máquina virtual.
 >* vagrant status, estado actual de la máquina virtual.
->* vagrant destroy, para eliminar la máquina virtual (no los ficheros de configuración).
+>* vagrant destroy, para eliminar la máquina virtual.
 
 ---
 
@@ -115,57 +115,59 @@ Entramos en la MV e instalamos apache.
 * apt-get install apache2.
 ~~~
 
-![imagen12](./images/12.png)
+![imagen11](./images/11.png)
 
 Modificamos el fichero Vagrantfile, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
 
-![imagen13](./images/13.png)
+![imagen12](./images/12.png)
 
 config.vm.network :forwarded_port, host: 4567, guest: 80
 
+![imagen13](./images/13.png)
+
+Luego recargamos la MV ya se encuentra en ejecución con vagrant reload.
+
 ![imagen14](./images/14.png)
-
-Luego iniciamos la MV, si ya se encuentra en ejecución lo podemos refrescar con vagrant reload.
-
-![imagen15](./images/15.png)
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos.
 
 * nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
 
-![imagen16](./images/16.png)
+![imagen15](./images/15.png)
 
 * netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
 
-![imagen17](./images/17.png)
+![imagen16](./images/16.png)
 
 En la máquina real, abrimos el navegador web con el URL http://127.0.0.1:4567. En realidad estamos accediendo al puerto 80 de nuestro sistema virtualizado.
 
-![imagen18](./images/18.png)
+![imagen17](./images/17.png)
 
 También podemos abrir el navegador web con el URL http://172.18.20.0:4567 y nos saldra el mismo resultado.
 
-![imagen19](./images/19.png)
+![imagen18](./images/18.png)
 
 ---
 
-## **4. Suministro.**
+# **4. Suministro.**
 
-Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. Esto es, ejecutar "una receta" o una serie de scripts durante el proceso de arranque del entorno virtual para instalar, configurar y personalizar un sin fin de aspectos del SO del sistema anfitrión.
+Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. Esto es, ejecutar una serie de scripts durante el proceso de arranque del entorno virtual para instalar, configurar y personalizar un sin fin de aspectos del SO del sistema anfitrión.
 
-* vagrant halt, apagamos la MV.
+* Apagamos la MV con el comando vagrant halt.
+
+![imagen19](./images/19.png)
+
+* Destruimos la MV para volver a empezar con el comando vagrant destroy.
 
 ![imagen20](./images/20.png)
-
-* vagrant destroy, destruimos la MV para volver a empezar.
-
-![imagen21](./images/21.png)
 
 ## **4.1. Suministro Mediante Shell Script.**
 
 Ahora vamos a suministrar a la MV un pequeño script para instalar Apache.
 
-Crear el script install_apache.sh, dentro del proyecto con el siguiente contenido.
+Creamos el script install_apache.sh, dentro del proyecto con el siguiente contenido.
+
+![imagen21](./images/21.png)
 
 ~~~
 #!/usr/bin/env bash
@@ -181,37 +183,35 @@ echo "<p>Noelia</p>" >> /var/www/index.html
 
 ![imagen22](./images/22.png)
 
-![imagen23](./images/23.png)
-
 Ponemos permisos de ejecución al script.
 
-![imagen24](./images/24.png)
+![imagen23](./images/23.png)
 
 Vamos a indicar a Vagrant que debe ejecutar dentro del entorno virtual un archivo install_apache.sh.
 
-Modificar Vagrantfile y agregar la siguiente línea a la configuración: config.vm.provision :shell, :path => "install_apache.sh"
+![imagen24](./images/24.png)
+
+Modificamos Vagrantfile y agregamos la siguiente línea a la configuración: `config.vm.provision :shell, :path => "install_apache.sh"`.
 
 ![imagen25](./images/25.png)
 
+Volvemos a crear la MV para ello usamos el comando vagrant up.
+
 ![imagen26](./images/26.png)
-
-Volvemos a crear la MV. Usamos el comando vagrant up.
-
-![imagen27](./images/27.png)
 
 Podremos notar, al iniciar la máquina, que en los mensajes de salida se muestran mensajes que indican cómo se va instalando el paquete de Apache que indicamos.
 
+![imagen27](./images/27.png)
+
+Para verificar que efectivamente el servidor Apache ha sido instalado e iniciado, abrimos un navegador web en la máquina real con URL http://127.0.0.1:4567.
+
 ![imagen28](./images/28.png)
-
-Para verificar que efectivamente el servidor Apache ha sido instalado e iniciado, abrimos navegador en la máquina real con URL http://127.0.0.1:4567.
-
-![imagen29](./images/29.png)
 
 ## **4.2. Suministro Mediante Puppet.**
 
-Se pide hacer lo siguiente. Modificar el archivo el archivo Vagrantfile de la siguiente forma.
+Modificamos el archivo el archivo Vagrantfile de la siguiente forma.
 
-![imagen30](./images/30.png)
+![imagen29](./images/29.png)
 
 ~~~
 Vagrant.configure(2) do |config|
@@ -222,11 +222,11 @@ Vagrant.configure(2) do |config|
  end
 ~~~
 
-![imagen31](./images/31.png)
+![imagen30](./images/30.png)
 
 Creamos un fichero manifests/default.pp, con las órdenes/instrucciones puppet para instalar el programa nmap.
 
-![imagen32](./images/32.png)
+![imagen31](./images/31.png)
 
 ~~~
 package { 'nmap':
@@ -234,23 +234,23 @@ package { 'nmap':
 }
 ~~~
 
-![imagen33](./images/33.png)
+![imagen32](./images/32.png)
 
-Para que se apliquen los cambios de configuración con la MV encendida recargamos la configuración y volvemos a ejecutar la provisión (vagrant reload, vagrant provision).
+Para que se apliquen los cambios de configuración con la MV encendida recargamos la configuración y volvemos a ejecutar la provisión para esto utilizamos los comandos vagrant reload y vagrant provision.
+
+![imagen33](./images/33.png)
 
 ![imagen34](./images/34.png)
 
+Probamos el comando nmap dentro de la máquina para ver que se instalo correctamente.
+
 ![imagen35](./images/35.png)
-
-Probamos el comando nmap dentro de la máquina.
-
-![imagen36](./images/36.png)
 
 ---
 
 # **5. Nuestra Caja Personalizada.**
 
-En los apartados anteriores hemos descargado una caja/box de un repositorio de Internet, y luego la hemos provisionado para personalizarla. En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
+En este apartado vamos a crear nuestra propia caja/box personalizada a partir de una MV de VirtualBox.
 
 ## **5.1 Preparar La MV VirtualBox.**
 
@@ -260,7 +260,7 @@ Creamos una MV VirtualBox nueva.
 
 Instalamos OpenSSH Server en la MV.
 
-![imagen37](./images/37.png)
+![imagen36](./images/36.png)
 
 Creamos el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A este usuario le agregamos una clave pública para autorizar el acceso sin clave desde Vagrant.
 
@@ -273,42 +273,27 @@ Creamos el usuario Vagrant, para poder acceder a la máquina virtual por SSH. A 
 * chmod 600 .ssh/authorized_keys
 ~~~
 
-![imagen38](./images/38.png)
+![imagen37](./images/37.png)
 
 Poner clave vagrant al usuario vagrant y al usuario root.
 
+![imagen38](./images/38.png)
+
 ![imagen39](./images/39.png)
+
+Tenemos que conceder permisos al usuario vagrant para que pueda configurar la red, instalar software, montar carpetas compartidas, etc. para ello debemos configurar `/etc/sudoers` para que no nos solicite la password de root, cuando realicemos estas operación con el usuario vagrant.
 
 ![imagen40](./images/40.png)
 
-Tenemos que conceder permisos al usuario vagrant para que pueda configurar la red, instalar software, montar carpetas compartidas, etc. para ello debemos configurar /etc/sudoers (visudo) para que no nos solicite la password de root, cuando realicemos estas operación con el usuario vagrant.
+Añadimos vagrant ALL=(ALL) NOPASSWD: ALL a `/etc/sudoers`.
 
 ![imagen41](./images/41.png)
 
-Añadir vagrant ALL=(ALL) NOPASSWD: ALL a /etc/sudoers.
+Debemos asegurarnos que tenemos instalado las VirtualBox Guest Additions con una versión compatible con el host anfitrion. Para ello actualizamos las VirtualBox Guest Additions y vemos la información de las VirtualBox Guest Additions con el comando modinfo vboxguest.
 
 ![imagen42](./images/42.png)
 
-Hay que comprobar que no existe una linea indicando requiretty si existe la comentamos.
-
->Debemos asegurarnos que tenemos instalado las VirtualBox Guest Additions con una versión compatible con el host anfitrion.~~~
-root@hostname:~# modinfo vboxguest
-filename:       /lib/modules/3.13.0-32-generic/updates/dkms/vboxguest.ko
-version:        4.3.20
-license:        GPL
-description:    Oracle VM VirtualBox Guest Additions for Linux Module
-author:         Oracle Corporation
-srcversion:     22BF504734255C977E4D805
-alias:          pci:v000080EEd0000CAFEsv00000000sd00000000bc*sc*i*
-depends:        
-vermagic:       3.13.0-32-generic SMP mod_unload modversions
-
->root@hostname:~# modinfo vboxguest |grep version
-version:        4.3.20~~~
-
 ![imagen43](./images/43.png)
-
-![imagen44](./images/44.png)
 
 ## **5.2. Crear La Caja Vagrant.**
 
@@ -316,28 +301,34 @@ Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
 Vamos a crear una nueva carpeta mivagrant20conmicaja, para este nuevo proyecto vagrant. Ejecutamos vagrant init para crear el fichero de configuración nuevo.
 
+![imagen44](./images/44.png)
+
+Localizamos el nombre de nuestra máquina VirtualBox. El comando que utilizamos es VBoxManage list vms el cual nos lista las MV que tenemos.
+
 ![imagen45](./images/45.png)
 
-Localizamos el nombre de nuestra máquina VirtualBox. VBoxManage list vms, comando de VirtualBox que lista las MV que tenemos.
+Creamos la caja package.box a partir de la MV. Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
 
 ![imagen46](./images/46.png)
 
-Creamos la caja package.box a partir de la MV.Comprobamos que se ha creado la caja package.box en el directorio donde hemos ejecutado el comando.
+Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
 
 ![imagen47](./images/47.png)
 
-Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he incluido la que acabo de crear. Finalmente, añado la nueva caja creada por mí al repositorio de vagrant.
+Modificamos el fichero de Vagrantfile para utilizar la caja que hemos creado.
 
 ![imagen48](./images/48.png)
 
+Utilizo el comando vagrant up para iniciar una nueva instancia de la máquina.
+
 ![imagen49](./images/49.png)
+
+Podemos ver en VirtualBox que nuestra máquina esta en ejecución.
 
 ![imagen50](./images/50.png)
 
+Haciendo vagrant ssh nos conectamos sin problemas con la máquina.
+
 ![imagen51](./images/51.png)
-
-Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
-
-![imagen52](./images/52.png)
 
 ---
