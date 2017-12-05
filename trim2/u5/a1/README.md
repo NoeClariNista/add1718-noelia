@@ -73,15 +73,6 @@ Podemos ver en VirtualBox que nuestra máquina esta en ejecución.
 
 ![imagen08](./images/08.png)
 
->Comandos útiles de Vagrant.
->
->* vagrant ssh, conectar/entrar en nuestra máquina virtual usando SSH.
->* vagrant suspend, suspender la máquina virtual.
->* vagrant resume, volver a despertar la máquina virtual.
->* vagrant halt, apagar la máquina virtual.
->* vagrant status, estado actual de la máquina virtual.
->* vagrant destroy, para eliminar la máquina virtual.
-
 ---
 
 # **3. Configuración Del Entorno Virtual.**
