@@ -338,10 +338,8 @@ Muestro la lista de cajas disponibles, pero sólo tengo 1 porque todavía no he 
 
 ![imagen51](./images/51.png)
 
-![imagen52](./images/52.png)
-
 Pero haciendo vagrant ssh nos conectamos sin problemas con la máquina.
 
-![imagen53](./images/53.png)
+![imagen52](./images/52.png)
 
 ---
