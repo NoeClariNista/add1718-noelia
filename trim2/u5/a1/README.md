@@ -122,11 +122,11 @@ Luego recargamos la MV ya se encuentra en ejecución con vagrant reload.
 
 Para confirmar que hay un servicio a la escucha en 4567, desde la máquina real podemos ejecutar los siguientes comandos.
 
-* nmap -p 4500-4600 localhost, debe mostrar 4567/tcp open tram.
+* nmap -p 4500-4600 localhost.
 
 ![imagen15](./images/15.png)
 
-* netstat -ntap, debe mostrar tcp 0.0.0.0:4567 0.0.0.0:* ESCUCHAR.
+* netstat -ntap.
 
 ![imagen16](./images/16.png)
 
