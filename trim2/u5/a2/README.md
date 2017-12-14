@@ -244,6 +244,8 @@ Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tiene
 
 ![imagen24](./images/24.png)
 
+![imagen25](./images/25.png)
+
 ## **6.3. Crear Imagen.**
 
 El fichero Dockerfile contiene la información necesaria para contruir el contenedor, veamos:
@@ -256,15 +258,23 @@ docker build -t dvarrui/nginx2 .  # Construye imagen a partir del Dockefile
 docker images                     # Debe aparecer nuestra nueva imagen
 ~~~
 
+![imagen26](./images/26.png)
+
+![imagen27](./images/27.png)
+
+![imagen28](./images/28.png)
+
 ## **6.4. Crear Contenedor Y Comprobar.**
 
-    A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen dvarrui/nginx, y queremos que este contenedor ejecute el programa /root/server.sh.
+A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen dvarrui/nginx, y queremos que este contenedor ejecute el programa /root/server.sh.
 
 docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
 
-    Desde otra terminal hacer docker..., para averiguar el puerto de escucha del servidor Nginx.
-    Comprobar en el navegador URL: http://localhost:PORTNUMBER
-    Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
+Desde otra terminal hacer docker..., para averiguar el puerto de escucha del servidor Nginx.
+
+Comprobar en el navegador URL: http://localhost:PORTNUMBER
+
+Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
 
 ---
 
