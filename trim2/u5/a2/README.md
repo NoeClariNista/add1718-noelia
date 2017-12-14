@@ -133,6 +133,8 @@ Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
 Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
+-----------------------------------------------------------------------------------------------
+
 Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor:
 
 * docker ps.
@@ -189,6 +191,8 @@ Como ya tenemos una imagen docker, podemos crear nuevos contenedores cuando lo n
 
 ---
 
+-----------------------------------------------------------------------------------------------
+
 # **6. Crear Un Contenedor Con Dockerfile.**
 
 Ahora vamos a conseguir el mismo resultado del apartado anterior, pero usando un fichero de configuración, llamado Dockerfile.
@@ -201,16 +205,22 @@ docker ps
 docker ps -a
 ~~~
 
+![imagen20](./images/20.png)
+
 ## **6.2. Preparar Ficheros.**
 
 Creamos el directorio /home/nombre-alumno/docker20, ponemos dentro los siguientes ficheros.
 
+![imagen21](./images/21.png)
+
 Creamos el fichero Dockerfile con el siguiente contenido.
+
+![imagen22](./images/22.png)
 
 ~~~
 FROM debian:8
 
-MAINTAINER Nombre-del-Alumno 1.0
+MAINTAINER noelia 1.0
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
@@ -227,6 +237,8 @@ EXPOSE 80
 
 CMD ["/root/server.sh"]
 ~~~
+
+![imagen23](./images/23.png)
 
 Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tienen que estar en el mismo directorio del fichero Dockerfile.
 
