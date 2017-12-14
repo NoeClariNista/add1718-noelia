@@ -258,6 +258,8 @@ Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tiene
 
 ![imagen27](./images/27.png)
 
+![imagen00](./images/00.png)
+
 ## **6.3. Crear Imagen.**
 
 El fichero Dockerfile contiene la información necesaria para contruir el contenedor, veamos:
@@ -265,9 +267,8 @@ El fichero Dockerfile contiene la información necesaria para contruir el conten
 ~~~
 cd /home/alumno/docker, entramos al directorio del Dockerfile
 docker images, consultamos las imágenes disponibles
-docker build -t dvarrui/nginx2 .  # Construye imagen a partir del Dockefile
-                                  # OJO el punto es necesario
-docker images                     # Debe aparecer nuestra nueva imagen
+docker build -t dvarrui/nginx2 ., construye imagen a partir del Dockefile
+docker images, debe aparecer nuestra nueva imagen
 ~~~
 
 ![imagen28](./images/28.png)
@@ -284,15 +285,15 @@ A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de
 
 ![imagen31](./images/31.png)
 
-Desde otra terminal hacer docker..., para averiguar el puerto de escucha del servidor Nginx.
+Desde otra terminal hacer docker ps, para averiguar el puerto de escucha del servidor Nginx.
 
 ![imagen32](./images/32.png)
 
-Comprobar en el navegador URL: http://localhost:PORTNUMBER
+Comprobamos en el navegador URL http://localhost:PORTNUMBER
 
 ![imagen33](./images/33.png)
 
-Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
+Comprobamos en el navegador URL http://localhost:PORTNUMBER/holamundo.html
 
 ![imagen34](./images/34.png)
 
@@ -311,30 +312,28 @@ partir del contenedor 30b8f18f20b4.
 
 * docker images, comprobar que se ha creado la imagen "container-backup".
 
-![imagen33](./images/33.png)
+![imagen35](./images/35.png)
 
 Exportar imagen docker a fichero:
 
-docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
+* docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
 
-![imagen34](./images/34.png)
+![imagen36](./images/36.png)
 
 Importar imagen docker desde fichero:
 
 Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
 
-docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
+* docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
 
-![imagen35](./images/35.png)
+* docker images, comprobamos que la nueva imagen está disponible.
 
-docker images, comprobamos que la nueva imagen está disponible.
+![imagen37](./images/37.png)
 
----
+![imagen38](./images/38.png)
 
-# **8. Limpiar.**
+![imagen39](./images/39.png)
 
-Cuando terminamos con los contedores y ya no lo necesitamos, es buena idea pararlos y/o destruirlos.
-
-![]()
+![imagen40](./images/40.png)
 
 ---
