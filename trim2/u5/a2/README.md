@@ -268,13 +268,21 @@ docker images                     # Debe aparecer nuestra nueva imagen
 
 A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen dvarrui/nginx, y queremos que este contenedor ejecute el programa /root/server.sh.
 
-docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
+> docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
+
+![imagen29](./images/29.png)
 
 Desde otra terminal hacer docker..., para averiguar el puerto de escucha del servidor Nginx.
 
+![imagen30](./images/30.png)
+
 Comprobar en el navegador URL: http://localhost:PORTNUMBER
 
+![imagen31](./images/31.png)
+
 Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
+
+![imagen32](./images/32.png)
 
 ---
 
