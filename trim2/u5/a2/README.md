@@ -242,6 +242,8 @@ CMD ["/root/server.sh"]
 
 Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tienen que estar en el mismo directorio del fichero Dockerfile.
 
+![imagen24](./images/24.png)
+
 ## **6.3. Crear Imagen.**
 
 El fichero Dockerfile contiene la información necesaria para contruir el contenedor, veamos:
