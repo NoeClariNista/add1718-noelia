@@ -131,18 +131,22 @@ done
 
 Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
-Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
+![imagen14](./images/14.png)
 
------------------------------------------------------------------------------------------------
+Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
 Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor:
 
 * docker ps.
 
+![imagen15](./images/15.png)
+
 Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base.
 
 * docker commit 7d193d728925 dvarrui/nginx. //names
 * docker images.
+
+![imagen16](./images/16.png)
 
 Los estándares de Docker estipulan que los nombres de las imagenes deben seguir el formato nombreusuario/nombreimagen. Todo cambio que se haga en la imagen y no se le haga commit se perderá en cuanto se cierre el contenedor.
 
@@ -154,6 +158,8 @@ docker ps -a, vemos el contenedor parado.
 docker rm IDcontenedor, eliminamos el contenedor.
 docker ps -a.
 ~~~
+
+![imagen17](./images/17.png)
 
 ## **5.2. Crear Contenedor.**
 
@@ -168,13 +174,19 @@ docker run --name=mv_nginx -p 80 -t dvarrui/nginx /root/server.sh
 
 ~~~
 
+![imagen18](./images/18.png)
+
 Los mensajes muestran que el script server.sh está en ejecución. No paramos el programa.
 
 Abrimos una nueva terminal.
 
 docker ps, nos muestra los contenedores en ejecución.
 
+![imagen19](./images/19.png)
+
 Abrir navegador web y poner URL 0.0.0.0.:NNNNNN. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor. También ponemos 0.0.0.0/holamundo.html y vemos que nos muestra el html que creamos anteriormente.
+
+![imagen20](./images/20.png)
 
 Paramos el contenedor y lo eliminamos.
 
@@ -187,11 +199,11 @@ docker rm mv_nginx.
 docker ps -a.
 ~~~
 
+![imagen21](./images/21.png)
+
 Como ya tenemos una imagen docker, podemos crear nuevos contenedores cuando lo necesitemos.
 
 ---
-
------------------------------------------------------------------------------------------------
 
 # **6. Crear Un Contenedor Con Dockerfile.**
 
@@ -205,17 +217,17 @@ docker ps
 docker ps -a
 ~~~
 
-![imagen20](./images/20.png)
+![imagen22](./images/22.png)
 
 ## **6.2. Preparar Ficheros.**
 
 Creamos el directorio /home/nombre-alumno/docker20, ponemos dentro los siguientes ficheros.
 
-![imagen21](./images/21.png)
+![imagen23](./images/23.png)
 
 Creamos el fichero Dockerfile con el siguiente contenido.
 
-![imagen22](./images/22.png)
+![imagen24](./images/24.png)
 
 ~~~
 FROM debian:8
@@ -238,13 +250,13 @@ EXPOSE 80
 CMD ["/root/server.sh"]
 ~~~
 
-![imagen23](./images/23.png)
+![imagen25](./images/25.png)
 
 Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tienen que estar en el mismo directorio del fichero Dockerfile.
 
-![imagen24](./images/24.png)
+![imagen26](./images/26.png)
 
-![imagen25](./images/25.png)
+![imagen27](./images/27.png)
 
 ## **6.3. Crear Imagen.**
 
@@ -258,11 +270,11 @@ docker build -t dvarrui/nginx2 .  # Construye imagen a partir del Dockefile
 docker images                     # Debe aparecer nuestra nueva imagen
 ~~~
 
-![imagen26](./images/26.png)
-
-![imagen27](./images/27.png)
-
 ![imagen28](./images/28.png)
+
+![imagen29](./images/29.png)
+
+![imagen30](./images/30.png)
 
 ## **6.4. Crear Contenedor Y Comprobar.**
 
@@ -270,19 +282,19 @@ A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de
 
 > docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
 
-![imagen29](./images/29.png)
+![imagen31](./images/31.png)
 
 Desde otra terminal hacer docker..., para averiguar el puerto de escucha del servidor Nginx.
 
-![imagen30](./images/30.png)
+![imagen32](./images/32.png)
 
 Comprobar en el navegador URL: http://localhost:PORTNUMBER
 
-![imagen31](./images/31.png)
+![imagen33](./images/33.png)
 
 Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
 
-![imagen32](./images/32.png)
+![imagen34](./images/34.png)
 
 ---
 
@@ -290,31 +302,39 @@ Comprobar en el navegador URL: http://localhost:PORTNUMBER/holamundo.html
 
 ¿Cómo puedo llevar los contenedores docker a un nuevo servidor?
 
-    Enlaces de interés
-
-        https://www.odooargentina.com/forum/ayuda-1/question/migrar-todo-a-otro-servidor-imagenes-docker-397
-        http://linoxide.com/linux-how-to/backup-restore-migrate-containers-docker/
-
 Crear un imagen de contenedor:
 
-    docker ps, muestra los contenedores que tengo en ejecución.
-    docker commit -p 30b8f18f20b4 container-backup, grabar una imagen de nombre "container-backup" a partir del contenedor 30b8f18f20b4.
-    docker imagescomprobar que se ha creado la imagen "container-backup".
+* docker ps, muestra los contenedores que tengo en ejecución.
+
+* docker commit -p 30b8f18f20b4 container-backup, graba una imagen de nombre "container-backup" a
+partir del contenedor 30b8f18f20b4.
+
+* docker images, comprobar que se ha creado la imagen "container-backup".
+
+![imagen33](./images/33.png)
 
 Exportar imagen docker a fichero:
 
-    docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
+docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
+
+![imagen34](./images/34.png)
 
 Importar imagen docker desde fichero:
 
-    Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
-    docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
-    docker images, comprobamos que la nueva imagen está disponible.
+Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
+
+docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
+
+![imagen35](./images/35.png)
+
+docker images, comprobamos que la nueva imagen está disponible.
 
 ---
 
 # **8. Limpiar.**
 
 Cuando terminamos con los contedores y ya no lo necesitamos, es buena idea pararlos y/o destruirlos.
+
+![]()
 
 ---
