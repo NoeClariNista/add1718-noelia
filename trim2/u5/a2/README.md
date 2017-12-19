@@ -24,13 +24,13 @@ Vamos a usar en esta práctica una MV OpenSUSE. Nos aseguramos que tiene una ver
 
 # **3. Instalación Y Primeras Pruebas.**
 
-Ejecutamos como superusuario.
+Ejecutamos como superusuario los siguientes comandos.
 
 ~~~
-zypper in docker              # Instala docker
-systemctl start docker, Inicia el servicio "docker daemon" hace el mismo efecto
-docker version, Debe mostrar información del cliente y del servidor
-usermod -a -G docker USERNAME # Añade permisos a nuestro usuario
+zypper in docker, instala docker.
+systemctl start docker, inicia el servicio.
+docker version, muestra información del Cliente y del Servidor.
+usermod -a -G docker noelia, añade permisos a nuestro usuario.
 ~~~
 
 ![imagen02](./images/02.png)
@@ -39,23 +39,23 @@ usermod -a -G docker USERNAME # Añade permisos a nuestro usuario
 
 Salimos de la sesión y volvemos a entrar con nuestro usuario.
 
-Ejecutar con nuestro usuario para comprobar que todo funciona.
+Ejecutamos con nuestro usuario los siguientes comandos para comprobar que todo funciona.
 
 ~~~
-docker images           # Muestra las imágenes descargadas hasta ahora
-docker ps -a            # Muestra todos los contenedores creados
-docker run hello-world  # Descarga y ejecuta un contenedor con la imagen hello-world
-docker images
-docker ps -a
+docker images, muestra las imágenes descargadas hasta ahora.
+docker ps -a, muestra todos los contenedores creados.
+docker run hello-world, descarga y ejecuta un contenedor con la imagen hello-world.
+docker images.
+docker ps -a.
 ~~~
 
 ![imagen04](./images/04.png)
 
 ---
 
-# **4. Configuración De La Red.**
+# **4. Configuración De La Red.** <- REVISAR.
 
-Habilitamos el acceso a la red externa a los contenedores
+Habilitamos el acceso a la red externa a los contenedores.
 
 Si queremos que nuestro contenedor tenga acceso a la red exterior, debemos activar la opción IP_FORWARD (net.ipv4.ip_forward). Lo podemos hacer en YAST.
 
@@ -86,9 +86,9 @@ docker ps, vemos sólo los contenedores en ejecución.
 
 ![imagen07](./images/07.png)
 
-Vamos a crear un contenedor con el nombre `mv_debian` a partir de la imagen debian:8, y ejecutaremos el siguiente comando.
+Vamos a crear un contenedor con el nombre `mv_debian` a partir de la imagen debian:8, para ello ejecutaremos el siguiente comando.
 
-docker run --name=mv_debian -i -t debian:8 /bin/bash.
+> docker run --name=mv_debian -i -t debian:8 /bin/bash.
 
 ![imagen08](./images/08.png)
 
@@ -97,7 +97,7 @@ Dentro del contenedor hacemos lo siguiente.
 ~~~
 cat /etc/motd, comprobamos que estamos en Debian.
 apt-get update.
-apt-get install -y nginx,instalamos nginx en el contenedor.
+apt-get install -y nginx, instalamos nginx en el contenedor.
 apt-get install -y nano, instalamos editor nano en el contenedor.
 /usr/sbin/nginx, iniciamos el servicio nginx.
 ps -ef.
@@ -129,9 +129,11 @@ while(true) do
 done
 ~~~
 
+![imagen14](./images/14.png)
+
 Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
-![imagen14](./images/14.png)
+![imagen15](./images/15.png)
 
 Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
@@ -139,14 +141,14 @@ Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una 
 
 * docker ps.
 
-![imagen15](./images/15.png)
+![imagen16](./images/16.png)
 
 Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base.
 
 * docker commit 7d193d728925 dvarrui/nginx. //names
 * docker images.
 
-![imagen16](./images/16.png)
+![imagen17](./images/17.png)
 
 Los estándares de Docker estipulan que los nombres de las imagenes deben seguir el formato nombreusuario/nombreimagen. Todo cambio que se haga en la imagen y no se le haga commit se perderá en cuanto se cierre el contenedor.
 
@@ -159,7 +161,7 @@ docker rm IDcontenedor, eliminamos el contenedor.
 docker ps -a.
 ~~~
 
-![imagen17](./images/17.png)
+![imagen18](./images/18.png)
 
 ## **5.2. Crear Contenedor.**
 
@@ -174,7 +176,7 @@ docker run --name=mv_nginx -p 80 -t dvarrui/nginx /root/server.sh
 
 ~~~
 
-![imagen18](./images/18.png)
+![imagen19](./images/19.png)
 
 Los mensajes muestran que el script server.sh está en ejecución. No paramos el programa.
 
@@ -182,11 +184,11 @@ Abrimos una nueva terminal.
 
 docker ps, nos muestra los contenedores en ejecución.
 
-![imagen19](./images/19.png)
+![imagen20](./images/20.png)
 
 Abrir navegador web y poner URL 0.0.0.0.:NNNNNN. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor. También ponemos 0.0.0.0/holamundo.html y vemos que nos muestra el html que creamos anteriormente.
 
-![imagen20](./images/20.png)
+![imagen21](./images/21.png)
 
 Paramos el contenedor y lo eliminamos.
 
@@ -199,7 +201,7 @@ docker rm mv_nginx.
 docker ps -a.
 ~~~
 
-![imagen21](./images/21.png)
+![imagen22](./images/22.png)
 
 Como ya tenemos una imagen docker, podemos crear nuevos contenedores cuando lo necesitemos.
 
@@ -217,17 +219,17 @@ docker ps
 docker ps -a
 ~~~
 
-![imagen22](./images/22.png)
+![imagen23](./images/23.png)
 
 ## **6.2. Preparar Ficheros.**
 
 Creamos el directorio /home/nombre-alumno/docker20, ponemos dentro los siguientes ficheros.
 
-![imagen23](./images/23.png)
+![imagen24](./images/24.png)
 
 Creamos el fichero Dockerfile con el siguiente contenido.
 
-![imagen24](./images/24.png)
+![imagen25](./images/25.png)
 
 ~~~
 FROM debian:8
@@ -250,15 +252,15 @@ EXPOSE 80
 CMD ["/root/server.sh"]
 ~~~
 
-![imagen25](./images/25.png)
+![imagen26](./images/26.png)
 
 Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tienen que estar en el mismo directorio del fichero Dockerfile.
 
-![imagen26](./images/26.png)
-
 ![imagen27](./images/27.png)
 
-![imagen00](./images/00.png)
+![imagen28](./images/28.png)
+
+![imagen29](./images/29.png)
 
 ## **6.3. Crear Imagen.**
 
@@ -271,11 +273,11 @@ docker build -t dvarrui/nginx2 ., construye imagen a partir del Dockefile
 docker images, debe aparecer nuestra nueva imagen
 ~~~
 
-![imagen28](./images/28.png)
-
-![imagen29](./images/29.png)
-
 ![imagen30](./images/30.png)
+
+![imagen31](./images/31.png)
+
+![imagen32](./images/32.png)
 
 ## **6.4. Crear Contenedor Y Comprobar.**
 
@@ -283,19 +285,19 @@ A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de
 
 > docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
 
-![imagen31](./images/31.png)
+![imagen33](./images/33.png)
 
 Desde otra terminal hacer docker ps, para averiguar el puerto de escucha del servidor Nginx.
 
-![imagen32](./images/32.png)
+![imagen34](./images/34.png)
 
 Comprobamos en el navegador URL http://localhost:PORTNUMBER
 
-![imagen33](./images/33.png)
+![imagen35](./images/35.png)
 
 Comprobamos en el navegador URL http://localhost:PORTNUMBER/holamundo.html
 
-![imagen34](./images/34.png)
+![imagen36](./images/36.png)
 
 ---
 
@@ -312,13 +314,13 @@ partir del contenedor 30b8f18f20b4.
 
 * docker images, comprobar que se ha creado la imagen "container-backup".
 
-![imagen35](./images/35.png)
+![imagen37](./images/37.png)
 
 Exportar imagen docker a fichero:
 
 * docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
 
-![imagen36](./images/36.png)
+![imagen38](./images/38.png)
 
 Importar imagen docker desde fichero:
 
@@ -328,12 +330,12 @@ Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
 
 * docker images, comprobamos que la nueva imagen está disponible.
 
-![imagen37](./images/37.png)
-
-![imagen38](./images/38.png)
-
 ![imagen39](./images/39.png)
 
 ![imagen40](./images/40.png)
+
+![imagen41](./images/41.png)
+
+![imagen42](./images/42.png)
 
 ---
