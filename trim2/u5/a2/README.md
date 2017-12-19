@@ -30,14 +30,14 @@ Ejecutamos como superusuario los siguientes comandos.
 zypper in docker, instala docker.
 systemctl start docker, inicia el servicio.
 docker version, muestra información del Cliente y del Servidor.
-usermod -a -G docker noelia, añade permisos a nuestro usuario.
+usermod -a -G docker noelia, añade permisos a nuestro usuario noelia.
 ~~~
 
 ![imagen02](./images/02.png)
 
 ![imagen03](./images/03.png)
 
-Salimos de la sesión y volvemos a entrar con nuestro usuario.
+Salimos de la sesión y volvemos a entrar con nuestro usuario noelia.
 
 Ejecutamos con nuestro usuario los siguientes comandos para comprobar que todo funciona.
 
@@ -55,11 +55,7 @@ docker ps -a.
 
 # **4. Configuración De La Red.** <- REVISAR.
 
-Habilitamos el acceso a la red externa a los contenedores.
-
-Si queremos que nuestro contenedor tenga acceso a la red exterior, debemos activar la opción IP_FORWARD (net.ipv4.ip_forward). Lo podemos hacer en YAST.
-
-Para openSUSE13.2 (cuando el método de configuracion de red es Wicked). Yast -> Dispositivos de red -> Encaminamiento -> Habilitar reenvío IPv4
+Habilitamos el acceso a la red externa a los contenedores. Para openSUSE13.2, cuando el método de configuracion de red es Wicked, vamos a Yast, Dispositivos de red, Encaminamiento y pinchamos en Habilitar reenvío IPv4.
 
 ![imagen05](./images/05.png)
 
@@ -145,7 +141,7 @@ Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una 
 
 Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base.
 
-* docker commit 7d193d728925 dvarrui/nginx. //names
+* docker commit 28efcd9eb4f8 noelia/nginx.
 * docker images.
 
 ![imagen17](./images/17.png)
@@ -157,7 +153,7 @@ docker ps.
 docker stop mv_debian, paramos el contenedor.
 docker ps.
 docker ps -a, vemos el contenedor parado.
-docker rm IDcontenedor, eliminamos el contenedor.
+docker rm 28efcd9eb4f8, eliminamos el contenedor.
 docker ps -a.
 ~~~
 
@@ -309,8 +305,8 @@ Crear un imagen de contenedor:
 
 * docker ps, muestra los contenedores que tengo en ejecución.
 
-* docker commit -p 30b8f18f20b4 container-backup, graba una imagen de nombre "container-backup" a
-partir del contenedor 30b8f18f20b4.
+* docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a
+partir del contenedor 60c174041505.
 
 * docker images, comprobar que se ha creado la imagen "container-backup".
 
@@ -322,7 +318,7 @@ Exportar imagen docker a fichero:
 
 ![imagen38](./images/38.png)
 
-Importar imagen docker desde fichero:
+Importar imagen docker desde fichero, un compañero nos ha pasado una imagen docker.
 
 Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
 
@@ -332,9 +328,17 @@ Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
 
 ![imagen39](./images/39.png)
 
+A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa /root/server.sh.
+
+> docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh.
+
 ![imagen40](./images/40.png)
 
+* docker ps, muestra los contenedores que tengo en ejecución.
+
 ![imagen41](./images/41.png)
+
+Comprobamos en el navegador URL http://localhost:32782/holamundo.html
 
 ![imagen42](./images/42.png)
 
