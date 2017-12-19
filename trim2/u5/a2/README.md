@@ -53,7 +53,7 @@ docker ps -a.
 
 ---
 
-# **4. Configuración De La Red.** <- REVISAR.
+# **4. Configuración De La Red.**
 
 Habilitamos el acceso a la red externa a los contenedores. Para openSUSE13.2, cuando el método de configuracion de red es Wicked, vamos a Yast, Dispositivos de red, Encaminamiento y pinchamos en Habilitar reenvío IPv4.
 
@@ -69,6 +69,8 @@ Nuestro SO base es OpenSUSE, vamos a crear un contenedor Debian8, y dentro insta
 
 ## **5.1. Crear Una Imagen.**
 
+Utilizamos los siguientes comandos.
+
 ~~~
 docker images, vemos las imágenes disponibles localmente.
 docker search debian, buscamos en los repositorios de Docker Hub contenedores con la etiqueta `debian`.
@@ -82,9 +84,7 @@ docker ps, vemos sólo los contenedores en ejecución.
 
 ![imagen07](./images/07.png)
 
-Vamos a crear un contenedor con el nombre `mv_debian` a partir de la imagen debian:8, para ello ejecutaremos el siguiente comando.
-
-> docker run --name=mv_debian -i -t debian:8 /bin/bash.
+Vamos a crear un contenedor con el nombre `mv_debian` a partir de la imagen debian:8, para ello ejecutaremos el comando docker run --name=mv_debian -i -t debian:8 /bin/bash.
 
 ![imagen08](./images/08.png)
 
@@ -105,7 +105,7 @@ ps -ef.
 
 ![imagen11](./images/11.png)
 
-Creamos un fichero HTML (holamundo.html). Para ello utilizamos el comando echo "<p>Hola nombre-del-alumno</p>" > /var/www/html/holamundo.html.
+Creamos un fichero HTML holamundo.html. Para ello utilizamos el comando echo "<p>Hola nombre-del-alumno</p>" > /var/www/html/holamundo.html.
 
 ![imagen12](./images/12.png)
 
@@ -133,7 +133,7 @@ Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
 Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
-Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor:
+Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor.
 
 * docker ps.
 
@@ -146,7 +146,7 @@ Ahora con esto podemos crear la nueva imagen a partir de los cambios que realiza
 
 ![imagen17](./images/17.png)
 
-Los estándares de Docker estipulan que los nombres de las imagenes deben seguir el formato nombreusuario/nombreimagen. Todo cambio que se haga en la imagen y no se le haga commit se perderá en cuanto se cierre el contenedor.
+Utilizamos los siguientes comandos para eliminar el contenedor.
 
 ~~~
 docker ps.
@@ -178,11 +178,11 @@ Los mensajes muestran que el script server.sh está en ejecución. No paramos el
 
 Abrimos una nueva terminal.
 
-docker ps, nos muestra los contenedores en ejecución.
+* docker ps, nos muestra los contenedores en ejecución.
 
 ![imagen20](./images/20.png)
 
-Abrir navegador web y poner URL 0.0.0.0.:NNNNNN. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor. También ponemos 0.0.0.0/holamundo.html y vemos que nos muestra el html que creamos anteriormente.
+Abrir navegador web y poner URL locahost:32779. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor.
 
 ![imagen21](./images/21.png)
 
@@ -219,7 +219,7 @@ docker ps -a
 
 ## **6.2. Preparar Ficheros.**
 
-Creamos el directorio /home/nombre-alumno/docker20, ponemos dentro los siguientes ficheros.
+Creamos el directorio /home/noelia/docker20, ponemos dentro los siguientes ficheros.
 
 ![imagen24](./images/24.png)
 
@@ -263,10 +263,10 @@ Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tiene
 El fichero Dockerfile contiene la información necesaria para contruir el contenedor, veamos:
 
 ~~~
-cd /home/alumno/docker, entramos al directorio del Dockerfile
-docker images, consultamos las imágenes disponibles
-docker build -t dvarrui/nginx2 ., construye imagen a partir del Dockefile
-docker images, debe aparecer nuestra nueva imagen
+cd /home/alumno/docker, entramos al directorio del Dockerfile.
+docker images, consultamos las imágenes disponibles.
+docker build -t dvarrui/nginx2 ., construye imagen a partir del Dockefile.
+docker images, debe aparecer nuestra nueva imagen.
 ~~~
 
 ![imagen30](./images/30.png)
@@ -277,9 +277,7 @@ docker images, debe aparecer nuestra nueva imagen
 
 ## **6.4. Crear Contenedor Y Comprobar.**
 
-A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen dvarrui/nginx, y queremos que este contenedor ejecute el programa /root/server.sh.
-
-> docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh
+A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen noelia/nginx, y queremos que este contenedor ejecute el programa /root/server.sh. Para esto utilizamos el comando docker run --name mv_nginx2 -p 80 -t noelia/nginx2 /root/server.sh.
 
 ![imagen33](./images/33.png)
 
@@ -287,11 +285,11 @@ Desde otra terminal hacer docker ps, para averiguar el puerto de escucha del ser
 
 ![imagen34](./images/34.png)
 
-Comprobamos en el navegador URL http://localhost:PORTNUMBER
+Comprobamos en el navegador URL http://localhost:32780.
 
 ![imagen35](./images/35.png)
 
-Comprobamos en el navegador URL http://localhost:PORTNUMBER/holamundo.html
+Comprobamos en el navegador URL http://localhost:32780/holamundo.html
 
 ![imagen36](./images/36.png)
 
@@ -299,15 +297,10 @@ Comprobamos en el navegador URL http://localhost:PORTNUMBER/holamundo.html
 
 # **7. Migrar Las Imágenes De Docker A Otro Servidor.**
 
-¿Cómo puedo llevar los contenedores docker a un nuevo servidor?
-
-Crear un imagen de contenedor:
+Creamos un imagen de contenedor.
 
 * docker ps, muestra los contenedores que tengo en ejecución.
-
-* docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a
-partir del contenedor 60c174041505.
-
+* docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a partir del contenedor 60c174041505.
 * docker images, comprobar que se ha creado la imagen "container-backup".
 
 ![imagen37](./images/37.png)
@@ -318,19 +311,14 @@ Exportar imagen docker a fichero:
 
 ![imagen38](./images/38.png)
 
-Importar imagen docker desde fichero, un compañero nos ha pasado una imagen docker.
-
-Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
+Importamos la imagen docker desde fichero. Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
 
 * docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
-
 * docker images, comprobamos que la nueva imagen está disponible.
 
 ![imagen39](./images/39.png)
 
-A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa /root/server.sh.
-
-> docker run --name mv_nginx2 -p 80 -t dvarrui/nginx2 /root/server.sh.
+A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa /root/server.sh. Para esto utilizamos el comando docker run --name dock_kevin -p 80 -t keymax14/container-backup /root/server.sh.
 
 ![imagen40](./images/40.png)
 
