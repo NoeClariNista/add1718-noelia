@@ -28,7 +28,7 @@ Ejecutamos como superusuario los siguientes comandos.
 
 ~~~
 zypper in docker, instala docker.
-systemctl start docker, inicia el servicio.
+systemctl start docker, inicia el Servicio.
 docker version, muestra información del Cliente y del Servidor.
 usermod -a -G docker noelia, añade permisos a nuestro usuario noelia.
 ~~~
@@ -133,11 +133,11 @@ Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
 Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
-Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor. Para ello utilizamos el comando docker ps.
+Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el ID del contenedor. Para ello utilizamos el comando docker ps.
 
 ![imagen16](./images/16.png)
 
-Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base.
+Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base, para hacer esto utilizamos los siguientes comandos.
 
 ~~~
 docker commit 28efcd9eb4f8 noelia/nginx.
@@ -179,7 +179,7 @@ Abrimos una nueva terminal. Utilizamos el comando docker ps, para que nos muestr
 
 ![imagen20](./images/20.png)
 
-Abrir navegador web y ponemos URL locahost:32779. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor.
+Abrir navegador web y ponemos URL `locahost:32779`. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor.
 
 ![imagen21](./images/21.png)
 
@@ -270,25 +270,23 @@ docker images, debe aparecer nuestra nueva imagen.
 
 ![imagen31](./images/31.png)
 
-![imagen32](./images/32.png)
-
 ## **6.4. Crear Contenedor Y Comprobar.**
 
 A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen noelia/nginx, y queremos que este contenedor ejecute el programa `/root/server.sh`. Para esto utilizamos el comando docker run --name mv_nginx2 -p 80 -t noelia/nginx2 /root/server.sh.
 
-![imagen33](./images/33.png)
+![imagen32](./images/32.png)
 
 Desde otra terminal hacemos docker ps, para averiguar el puerto de escucha del servidor Nginx.
 
+![imagen33](./images/33.png)
+
+Comprobamos en el navegador URL `http://localhost:32780`.
+
 ![imagen34](./images/34.png)
 
-Comprobamos en el navegador URL http://localhost:32780.
+Comprobamos en el navegador URL `http://localhost:32780/holamundo.html`.
 
 ![imagen35](./images/35.png)
-
-Comprobamos en el navegador URL http://localhost:32780/holamundo.html
-
-![imagen36](./images/36.png)
 
 ---
 
@@ -302,11 +300,11 @@ docker commit -p 60c174041505 container-backup, graba una imagen de nombre "cont
 docker images, comprobar que se ha creado la imagen "container-backup".
 ~~~
 
+![imagen36](./images/36.png)
+
+Exportamos la imagen docker a fichero. Para ello utilizamos el comando docker save -o ~/container-backup.tar container-backup, el cual guarda la imagen "container-backup" en un fichero tar.
+
 ![imagen37](./images/37.png)
-
-Exportar imagen docker a fichero. Para ello utilizamos el comando docker save -o ~/container-backup.tar container-backup, el cual guarda la imagen "container-backup" en un fichero tar.
-
-![imagen38](./images/38.png)
 
 Importamos la imagen docker desde fichero. Intercambiamos nuestros contenedores con un compañero. Nos traemos el tar a nuestra máquina con docker instalado, y restauramos.
 
@@ -315,18 +313,18 @@ docker load -i ~/kevin-container-backup.tar, cargamos la imagen docker a partir 
 docker images, comprobamos que la nueva imagen está disponible.
 ~~~
 
+![imagen38](./images/38.png)
+
+A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa `/root/server.sh`. Para esto utilizamos el comando docker run --name dock_kevin -p 80 -t keymax14/container-backup /root/server.sh.
+
 ![imagen39](./images/39.png)
 
-A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa `/root/server.sh`. Para esto utilizamos el comando docker run --name dock_kevin -p 80 -t keymax14/container-backup `/root/server.sh`.
+docker ps, muestra los contenedores que tenemos en ejecución.
 
 ![imagen40](./images/40.png)
 
-docker ps, muestra los contenedores que tengo en ejecución.
+Comprobamos en el navegador URL `http://localhost:32782/holamundo.html`.
 
 ![imagen41](./images/41.png)
-
-Comprobamos en el navegador URL http://localhost:32782/holamundo.html
-
-![imagen42](./images/42.png)
 
 ---
