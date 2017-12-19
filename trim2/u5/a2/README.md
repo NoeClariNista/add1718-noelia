@@ -8,7 +8,7 @@ ___
 
 Es muy común que nos encontremos desarrollando una aplicación y llegue el momento que decidamos tomar todos sus archivos y migrarlos ya sea al ambiente de producción, de prueba o simplemente probar su comportamiento en diferentes plataformas y servicios. Para situaciones de este estilo existen herramientas que, entre otras cosas, nos facilitan el embalaje y despliegue de la aplicación, es aquí donde entra en juego Docker.
 
-Esta herramienta nos permite crear lo que ellos denominan contenedores, lo cual son aplicaciones empaquetadas auto-suficientes, muy livianas que son capaces de funcionar en prácticamente cualquier ambiente, ya que tiene su propio sistema de archivos, librerías, terminal, etc.
+Esta herramienta nos permite crear lo que ellos denominan contenedores, lo cual son aplicaciones empaquetadas autosuficientes, muy livianas que son capaces de funcionar en prácticamente cualquier ambiente, ya que tiene su propio sistema de archivos, librerías, terminal, etc.
 
 Docker es una tecnología contenedor de aplicaciones construida sobre LXC.
 
@@ -16,7 +16,7 @@ Docker es una tecnología contenedor de aplicaciones construida sobre LXC.
 
 # **2. Requisitos.**
 
-Vamos a usar en esta práctica una MV OpenSUSE. Nos aseguramos que tiene una versión del Kernel 3.10 o superior, para ello utilizamos el comando uname -a.
+Vamos a usar en esta práctica una MV OpenSUSE. Nos aseguramos que tiene una versión del Kernel 3.10. o superior, para ello utilizamos el comando uname -a.
 
 ![imagen01](./images/01.png)
 
@@ -55,7 +55,7 @@ docker ps -a.
 
 # **4. Configuración De La Red.**
 
-Habilitamos el acceso a la red externa a los contenedores. Para openSUSE13.2, cuando el método de configuracion de red es Wicked, vamos a Yast, Dispositivos de red, Encaminamiento y pinchamos en Habilitar reenvío IPv4.
+Habilitamos el acceso a la red externa a los contenedores. Para openSUSE13.2., cuando el método de configuracion de red es Wicked, vamos a Yast, Dispositivos de red, Encaminamiento y pinchamos en Habilitar reenvío IPv4.
 
 ![imagen05](./images/05.png)
 
@@ -73,8 +73,8 @@ Utilizamos los siguientes comandos.
 
 ~~~
 docker images, vemos las imágenes disponibles localmente.
-docker search debian, buscamos en los repositorios de Docker Hub contenedores con la etiqueta `debian`.
-docker pull debian:8, descargamos contenedor `debian:8` en local.
+docker search debian, buscamos en los repositorios de Docker Hub contenedores con la etiqueta 'debian'.
+docker pull debian:8, descargamos contenedor 'debian:8' en local.
 docker images.
 docker ps -a, vemos todos los contenedores.
 docker ps, vemos sólo los contenedores en ejecución.
@@ -105,11 +105,11 @@ ps -ef.
 
 ![imagen11](./images/11.png)
 
-Creamos un fichero HTML holamundo.html. Para ello utilizamos el comando echo "<p>Hola nombre-del-alumno</p>" > /var/www/html/holamundo.html.
+Creamos un fichero HTML holamundo.html. Para ello utilizamos el comando `echo "<p>Hola nombre-del-alumno</p>" > /var/www/html/holamundo.html`.
 
 ![imagen12](./images/12.png)
 
-Creamos tambien un script /root/server.sh con el contenido que vemos a continuación.
+Creamos tambien un script `/root/server.sh` con el contenido que vemos a continuación.
 
 ![imagen13](./images/13.png)
 
@@ -133,16 +133,16 @@ Hay que poner permisos de ejecución al script para que se pueda ejecutar.
 
 Este script inicia el programa/servicio y entra en un bucle, para permanecer activo y que no se cierre el contenedor.
 
-Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor.
-
-* docker ps.
+Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos crear una nueva imagen con los cambios que hemos hecho, para esto abrimos otra ventana de terminal y busquemos el IDContenedor. Para ello utilizamos el comando docker ps.
 
 ![imagen16](./images/16.png)
 
 Ahora con esto podemos crear la nueva imagen a partir de los cambios que realizamos sobre la imagen base.
 
-* docker commit 28efcd9eb4f8 noelia/nginx.
-* docker images.
+~~~
+docker commit 28efcd9eb4f8 noelia/nginx.
+docker images.
+~~~
 
 ![imagen17](./images/17.png)
 
@@ -168,21 +168,18 @@ Iniciemos el contenedor de la siguiente manera.
 ~~~
 docker ps
 docker ps -a
-docker run --name=mv_nginx -p 80 -t dvarrui/nginx /root/server.sh
-
+docker run --name=mv_nginx -p 80 -t noelia/nginx /root/server.sh
 ~~~
 
 ![imagen19](./images/19.png)
 
-Los mensajes muestran que el script server.sh está en ejecución. No paramos el programa.
+Los mensajes muestran que el script server.sh está en ejecución. No pararemos el programa.
 
-Abrimos una nueva terminal.
-
-* docker ps, nos muestra los contenedores en ejecución.
+Abrimos una nueva terminal. Utilizamos el comando docker ps, para que nos muestre los contenedores en ejecución.
 
 ![imagen20](./images/20.png)
 
-Abrir navegador web y poner URL locahost:32779. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor.
+Abrir navegador web y ponemos URL locahost:32779. De esta forma nos conectaremos con el servidor Nginx que se está ejecutando dentro del contenedor.
 
 ![imagen21](./images/21.png)
 
@@ -219,11 +216,11 @@ docker ps -a
 
 ## **6.2. Preparar Ficheros.**
 
-Creamos el directorio /home/noelia/docker20, ponemos dentro los siguientes ficheros.
+Creamos el directorio `/home/noelia/docker20`.
 
 ![imagen24](./images/24.png)
 
-Creamos el fichero Dockerfile con el siguiente contenido.
+Creamos el fichero Dockerfile dentro de `/home/noelia/docker20` con el siguiente contenido.
 
 ![imagen25](./images/25.png)
 
@@ -260,12 +257,12 @@ Los ficheros server.sh y holamundo.html que vimos en el apartado anterior, tiene
 
 ## **6.3. Crear Imagen.**
 
-El fichero Dockerfile contiene la información necesaria para contruir el contenedor, veamos:
+El fichero Dockerfile contiene la información necesaria para contruir el contenedor. Lo veremos utilizando los siguientes comandos.
 
 ~~~
-cd /home/alumno/docker, entramos al directorio del Dockerfile.
+cd /home/noelia/docker, entramos al directorio del Dockerfile.
 docker images, consultamos las imágenes disponibles.
-docker build -t dvarrui/nginx2 ., construye imagen a partir del Dockefile.
+docker build -t noelia/nginx2 ., construye imagen a partir del Dockefile.
 docker images, debe aparecer nuestra nueva imagen.
 ~~~
 
@@ -277,11 +274,11 @@ docker images, debe aparecer nuestra nueva imagen.
 
 ## **6.4. Crear Contenedor Y Comprobar.**
 
-A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen noelia/nginx, y queremos que este contenedor ejecute el programa /root/server.sh. Para esto utilizamos el comando docker run --name mv_nginx2 -p 80 -t noelia/nginx2 /root/server.sh.
+A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de la imagen noelia/nginx, y queremos que este contenedor ejecute el programa `/root/server.sh`. Para esto utilizamos el comando docker run --name mv_nginx2 -p 80 -t noelia/nginx2 /root/server.sh.
 
 ![imagen33](./images/33.png)
 
-Desde otra terminal hacer docker ps, para averiguar el puerto de escucha del servidor Nginx.
+Desde otra terminal hacemos docker ps, para averiguar el puerto de escucha del servidor Nginx.
 
 ![imagen34](./images/34.png)
 
@@ -299,30 +296,32 @@ Comprobamos en el navegador URL http://localhost:32780/holamundo.html
 
 Creamos un imagen de contenedor.
 
-* docker ps, muestra los contenedores que tengo en ejecución.
-* docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a partir del contenedor 60c174041505.
-* docker images, comprobar que se ha creado la imagen "container-backup".
+~~~
+docker ps, muestra los contenedores que tengo en ejecución.
+docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a partir del contenedor 60c174041505.
+docker images, comprobar que se ha creado la imagen "container-backup".
+~~~
 
 ![imagen37](./images/37.png)
 
-Exportar imagen docker a fichero:
-
-* docker save -o ~/container-backup.tar container-backup, guardamos la imagen "container-backup" en un fichero tar.
+Exportar imagen docker a fichero. Para ello utilizamos el comando docker save -o ~/container-backup.tar container-backup, el cual guarda la imagen "container-backup" en un fichero tar.
 
 ![imagen38](./images/38.png)
 
-Importamos la imagen docker desde fichero. Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
+Importamos la imagen docker desde fichero. Intercambiamos nuestros contenedores con un compañero. Nos traemos el tar a nuestra máquina con docker instalado, y restauramos.
 
-* docker load -i ~/container-backup.tar, cargamos la imagen docker a partir del fichero tar.
-* docker images, comprobamos que la nueva imagen está disponible.
+~~~
+docker load -i ~/kevin-container-backup.tar, cargamos la imagen docker a partir del fichero tar.
+docker images, comprobamos que la nueva imagen está disponible.
+~~~
 
 ![imagen39](./images/39.png)
 
-A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa /root/server.sh. Para esto utilizamos el comando docker run --name dock_kevin -p 80 -t keymax14/container-backup /root/server.sh.
+A continuación vamos a crear un contenedor con el nombre dock_kevin, a partir de la imagen keymax14/container-backup, y queremos que este contenedor ejecute el programa `/root/server.sh`. Para esto utilizamos el comando docker run --name dock_kevin -p 80 -t keymax14/container-backup `/root/server.sh`.
 
 ![imagen40](./images/40.png)
 
-* docker ps, muestra los contenedores que tengo en ejecución.
+docker ps, muestra los contenedores que tengo en ejecución.
 
 ![imagen41](./images/41.png)
 
