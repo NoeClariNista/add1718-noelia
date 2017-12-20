@@ -163,7 +163,7 @@ docker ps -a.
 
 Tenemos una imagen con Nginx instalado, probraremos ahora Docker.
 
-Iniciemos el contenedor de la siguiente manera.
+Iniciamos el contenedor de la siguiente manera.
 
 ~~~
 docker ps
@@ -276,7 +276,7 @@ A continuación vamos a crear un contenedor con el nombre mv_nginx2, a partir de
 
 ![imagen32](./images/32.png)
 
-Desde otra terminal hacemos docker ps, para averiguar el puerto de escucha del servidor Nginx.
+Desde otra terminal hacemos docker ps, para averiguar el puerto de escucha del Servidor Nginx.
 
 ![imagen33](./images/33.png)
 
@@ -292,12 +292,12 @@ Comprobamos en el navegador URL `http://localhost:32780/holamundo.html`.
 
 # **7. Migrar Las Imágenes De Docker A Otro Servidor.**
 
-Creamos un imagen de contenedor.
+Creamos una imagen de contenedor.
 
 ~~~
 docker ps, muestra los contenedores que tengo en ejecución.
 docker commit -p 60c174041505 container-backup, graba una imagen de nombre "container-backup" a partir del contenedor 60c174041505.
-docker images, comprobar que se ha creado la imagen "container-backup".
+docker images, comprueba que se ha creado la imagen "container-backup".
 ~~~
 
 ![imagen36](./images/36.png)
@@ -306,11 +306,11 @@ Exportamos la imagen docker a fichero. Para ello utilizamos el comando docker sa
 
 ![imagen37](./images/37.png)
 
-Importamos la imagen docker desde fichero. Intercambiamos nuestros contenedores con un compañero. Nos traemos el tar a nuestra máquina con docker instalado, y restauramos.
+Importamos la imagen docker desde fichero. Intercambiamos nuestros contenedores con un compañero. Nos traemos el tar a nuestra máquina con docker instalado y restauramos.
 
 ~~~
-docker load -i ~/kevin-container-backup.tar, cargamos la imagen docker a partir del fichero tar.
-docker images, comprobamos que la nueva imagen está disponible.
+docker load -i ~/kevin-container-backup.tar, carga la imagen docker a partir del fichero tar.
+docker images, comprueba que la nueva imagen está disponible.
 ~~~
 
 ![imagen38](./images/38.png)
