@@ -56,10 +56,10 @@ GNU/Linux
 El fichero /etc/hosts debe tener un contenido similar a:
 
 127.0.0.1       localhost
-127.0.0.2       master42.curso1617    master42
-172.18.20.100   master42.curso1617    master42
-172.18.20.101   cli1alu42.curso1617   cli1alu42
-172.18.20.102   cli2alu42
+127.0.0.2       master20.curso1718    master20
+172.18.20.100   master20.curso1718   master20
+172.18.20.101   cli1alu20.curso1718   cli1alu20
+172.18.20.102   cli2alu20
 
 Windows
 
@@ -67,6 +67,18 @@ Para localizar el fichero hosts de Windows, vamos a la ruta de la imagen:
 
 El contenido del fichero hosts de Windows tiene el siguiente aspecto:
 ~~~
+
+![imagen07](./images/07.png)
+
+![imagen08](./images/08.png)
+
+![imagen09](./images/09.png)
+
+![imagen10](./images/10.png)
+
+![imagen11](./images/11.png)
+
+![imagen12](./images/12.png)
 
 ## **1.2. Comprobar Las Configuraciones.**
 
@@ -81,13 +93,21 @@ hostname -a
 hostname -f               # Comprobar que devuelve el valor correcto!!!
 hostname -d
 tail -n 5 /etc/hosts
-ping masterXX
-ping masterXX.curso1617
-ping cli1aluXX
-ping cli1aluXX.curso1617
-ping cli2aluXX
-ping cli2aluXX.curso1617   
+ping master20
+ping master20.curso1718
+ping cli1alu20
+ping cli1alu20.curso1718
+ping cli2alu20
+ping cli2alu20.curso1718   
 ~~~
+
+![imagen13](./images/13.png)
+
+![imagen14](./images/14.png)
+
+![imagen15](./images/15.png)
+
+![imagen16](./images/16.png)
 
 En Windows comprobamos con:
 
@@ -96,21 +116,23 @@ date
 ipconfig
 route /PRINT
 nslookup www.google.es
-ping masterXX
-ping masterXX.curso1617
-ping cli1aluXX
-ping cli1aluXX.curso1617
-ping cli2aluXX
-ping cli2aluXX.curso1617   
+ping master20
+ping master20.curso1718
+ping cli1alu20
+ping cli1alu20.curso1718
+ping cli2alu20
+ping cli2alu20.curso1718  
 ~~~
 
-IMPORTANTE: Asegurarse de que todas las máquinas tienen la fecha/hora correcta.
+![imagen17](./images/17.png)
 
 # **2. Primera Versión Del Fichero pp.**
 
-Instalamos Puppet Master en la MV masterXX:
+Instalamos Puppet Master en la MV master20:
+
 zypper install rubygem-puppet-master (Leap).
-zypper install puppet-server puppet puppet-vim (13.2).
+
+![imagen18](./images/18.png)
 
 El paquete puppet-vim, sólo es para que el editor vim detecte la sintaxis de puppet.
 
@@ -119,7 +141,11 @@ systemctl enable puppetmaster: Permitir que el servicio se inicie automáticamen
 systemctl start puppetmaster: Iniciar el servicio.
 systemctl status puppetmaster: Consultar el estado del servicio.
 
+![imagen19](./images/19.png)
+
 En este momento debería haberse creado el directorio `/etc/puppet/manifests`.
+
+![imagen20](./images/20.png)
 
 Preparamos los ficheros/directorios en el master.
 
@@ -130,25 +156,25 @@ touch `/etc/puppet/manifests/site.pp`
 mkdir `/etc/puppet/manifests/classes`
 touch `/etc/puppet/manifests/classes/hostlinux1.pp`
 
+![imagen21](./images/21.png)
+
 ## **2.1. readme.txt.**
 
-Los ficheros que se guardan en /etc/puppet/files se pueden descargar desde el resto de máquinas cliente puppet.
+Los ficheros que se guardan en `/etc/puppet/files` se pueden descargar desde el resto de máquinas cliente puppet.
 
 Contenido para readme.txt: "¡Al abordaje!".
 
-Ejemplo de configuración puppet para descargar fichero.
+![imagen22](./images/22.png)
 
-~~~
-file { '/opt/readme.txt' :
-    source => 'puppet:///files/readme.txt',
-}
-~~~
+![imagen23](./images/23.png)
 
 ## **2.2. site.pp.**
 
 `/etc/puppet/manifests/site.pp` es el fichero principal de configuración de órdenes para los agentes/nodos puppet.
 
 Contenido de nuestro site.pp.
+
+![imagen24](./images/24.png)
 
 ~~~
 import "classes/*"
@@ -158,11 +184,7 @@ node default {
 }
 ~~~
 
-Esta configuración significa:
-
-Todos los ficheros de configuración del directorio classes se añadirán a este fichero.
-
-Todos los nodos/clientes van a usar la configuración hostlinux1.
+![imagen25](./images/25.png)
 
 ## **2.3. hostlinux1.pp.**
 
@@ -172,6 +194,8 @@ Vamos a crear una primera configuración para máquina estándar GNU/Linux.
 
 Contenido para `/etc/puppet/manifests/classes/hostlinux1.pp`.
 
+![imagen26](./images/26.png)
+
 ~~~
 class hostlinux1 {
   package { "tree": ensure => installed }
@@ -180,20 +204,36 @@ class hostlinux1 {
 }
 ~~~
 
+![imagen27](./images/27.png)
+
 tree `/etc/puppet`, consultar los ficheros/directorios que tenemos creado.
+
+![imagen28](./images/28.png)
 
 Comprobar que tenemos los permisos adecuados en la ruta `/var/lib/puppet`. Esto es, usuario puppet y grupo puppet.
 
+![imagen29](./images/29.png)
+
 Reiniciamos el servicio systemctl restart puppetmaster.
+
+![imagen30](./images/30.png)
 
 Comprobamos que el servicio está en ejecución de forma correcta.
 
 systemctl status puppetmaster
 netstat -ntap |grep ruby
 
+![imagen31](./images/31.png)
+
 Consultamos log por si hay errores: tail `/var/log/puppet/*.log`
 
+![imagen32](./images/32.png)
+
 Abrir el cortafuegos para el servicio.
+
+![imagen33](./images/33.png)
+
+![imagen34](./images/34.png)
 
 # **3. Instalación Y Configuración Del Cliente1.**
 
@@ -205,7 +245,11 @@ Instalar el Agente Puppet.
 
 zypper install rubygem-puppet
 
+![imagen35](./images/35.png)
+
 El cliente puppet debe ser informado de quien será su master. Para ello, vamos a configurar `/etc/puppet/puppet.conf`.
+
+![imagen36](./images/36.png)
 
 ~~~
 [main]
@@ -218,6 +262,8 @@ server=master20.curso1718
 pluginsync=false
 ~~~
 
+![imagen37](./images/37.png)
+
 Veamos imagen de ejemplo de Raúl García Heredia:
 
 Comprobar que tenemos los permisos adecuados en la ruta `/var/lib/puppet`.
@@ -228,12 +274,15 @@ systemctl start puppet: Iniciar el servicio puppet.
 systemctl status puppet: Ver el estado del servicio puppet.
 netstat -ntap |grep ruby: Muestra los servicios conectados a cada puerto.
 
+![imagen38](./images/38.png)
+
 # **4. Certificados.** (hacer instantanea)
 
 Antes de que el master acepte a cliente1 como cliente, se deben intercambiar los certificados entre ambas máquinas. Esto sólo hay que hacerlo una vez.
 
 A partir de este momento ya no deberíamos cambiar los nombres de las máquinas.
-4.1 Aceptar certificado
+
+## **4.1. Aceptar Certificado.**
 
 Vamos a la MV master.
 
@@ -243,13 +292,11 @@ root@master42# puppet cert list
 "cli1alu30.curso1617" (D8:EC:E4:A2:10:55:00:32:30:F2:88:9D:94:E5:41:D6)
 root@master42#
 
-En caso de no aparecer el certificado en espera
-
-Si no aparece el certificado del cliente en la lista de espera del servidor, quizás el cortafuegos del servidor y/o cliente, está impidiendo el acceso.
-
-Volver a reiniciar el servicio en el cliente y comprobar su estado.
+![imagen39](./images/39.png)
 
 puppet cert sign "nombre-máquina-cliente", aceptar al nuevo cliente desde el master:
+
+![imagen40](./images/40.png)
 
 root@master42# puppet cert sign "cli1alu42.curso1617"
 notice: Signed certificate request for cli1alu42.curso1617
@@ -263,6 +310,8 @@ Data:
 ....
 
 A continuación podemos ver una imagen de ejemplo, los datos no tienen que coincidir con lo que se pide en el ejercicio.
+
+![imagen41](./images/41.png)
 
 ## **4.2. Comprobación.**
 
