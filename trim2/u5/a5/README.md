@@ -1,5 +1,4 @@
 ___
-___
 
 # **Puppet - OpenSUSE.**
 
@@ -269,6 +268,8 @@ Veamos imagen de ejemplo de Raúl García Heredia:
 
 Comprobar que tenemos los permisos adecuados en la ruta `/var/lib/puppet`.
 
+![imagen37.1](./images/37.1.png)
+
 systemctl status puppet: Ver el estado del servicio puppet.
 systemctl enable puppet: Activar el servicio en cada reinicio de la máquina.
 systemctl start puppet: Iniciar el servicio puppet.
@@ -320,21 +321,32 @@ Vamos a comprobar que las órdenes (manifiesto) del master, llega bien al client
 
 Vamos a cliente1 y reiniciamos la máquina y/o el servicio Puppet.
 
+![imagen42](./images/42.png)
+
 Comprobar que los cambios configurados en Puppet se han realizado.
 
-En caso contrario, ejecutar comando para comprobar errores:
+![imagen43](./images/43.png)
+
+Nos aseguramos de que somos el usuario root.
+Ejecutar comando para comprobar posibles errores:
+
 puppet agent --test
 puppet agent --server master42.curso1617 --test
 
-Para ver el detalle de los errores, podemos reiniciar el servicio puppet en el cliente, y consultar el archivo de log del cliente: tail /var/log/puppet/puppet.log.
+![imagen43.1](./images/43.1.png)
 
-Puede ser que tengamos algún mensaje de error de configuración del fichero /etc/puppet/manifests/site.pp del master. En tal caso, ir a los ficheros del master y corregir los errores de sintáxis.
+Para ver el detalle de los errores, podemos reiniciar el servicio puppet en el cliente, y consultar el archivo de log del cliente:
+tail /var/log/puppet/puppet.log.
+
+![imagen43.2](./images/43.2.png)
 
 # **5. Segunda Versión Del Fichero pp.**
 
 Ya hemos probado una configuración sencilla en PuppetMaster. Ahora vamos a pasar a configurar algo más complejo.
 
 Contenido para /etc/puppet/manifests/classes/hostlinux2.pp:
+
+![imagen44](./images/44.png)
 
 ~~~
 class hostlinux2 {
@@ -382,17 +394,13 @@ class hostlinux2 {
 }
 ~~~
 
-Para revisar
+![imagen45](./images/45.png)
 
-~~~
-    package { "gnomine": ensure => 'absent' }
-
-    file {  '/opt/readme.txt' :
-     source => 'puppet:///files/readme.txt',
-    }
-~~~
+![imagen46](./images/46.png)
 
 Modificar /etc/puppet/manifests/site.pp para que se use la configuración de hostlinux2 el lugar de la anterior:
+
+![imagen47](./images/47.png)
 
 ~~~
 import "classes/*"
@@ -402,9 +410,17 @@ node default {
 }
 ~~~
 
-Por defecto todos los nodos (máquinas clientes) van a coger la misma configuración.
+![imagen48](./images/48.png)
 
-tree /etc/puppet
+Ejecutar tree `/etc/puppet` en el servidor, para comprobar ficheros y directorios.
+
+![imagen49](./images/49.png)
+
+Vamos al cliente1 y comprobamos que se hayan aplicado los cambios solicitados.
+
+![imagen50](./images/50.png)
+
+---
 
 # **6. Cliente Puppet Windows.**
 
