@@ -360,7 +360,7 @@ class hostlinux2 {
   user { 'barbaroja':
     home => '/home/barbaroja',
     shell => '/bin/bash',
-    password => 'saqueo',
+    password => 'poner-una-clave-encriptada',
     groups => ['piratas','admin','root']
   }
 
@@ -432,7 +432,7 @@ Vamos a la MV master.
 
 Vamos a crear una configuración puppet para las máquinas windows, dentro del fichero.
 
-Crear /etc/puppet/manifests/classes/hostwindows3.pp, con el siguiente contenido:
+Crear `/etc/puppet/manifests/classes/hostwindows3.pp`, con el siguiente contenido:
 
 ~~~
 class hostwindows3 {
