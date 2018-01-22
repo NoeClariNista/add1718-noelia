@@ -24,77 +24,70 @@ Vamos a usar 3 MV's con las siguientes configuraciones.
 ![imagen02](./images/02.png)
 
 * MV2 - cliente 1: recibe órdenes del master.
-IP estática 172.18.20.101
-Nombre del equipo: cli1alu20
-Dominio: curso1718
+  * IP estática 172.18.20.101.
+  * Nombre del equipo: cli1alu20.
+  * Dominio: curso1718.
 
 ![imagen03](./images/03.png)
 
 ![imagen04](./images/04.png)
 
-MV3 - client2: recibe órdenes del master.
-Configuración SO Windows 10.
-IP estática 172.18.20.102
-Nombre Netbios: cli2alu20
-Nombre del equipo: cli2alu20
+* MV3 - client2: recibe órdenes del master.
+  * IP estática 172.18.20.102.
+  * Nombre Netbios: cli2alu20.
+  * Nombre del equipo: cli2alu20.
 
 ![imagen05](./images/05.png)
 
 ![imagen06](./images/06.png)
 
-Configurar /etc/hosts.
+Cada MV debe tener configurada en su `/etc/hosts` al resto de hosts, para poder hacer ping entre ellas usando los nombres. Con este fichero obtenemos resolución de nombres para nuestras propias MV's sin tener un servidor DNS.
 
-Cada MV debe tener configurada en su /etc/hosts al resto de hosts, para poder hacer ping entre ellas usando los nombres. Con este fichero obtenemos resolución de nombres para nuestras propias MV's sin tener un servidor DNS.
+* MV1.
 
-~~~
-GNU/Linux
+  El fichero /etc/hosts debe tener el siguiente contenido.
 
-El fichero /etc/hosts debe tener un contenido similar a:
+  ![imagen07](./images/07.png)
 
-127.0.0.1       localhost
-127.0.0.2       master20.curso1718    master20
-172.18.20.100   master20.curso1718   master20
-172.18.20.101   cli1alu20.curso1718   cli1alu20
-172.18.20.102   cli2alu20
+  ![imagen08](./images/08.png)
 
-Windows
+* MV2.
 
-Para localizar el fichero hosts de Windows, vamos a la ruta de la imagen:
+  El fichero /etc/hosts debe tener el siguiente contenido.
 
-El contenido del fichero hosts de Windows tiene el siguiente aspecto:
-~~~
+  ![imagen09](./images/09.png)
 
-![imagen07](./images/07.png)
+  ![imagen10](./images/10.png)
 
-![imagen08](./images/08.png)
+* MV3.
 
-![imagen09](./images/09.png)
+  Para localizar el fichero hosts de Windows, vamos a la siguiente ruta.
 
-![imagen10](./images/10.png)
+  ![imagen11](./images/11.png)
 
-![imagen11](./images/11.png)
+  El contenido del fichero hosts de Windows tiene el siguiente aspecto.
 
-![imagen12](./images/12.png)
+  ![imagen12](./images/12.png)
 
 ## **1.2. Comprobar Las Configuraciones.**
 
-En GNU/Linux, para comprobar que las configuraciones son correctas hacemos:
+En GNU/Linux, para comprobar que las configuraciones son correctas hacemos los siguientes comandos.
 
 ~~~
-date
-ip a
-route -n
-host www.google.es
-hostname -a
-hostname -f               # Comprobar que devuelve el valor correcto!!!
-hostname -d
-tail -n 5 /etc/hosts
-ping master20
-ping master20.curso1718
-ping cli1alu20
-ping cli1alu20.curso1718
-ping cli2alu20
-ping cli2alu20.curso1718   
+date.
+ip a.
+route -n.
+host www.google.es.
+hostname -a.
+hostname -f.
+hostname -d.
+tail -n 5 /etc/hosts.
+ping master20.
+ping master20.curso1718.
+ping cli1alu20.
+ping cli1alu20.curso1718.
+ping cli2alu20.
+ping cli2alu20.curso1718.
 ~~~
 
 ![imagen13](./images/13.png)
@@ -105,52 +98,54 @@ ping cli2alu20.curso1718
 
 ![imagen16](./images/16.png)
 
-En Windows comprobamos con:
+En Windows comprobamos con los siguientes comandos.
 
 ~~~
-date
-ipconfig
-route /PRINT
-nslookup www.google.es
-ping master20
-ping master20.curso1718
-ping cli1alu20
-ping cli1alu20.curso1718
-ping cli2alu20
-ping cli2alu20.curso1718  
+date.
+ipconfig.
+route /PRINT.
+nslookup www.google.es.
+ping master20.
+ping master20.curso1718.
+ping cli1alu20.
+ping cli1alu20.curso1718.
+ping cli2alu20.
+ping cli2alu20.curso1718.
 ~~~
 
 ![imagen17](./images/17.png)
 
 # **2. Primera Versión Del Fichero pp.**
 
-Instalamos Puppet Master en la MV master20:
-
-zypper install rubygem-puppet-master (Leap).
+Instalamos Puppet Master en la MV master20.
 
 ![imagen18](./images/18.png)
 
-El paquete puppet-vim, sólo es para que el editor vim detecte la sintaxis de puppet.
+Utilizamos los siguientes comandos.
 
-systemctl status puppetmaster: Consultar el estado del servicio.
-systemctl enable puppetmaster: Permitir que el servicio se inicie automáticamente en el inicio de la máquina.
-systemctl start puppetmaster: Iniciar el servicio.
-systemctl status puppetmaster: Consultar el estado del servicio.
+~~~
+systemctl status puppetmaster, consultar el estado del servicio.
+systemctl enable puppetmaster, permitir que el servicio se inicie automáticamente en el inicio de la máquina.
+systemctl start puppetmaster, iniciar el servicio.
+systemctl status puppetmaster, consultar el estado del servicio.
+~~~
 
 ![imagen19](./images/19.png)
 
-En este momento debería haberse creado el directorio `/etc/puppet/manifests`.
+En este momento se ha creado el directorio `/etc/puppet/manifests`.
 
 ![imagen20](./images/20.png)
 
-Preparamos los ficheros/directorios en el master.
+Preparamos los ficheros/directorios en el Master.
 
+~~~
 mkdir `/etc/puppet/files`
 touch `/etc/puppet/files/readme.txt`
 mkdir `/etc/puppet/manifests`
 touch `/etc/puppet/manifests/site.pp`
 mkdir `/etc/puppet/manifests/classes`
 touch `/etc/puppet/manifests/classes/hostlinux1.pp`
+~~~
 
 ![imagen21](./images/21.png)
 
@@ -184,7 +179,7 @@ node default {
 
 ## **2.3. hostlinux1.pp.**
 
-Como podemos tener muchas configuraciones, vamos a separarlas en distintos ficheros para organizarnos mejor, y las vamos a guardar en la ruta /etc/puppet/manifests/classes
+Como podemos tener muchas configuraciones, vamos a separarlas en distintos ficheros para organizarnos mejor, y las vamos a guardar en la ruta `/etc/puppet/manifests/classes`.
 
 Vamos a crear una primera configuración para máquina estándar GNU/Linux.
 
@@ -340,7 +335,7 @@ tail /var/log/puppet/puppet.log.
 
 Ya hemos probado una configuración sencilla en PuppetMaster. Ahora vamos a pasar a configurar algo más complejo.
 
-Contenido para /etc/puppet/manifests/classes/hostlinux2.pp:
+Contenido para `/etc/puppet/manifests/classes/hostlinux2.pp`.
 
 ![imagen44](./images/44.png)
 
