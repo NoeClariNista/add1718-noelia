@@ -12,22 +12,18 @@ Según Wikipedia, Puppet es una herramienta diseñada para administrar la config
 
 ## **1.1. Configuración.**
 
-En OpenSUSE podemos configurar el equipo a través de Yast.
+Vamos a usar 3 MV's con las siguientes configuraciones.
 
-Vamos a usar 3 MV's con las siguientes configuraciones:
-
-MV1 - master: Dará las órdenes de instalación/configuración a los clientes.
-Configuración OpenSUSE.
-IP estática 172.18.20.100
-Nombre del equipo: master20
-Dominio: curso1718
+* MV1 - master: Dará las órdenes de instalación/configuración a los clientes.
+  * IP estática: 172.18.20.100.
+  * Nombre del equipo: master20.
+  * Dominio: curso1718.
 
 ![imagen01](./images/01.png)
 
 ![imagen02](./images/02.png)
 
-MV2 - cliente 1: recibe órdenes del master.
-Configuración OpenSUSE.
+* MV2 - cliente 1: recibe órdenes del master.
 IP estática 172.18.20.101
 Nombre del equipo: cli1alu20
 Dominio: curso1718
