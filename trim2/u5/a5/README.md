@@ -41,11 +41,11 @@ Vamos a usar 3 MV's con las siguientes configuraciones.
 
 ![imagen06](./images/06.png)
 
-Cada MV debe tener configurada en su `/etc/hosts` al resto de hosts, para poder hacer ping entre ellas usando los nombres. Con este fichero obtenemos resolución de nombres para nuestras propias MV's sin tener un servidor DNS.
+Cada MV debe tener configurada en su `/etc/hosts` al resto de hosts, para poder hacer ping entre ellas usando los nombres largos y cortos. Con este fichero obtenemos resolución de nombres para nuestras propias MV's sin tener un servidor DNS.
 
 * MV1.
 
-  El fichero /etc/hosts debe tener el siguiente contenido.
+  El fichero `/etc/hosts` debe tener el siguiente contenido.
 
   ![imagen07](./images/07.png)
 
@@ -53,7 +53,7 @@ Cada MV debe tener configurada en su `/etc/hosts` al resto de hosts, para poder 
 
 * MV2.
 
-  El fichero /etc/hosts debe tener el siguiente contenido.
+  El fichero `/etc/hosts` debe tener el siguiente contenido.
 
   ![imagen09](./images/09.png)
 
@@ -81,101 +81,101 @@ host www.google.es.
 hostname -a.
 hostname -f.
 hostname -d.
-tail -n 5 /etc/hosts.
+tail -n 5 `/etc/hosts`.
 ping master20.
 ping master20.curso1718.
 ping cli1alu20.
 ping cli1alu20.curso1718.
 ping cli2alu20.
-ping cli2alu20.curso1718.
 ~~~
+
+* MV1.
 
 ![imagen13](./images/13.png)
 
-![imagen14](./images/14.png)
+![imagen14](./images/14.png) <- unir 14.1 y 14.2.
+
+* MV2.
 
 ![imagen15](./images/15.png)
 
-![imagen16](./images/16.png)
+![imagen16](./images/16.png) <- unir 16.1 y 16.2.
 
 En Windows comprobamos con los siguientes comandos.
 
 ~~~
 date.
 ipconfig.
-route /PRINT.
+route PRINT.
 nslookup www.google.es.
 ping master20.
 ping master20.curso1718.
 ping cli1alu20.
 ping cli1alu20.curso1718.
 ping cli2alu20.
-ping cli2alu20.curso1718.
 ~~~
 
-![imagen17](./images/17.png)
+* MV3.
+
+![imagen17](./images/17.png) <- unir todas las 17.
+
+![imagen18](./images/18.png) <- cambiar números en las imagenes a partir de aqui.
+
+---
 
 # **2. Primera Versión Del Fichero pp.**
 
 Instalamos Puppet Master en la MV master20.
 
-![imagen18](./images/18.png)
+![imagen19](./images/19.png)
 
 Utilizamos los siguientes comandos.
 
 ~~~
-systemctl status puppetmaster, consultar el estado del servicio.
-systemctl enable puppetmaster, permitir que el servicio se inicie automáticamente en el inicio de la máquina.
-systemctl start puppetmaster, iniciar el servicio.
-systemctl status puppetmaster, consultar el estado del servicio.
+systemctl status puppetmaster, consultamos el estado del Servicio.
+systemctl enable puppetmaster, permitimos que el Servicio se inicie automáticamente en el inicio de la máquina.
+systemctl start puppetmaster, iniciamos el Servicio.
+systemctl status puppetmaster, consultamos el estado del Servicio.
 ~~~
 
-![imagen19](./images/19.png)
+![imagen20](./images/20.png)
 
 En este momento se ha creado el directorio `/etc/puppet/manifests`.
 
-![imagen20](./images/20.png)
+![imagen21](./images/21.png)
 
 Preparamos los ficheros/directorios en el Master.
 
 ~~~
-mkdir `/etc/puppet/files`
-touch `/etc/puppet/files/readme.txt`
-mkdir `/etc/puppet/manifests`
-touch `/etc/puppet/manifests/site.pp`
-mkdir `/etc/puppet/manifests/classes`
-touch `/etc/puppet/manifests/classes/hostlinux1.pp`
+mkdir `/etc/puppet/files`.
+touch `/etc/puppet/files/readme.txt`.
+mkdir `/etc/puppet/manifests`.
+touch `/etc/puppet/manifests/site.pp`.
+mkdir `/etc/puppet/manifests/classes`.
+touch `/etc/puppet/manifests/classes/hostlinux1.pp`.
 ~~~
-
-![imagen21](./images/21.png)
-
-## **2.1. readme.txt.**
-
-Los ficheros que se guardan en `/etc/puppet/files` se pueden descargar desde el resto de máquinas cliente puppet.
-
-Contenido para readme.txt: "¡Al abordaje!".
 
 ![imagen22](./images/22.png)
 
+## **2.1. readme.txt.**
+
+Los ficheros que se guardan en `/etc/puppet/files` se pueden descargar desde el resto de máquinas Cliente puppet.
+
 ![imagen23](./images/23.png)
+
+El contenido para readme.txt es el siguiente.
+
+![imagen24](./images/24.png)
 
 ## **2.2. site.pp.**
 
 `/etc/puppet/manifests/site.pp` es el fichero principal de configuración de órdenes para los agentes/nodos puppet.
 
-Contenido de nuestro site.pp.
-
-![imagen24](./images/24.png)
-
-~~~
-import "classes/*"
-
-node default {
-  include hostlinux1
-}
-~~~
-
 ![imagen25](./images/25.png)
+
+El contenido de nuestro site.pp es el siguiente.
+
+![imagen26](./images/26.png)
 
 ## **2.3. hostlinux1.pp.**
 
@@ -183,308 +183,213 @@ Como podemos tener muchas configuraciones, vamos a separarlas en distintos fiche
 
 Vamos a crear una primera configuración para máquina estándar GNU/Linux.
 
-Contenido para `/etc/puppet/manifests/classes/hostlinux1.pp`.
-
-![imagen26](./images/26.png)
-
-~~~
-class hostlinux1 {
-  package { "tree": ensure => installed }
-  package { "traceroute": ensure => installed }
-  package { "geany": ensure => installed }
-}
-~~~
-
 ![imagen27](./images/27.png)
 
-tree `/etc/puppet`, consultar los ficheros/directorios que tenemos creado.
+El contenido para `/etc/puppet/manifests/classes/hostlinux1.pp` es el siguiente.
 
 ![imagen28](./images/28.png)
 
-Comprobar que tenemos los permisos adecuados en la ruta `/var/lib/puppet`. Esto es, usuario puppet y grupo puppet.
+Consultamos los ficheros/directorios que tenemos creado con el comando tree `/etc/puppet`.
 
 ![imagen29](./images/29.png)
 
-Reiniciamos el servicio systemctl restart puppetmaster.
+Comprobamos que tenemos los permisos adecuados en la ruta `/var/lib/puppet`. Esto es, usuario puppet y grupo puppet.
 
 ![imagen30](./images/30.png)
 
-Comprobamos que el servicio está en ejecución de forma correcta.
-
-systemctl status puppetmaster
-netstat -ntap |grep ruby
+Reiniciamos el Servicio con el comando systemctl restart puppetmaster.
 
 ![imagen31](./images/31.png)
 
-Consultamos log por si hay errores: tail `/var/log/puppet/*.log`
+Comprobamos que el Servicio está en ejecución de forma correcta con los siguientes comandos.
+
+~~~
+systemctl status puppetmaster.
+netstat -ntap |grep ruby.
+~~~
 
 ![imagen32](./images/32.png)
 
-Abrir el cortafuegos para el servicio.
+Consultamos log por si hay errores  con el comando tail `/var/log/puppet/*.log`
 
 ![imagen33](./images/33.png)
 
+Abrimos el cortafuegos para el Servicio.
+
 ![imagen34](./images/34.png)
-
-# **3. Instalación Y Configuración Del Cliente1.**
-
-Vamos a instalar y configurar el cliente 1.
-
-Vamos a la MV cliente 1.
-
-Instalar el Agente Puppet.
-
-zypper install rubygem-puppet
 
 ![imagen35](./images/35.png)
 
-El cliente puppet debe ser informado de quien será su master. Para ello, vamos a configurar `/etc/puppet/puppet.conf`.
+---
+
+# **3. Instalación Y Configuración Del Cliente1.**
+
+Vamos a instalar y configurar el Cliente 1.
+
+Vamos a la MV Cliente 1.
+
+Instalamos el Agente Puppet.
 
 ![imagen36](./images/36.png)
 
-~~~
-[main]
-# Definir el host master puppet
-server=master20.curso1718
-...
-[agent]
-...
-# Desactivar los plugin para este agente
-pluginsync=false
-~~~
+El Cliente puppet debe ser informado de quien será su master. Para ello, vamos a configurar `/etc/puppet/puppet.conf`.
 
 ![imagen37](./images/37.png)
 
-Veamos imagen de ejemplo de Raúl García Heredia:
-
-Comprobar que tenemos los permisos adecuados en la ruta `/var/lib/puppet`.
-
-![imagen37.1](./images/37.1.png)
-
-systemctl status puppet: Ver el estado del servicio puppet.
-systemctl enable puppet: Activar el servicio en cada reinicio de la máquina.
-systemctl start puppet: Iniciar el servicio puppet.
-systemctl status puppet: Ver el estado del servicio puppet.
-netstat -ntap |grep ruby: Muestra los servicios conectados a cada puerto.
-
 ![imagen38](./images/38.png)
 
-# **4. Certificados.** (hacer instantanea)
+Comprobamos que tenemos los permisos adecuados en la ruta `/var/lib/puppet`.
 
-Antes de que el master acepte a cliente1 como cliente, se deben intercambiar los certificados entre ambas máquinas. Esto sólo hay que hacerlo una vez.
+![imagen39](./images/39.png)
 
-A partir de este momento ya no deberíamos cambiar los nombres de las máquinas.
+Utilizamos los siguientes comandos.
+
+~~~
+systemctl status puppet, vemos el estado del Servicio puppet.
+systemctl enable puppet, activamos el Servicio en cada reinicio de la máquina.
+systemctl start puppet, iniciamos el Servicio puppet.
+systemctl status puppet, vemos el estado del Servicio puppet.
+netstat -ntap |grep ruby, muestra los Servicios conectados a cada puerto.
+~~~
+
+![imagen40](./images/40.png)
+
+Abrimos el cortafuegos para el Servicio.
+
+![imagen41](./images/41.png)
+
+![imagen42](./images/42.png)
+
+---
+
+# **4. Certificados.**
+
+Antes de que el master acepte a Cliente 1 como Cliente, se deben intercambiar los certificados entre ambas máquinas. Esto sólo hay que hacerlo una vez.
 
 ## **4.1. Aceptar Certificado.**
 
 Vamos a la MV master.
 
-puppet cert list, consultamos las peticiones pendientes de unión al master:
-
-root@master42# puppet cert list
-"cli1alu30.curso1617" (D8:EC:E4:A2:10:55:00:32:30:F2:88:9D:94:E5:41:D6)
-root@master42#
-
-![imagen39](./images/39.png)
-
-puppet cert sign "nombre-máquina-cliente", aceptar al nuevo cliente desde el master:
-
-![imagen40](./images/40.png)
-
-root@master42# puppet cert sign "cli1alu42.curso1617"
-notice: Signed certificate request for cli1alu42.curso1617
-notice: Removing file Puppet::SSL::CertificateRequest cli1alu42.curso1617 at '/var/lib/puppet/ssl/ca/requests/cli1alu42.curso1617.pem'
-
-root@master42# puppet cert list
-
-root@master42# puppet cert print cli1alu20.curso1718
-Certificate:
-Data:
-....
-
-A continuación podemos ver una imagen de ejemplo, los datos no tienen que coincidir con lo que se pide en el ejercicio.
-
-![imagen41](./images/41.png)
-
-## **4.2. Comprobación.**
-
-Vamos a comprobar que las órdenes (manifiesto) del master, llega bien al cliente y éste las ejecuta.
-
-Vamos a cliente1 y reiniciamos la máquina y/o el servicio Puppet.
-
-![imagen42](./images/42.png)
-
-Comprobar que los cambios configurados en Puppet se han realizado.
+Consultamos las peticiones pendientes de unión al master con el comando puppet cert list.
 
 ![imagen43](./images/43.png)
 
-Nos aseguramos de que somos el usuario root.
-Ejecutar comando para comprobar posibles errores:
+Aceptamos al nuevo Cliente desde el master con el comando puppet cert sign cli1alu20.curso1718.
 
-puppet agent --test
-puppet agent --server master42.curso1617 --test
+![imagen44](./images/44.png)
 
-![imagen43.1](./images/43.1.png)
+![imagen45](./images/45.png)
 
-Para ver el detalle de los errores, podemos reiniciar el servicio puppet en el cliente, y consultar el archivo de log del cliente:
-tail /var/log/puppet/puppet.log.
+## **4.2. Comprobación.**
 
-![imagen43.2](./images/43.2.png)
+Vamos a comprobar que las órdenes (manifiesto) del master, llega bien al Cliente y éste las ejecuta.
+
+Vamos a Cliente 1 y reiniciamos la máquina y el Servicio Puppet.
+
+![imagen46](./images/46.png)
+
+Comprobamos que los cambios configurados en Puppet se han realizado.
+
+![imagen47](./images/47.png)
+
+Nos aseguramos de que somos el usuario root y ejecutamos los siguientes comandos para comprobar posibles errores.
+
+~~~
+puppet agent --test.
+puppet agent --server master20.curso1718 --test.
+~~~
+
+![imagen48](./images/48.png)
+
+Para ver el detalle de los errores, podemos reiniciar el Servicio puppet en el Cliente, y consultamos el archivo de log del Cliente, para ello utilizamos el comando tail `/var/log/puppet/puppet.log`.
+
+![imagen49](./images/49.png)
 
 # **5. Segunda Versión Del Fichero pp.**
 
 Ya hemos probado una configuración sencilla en PuppetMaster. Ahora vamos a pasar a configurar algo más complejo.
 
-Contenido para `/etc/puppet/manifests/classes/hostlinux2.pp`.
-
-![imagen44](./images/44.png)
-
-~~~
-class hostlinux2 {
-  package { "tree": ensure => installed }
-  package { "traceroute": ensure => installed }
-  package { "geany": ensure => installed }
-
-  group { "piratas": ensure => "present", }
-  group { "admin": ensure => "present", }
-
-  user { 'barbaroja':
-    home => '/home/barbaroja',
-    shell => '/bin/bash',
-    password => 'poner-una-clave-encriptada',
-    groups => ['piratas','admin','root']
-  }
-
-  file { "/home/barbaroja":
-    ensure => "directory",
-    owner => "barbaroja",
-    group => "piratas",
-    mode => 750
-  }
-
-  file { "/home/barbaroja/share":
-    ensure => "directory",
-    owner => "barbaroja",
-    group => "piratas",
-    mode => 750
-  }
-
-  file { "/home/barbaroja/share/private":
-    ensure => "directory",
-    owner => "barbaroja",
-    group => "piratas",
-    mode => 700
-  }
-
-  file { "/home/barbaroja/share/public":
-    ensure => "directory",
-    owner => "barbaroja",
-    group => "piratas",
-    mode => 755
-  }
-}
-~~~
-
-![imagen45](./images/45.png)
-
-![imagen46](./images/46.png)
-
-Modificar /etc/puppet/manifests/site.pp para que se use la configuración de hostlinux2 el lugar de la anterior:
-
-![imagen47](./images/47.png)
-
-~~~
-import "classes/*"
-
-node default {
-  include hostlinux2
-}
-~~~
-
-![imagen48](./images/48.png)
-
-Ejecutar tree `/etc/puppet` en el servidor, para comprobar ficheros y directorios.
-
-![imagen49](./images/49.png)
-
-Vamos al cliente1 y comprobamos que se hayan aplicado los cambios solicitados.
-
 ![imagen50](./images/50.png)
 
----
+El contenido para `/etc/puppet/manifests/classes/hostlinux2.pp` es el siguiente.
+
+![imagen51](./images/51.png)
+
+Modificamos `/etc/puppet/manifests/site.pp` para que se use la configuración de hostlinux2 el lugar de la anterior.
+
+![imagen52](./images/52.png)
+
+El contenido para `/etc/puppet/manifests/site.pp` es el siguiente.
+
+![imagen53](./images/53.png)
+
+Ejecutamos tree `/etc/puppet` en el Servidor, para comprobar ficheros y directorios.
+
+![imagen54](./images/54.png)
+
+Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
+
+![imagen55](./images/55.png)
+
+--- OK.
 
 # **6. Cliente Puppet Windows.**
 
-Vamos a configurar Puppet para atender también a clientes Windows.
+Vamos a configurar Puppet para atender también a Clientes Windows.
 
 ## **6.1. Modificaciones En El Master.**
 
 Vamos a la MV master.
 
-Vamos a crear una configuración puppet para las máquinas windows, dentro del fichero.
+Vamos a crear una configuración puppet para las máquinas Windows, dentro del fichero.
 
-Crear `/etc/puppet/manifests/classes/hostwindows3.pp`, con el siguiente contenido:
+![imagen56](./images/56.png)
 
-~~~
-class hostwindows3 {
-  file {'C:\warning.txt':
-    ensure => 'present',
-    content => "Hola Mundo Puppet!",
-  }
-}
-~~~
+Creamos `/etc/puppet/manifests/classes/hostwindows3.pp` con el siguiente contenido.
+
+![imagen57](./images/57.png)
 
 De momento, esta configuración es muy básica. Al final la ampliaremos algo más.
 
-Ahora vamos a modificar el fichero site.pp del master, para que tenga en cuenta la configuración de clientes GNU/Linux y clientes Windows, de modo diferenciado:
+Ahora vamos a modificar el fichero site.pp del master, para que tenga en cuenta la configuración de Clientes GNU/Linux y Clientes Windows, de modo diferenciado, con el siguiente contenido.
 
-~~~
-import "classes/*"
+![imagen58](./images/58.png)
 
-node 'cli1alu42.curso1617' {
-  include hostlinux2
-}
+![imagen509](./images/59.png)
 
-node 'cli2alu42' {
-  include hostwindows3
-}
-~~~
+Ejecutamos tree `/etc/puppet` para confirmar que tenemos los nuevos archivos.
 
-NOMBRES DE MÁQUINA
+![imagen60](./images/60.png)
 
-El master GNU/Linux del ejemplo se llama master42.curso1617
+Reiniciamos el Servicio PuppetMaster.
 
-El cliente1 GNU/Linux del ejemplo se llama cli1alu42.curso1617
+![imagen61](./images/61.png)
 
-El cliente2 Windows del ejemplo se llama cli2alu42
+Debemos instalar la misma versión de puppet en master y en los Clientes.
 
-tree /etc/puppet, para confirmar que tenemos los nuevos archivos.
+Ejecutamos el comando facter para ver la versión de Puppet que está usando el master.
 
-Reiniciamos el servicio PuppetMaster.
-
-Debemos instalar la misma versión de puppet en master y en los clientes.
-
-Ejecutamos el comando facter, para ver la versión de Puppet que está usando el master.
-
-El fichero puppet.conf en Windows está en C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf. (ProgramData es una ruta oculta). Revisar que tenga algo como:
-
-~~~
-[main]
-server=masterXX.curso1617 # Definir el host master
-pluginsync=false          # Desactivar los plugin
-~~~
+![imagen62](./images/62.png)
 
 ## **6.2. Modificaciones En El Cliente2.**
 
-Ahora vamos a instalar AgentePuppet en Windows. Recordar que debemos instalar la misma versión en ambos equipos (Usar comando facter para ver la versión de puppet).
+Ahora vamos a instalar AgentePuppet en Windows. Recordar que debemos instalar la misma versión en ambos equipos. Podemos usar comando facter para ver la versión de puppet del Servidor.
 
-    Descargamos e instalamos la versión de Agente Puppet para Windows similar al Puppet Master.
-    Reiniciamos la MV.
-    Debemos aceptar el certificado en el master para este nuevo cliente. Consultar apartado anterior y repetir los pasos para este nuevo cliente.
+![imagen63](./images/63.png)
 
-    Si no aparece el cliente Windows en em master
+Vamos al Cliente Windows.
 
-    Si en el master no nos aparece el certificado del cliente windows para ser aceptado, probar lo siguiente:
+Descargamos e instalamos la versión de Agente Puppet para Windows similar al Puppet Master.
+
+![]
+
+Reiniciamos la MV.
+
+Debemos aceptar el certificado en el master para este nuevo cliente. Consultar apartado anterior y repetir los pasos para este nuevo cliente.
+
+Si no aparece el cliente Windows en em master
+
+Si en el master no nos aparece el certificado del cliente windows para ser aceptado, probar lo siguiente:
 
         Ir a cli2aluXX
         Ejecutar el "Agente Puppet"
@@ -542,5 +447,22 @@ class hostwindows4 {
 
     Crear un nuevo fichero de configuración para la máquina cliente Windows con el nombre /etc/puppet/manifests/classes/hostalumno5.pp.
     Incluir configuraciones elegidas por el alumno y probarlas.
+
+## **6.3. Comprobamos Los Cambios.**
+
+Vamos al Cliente 2.
+
+Con los comandos siguientes podremos hacernos una idea de como terminar de configurar el fichero puppet del master para la máquina Windows.
+
+Iniciamos la consola puppet como administrador y probamos los siguientes comandos.
+
+~~~
+puppet agent --configprint server, debe mostrar el nombre del servidor puppet. En nuestro ejemplo debe ser master20.curso1718.
+puppet agent --server master20.curso1718 --test, comprobamos el estado del agente puppet.
+puppet agent -t --debug --verbose, comprobamos el estado del agente puppet.
+facter, para consultar datos de la máquina Windows, como por ejemplo la versión de puppet del Cliente.
+puppet resource user noelia, para ver la configuración puppet del usuario.
+puppet resource file c:\Users, para ver la configuración puppet de la carpeta.
+~~~
 
 ---
