@@ -14,7 +14,7 @@ Según Wikipedia, Puppet es una herramienta diseñada para administrar la config
 
 Vamos a usar 3 MV's con las siguientes configuraciones.
 
-* MV1 - master: Dará las órdenes de instalación/configuración a los clientes.
+* MV1 - master: Dará las órdenes de instalación/configuración a los Clientes.
   * IP estática: 172.18.20.100.
   * Nombre del equipo: master20.
   * Dominio: curso1718.
@@ -23,8 +23,8 @@ Vamos a usar 3 MV's con las siguientes configuraciones.
 
 ![imagen02](./images/02.png)
 
-* MV2 - cliente 1: recibe órdenes del master.
-  * IP estática 172.18.20.101.
+* MV2 - Cliente 1: recibe órdenes del master.
+  * IP estática: 172.18.20.101.
   * Nombre del equipo: cli1alu20.
   * Dominio: curso1718.
 
@@ -32,8 +32,8 @@ Vamos a usar 3 MV's con las siguientes configuraciones.
 
 ![imagen04](./images/04.png)
 
-* MV3 - client2: recibe órdenes del master.
-  * IP estática 172.18.20.102.
+* MV3 - Cliente 2: recibe órdenes del master.
+  * IP estática: 172.18.20.102.
   * Nombre Netbios: cli2alu20.
   * Nombre del equipo: cli2alu20.
 
@@ -93,13 +93,13 @@ ping cli2alu20.
 
 ![imagen13](./images/13.png)
 
-![imagen14](./images/14.png) <- unir 14.1 y 14.2.
+![imagen14](./images/14.png)
 
 * MV2.
 
 ![imagen15](./images/15.png)
 
-![imagen16](./images/16.png) <- unir 16.1 y 16.2.
+![imagen16](./images/16.png)
 
 En Windows comprobamos con los siguientes comandos.
 
@@ -119,7 +119,7 @@ ping cli2alu20.
 
 ![imagen17](./images/17.png) <- unir todas las 17.
 
-![imagen18](./images/18.png) <- cambiar números en las imagenes a partir de aqui.
+![imagen18](./images/18.png)
 
 ---
 
@@ -205,12 +205,12 @@ Comprobamos que el Servicio está en ejecución de forma correcta con los siguie
 
 ~~~
 systemctl status puppetmaster.
-netstat -ntap |grep ruby.
+netstat -ntap | grep ruby.
 ~~~
 
 ![imagen32](./images/32.png)
 
-Consultamos log por si hay errores  con el comando tail `/var/log/puppet/*.log`
+Consultamos log por si hay errores con el comando tail `/var/log/puppet/*.log`
 
 ![imagen33](./images/33.png)
 
@@ -274,7 +274,7 @@ Consultamos las peticiones pendientes de unión al master con el comando puppet 
 
 ![imagen43](./images/43.png)
 
-Aceptamos al nuevo Cliente desde el master con el comando puppet cert sign cli1alu20.curso1718.
+Aceptamos al nuevo Cliente desde el master con el comando puppet cert sign "cli1alu20.curso1718".
 
 ![imagen44](./images/44.png)
 
@@ -327,7 +327,7 @@ Ejecutamos tree `/etc/puppet` en el Servidor, para comprobar ficheros y director
 
 ![imagen54](./images/54.png)
 
-Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
+Reiniciamos el Servicio. Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
 
 ![imagen55](./images/55.png) <- falta.
 
@@ -348,8 +348,6 @@ Vamos a crear una configuración puppet para las máquinas Windows, dentro del f
 Creamos `/etc/puppet/manifests/classes/hostwindows3.pp` con el siguiente contenido.
 
 ![imagen57](./images/57.png)
-
-De momento, esta configuración es muy básica. Al final la ampliaremos algo más.
 
 Ahora vamos a modificar el fichero site.pp del master, para que tenga en cuenta la configuración de Clientes GNU/Linux y Clientes Windows, de modo diferenciado, con el siguiente contenido.
 
@@ -373,13 +371,13 @@ Ejecutamos el comando facter para ver la versión de Puppet que está usando el 
 
 ## **6.2. Modificaciones En El Cliente2.**
 
-Ahora vamos a instalar AgentePuppet en Windows. Recordar que debemos instalar la misma versión en ambos equipos. Podemos usar comando facter para ver la versión de puppet del Servidor.
-
-![imagen63](./images/63.png)
+Ahora vamos a instalar AgentePuppet en Windows. Recordar que debemos instalar la misma versión en ambos equipos.
 
 Vamos al Cliente Windows.
 
 Descargamos e instalamos la versión de Agente Puppet para Windows similar al Puppet Master.
+
+![imagen63](./images/63.png)
 
 ![imagen64](./images/64.png)
 
@@ -436,27 +434,37 @@ puppet agent --server master20.curso1718 --test, comprobamos el estado del agent
 
 Si tenemos problemas con el certificado de la máquina Windows Cliente tenemos que seguir los siguientes pasos para eliminar cualquier rastro de los mismos y poder reintentar la comunicación.
 
-Borramos en el maestro el certificado correspondiente a esa máquina puppet cert clean nombre-netbios-cliente.
+Borramos en el maestro el certificado correspondiente a esa máquina puppet cert clean cli2alu20.
 
 ![imagen77](./images/77.png)
 
-Desinstalamos el agente puppet en Windows.
-
-![imagen78](./images/78.png)
-
-![imagen79](./images/79.png)
-
-Borramos las carpetas de datos del puppet, ya que no se borran en la desinstalación. Las carpetas son las siguientes.
+Desinstalamos el agente puppet en Windows y borramos las carpetas de datos del puppet, ya que no se borran en la desinstalación. Las carpetas son las siguientes.
 
 ~~~
 `C:\ProgramData\PuppetLabs` y `C:\Users\usuario\.puppet`.
 ~~~
 
+Después reinstalamos el agente puppet en Windows como podemos ver en el apartado 6.2.
+
+Ahora debemos aceptar el certificado en el master para este nuevo Cliente. Consultamos el apartado 4 y repetimos los pasos para este nuevo Cliente.
+
+![imagen78](./images/78.png)
+
+En el master no nos aparece el certificado del Cliente Windows para ser aceptado, probamos lo siguiente para conseguir que aparesca.
+
+Vamos a cli2alu20.
+
+Ejecutamos el Agente Puppet y abrimos la Consola Puppet. Ejecutamos puppet agent --server master20.curso1718 --test.
+
+![imagen79](./images/79.png)
+
+Vamos a master20 y ejecutamos puppet cert list.
+
 ![imagen80](./images/80.png)
 
 ![imagen81](./images/81.png)
 
-Después reinstalamos y volvemos a probar.
+![imagen82](./images/82.png)
 
 Vamos al Cliente 2.
 
@@ -473,42 +481,46 @@ puppet resource user noelia, para ver la configuración puppet del usuario.
 puppet resource file c:\Users, para ver la configuración puppet de la carpeta.
 ~~~
 
-![imagen82](./images/82.png)
-
 ![imagen83](./images/83.png)
 
 ![imagen84](./images/84.png)
 
----
-
-# **7. Configuración hostwindows4.pp**
-
-Configuramos en el master el fichero `/etc/puppet/manifests/classes/hostwindows4.pp` para el Cliente Windows.
-
 ![imagen85](./images/85.png)
-
-El contenido de `/etc/puppet/manifests/classes/hostwindows4.pp` es el siguiente.
 
 ![imagen86](./images/86.png)
 
-Comprobamos que funciona.
+---
+
+# **7. Configuración hostwindows4.pp Y Configuración Personalizada: hostalumno5.pp.**
+
+Configuramos en el master el fichero `/etc/puppet/manifests/classes/hostwindows4.pp` para el Cliente Windows.
 
 ![imagen87](./images/87.png)
 
----
-
-# **8. Configuración Personalizada: hostalumno5.pp.**
-
-Creamos un nuevo fichero de configuración para la máquina cliente Windows con el nombre `/etc/puppet/manifests/classes/hostalumno5.pp`.
+El contenido de `/etc/puppet/manifests/classes/hostwindows4.pp` es el siguiente.
 
 ![imagen88](./images/88.png)
 
-El contenido de `/etc/puppet/manifests/classes/hostalumno5.pp` es el siguiente.
+Creamos un nuevo fichero de configuración para la máquina cliente Windows con el nombre `/etc/puppet/manifests/classes/hostalumno5.pp`.
 
 ![imagen89](./images/89.png)
 
-Incluimos configuraciones elegidas y las probamos.
+El contenido de `/etc/puppet/manifests/classes/hostalumno5.pp` es el siguiente.
 
 ![imagen90](./images/90.png)
+
+Incluimos configuraciones elegidas y las probamos.
+
+![imagen91](./images/91.png)
+
+![imagen92](./images/92.png)
+
+![imagen93](./images/93.png)
+
+![imagen94](./images/94.png)
+
+![imagen95](./images/95.png)
+
+![imagen96](./images/96.png)
 
 ---
