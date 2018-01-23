@@ -331,7 +331,7 @@ Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
 
 ![imagen55](./images/55.png)
 
---- OK.
+---
 
 # **6. Cliente Puppet Windows.**
 
