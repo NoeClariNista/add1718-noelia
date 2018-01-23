@@ -191,7 +191,7 @@ El contenido para `/etc/puppet/manifests/classes/hostlinux1.pp` es el siguiente.
 
 Consultamos los ficheros/directorios que tenemos creado con el comando tree `/etc/puppet`.
 
-![imagen29](./images/29.png)
+![imagen29](./images/29.png) 
 
 Comprobamos que tenemos los permisos adecuados en la ruta `/var/lib/puppet`. Esto es, usuario puppet y grupo puppet.
 
