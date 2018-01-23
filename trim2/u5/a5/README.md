@@ -117,7 +117,7 @@ ping cli2alu20.
 
 * MV3.
 
-![imagen17](./images/17.png) <- unir todas las 17.
+![imagen17](./images/17.png)
 
 ![imagen18](./images/18.png)
 
@@ -329,7 +329,7 @@ Ejecutamos tree `/etc/puppet` en el Servidor, para comprobar ficheros y director
 
 Reiniciamos el Servicio. Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
 
-![imagen55](./images/55.png) <- falta.
+![imagen55](./images/55.png)
 
 ---
 
@@ -509,18 +509,18 @@ El contenido de `/etc/puppet/manifests/classes/hostalumno5.pp` es el siguiente.
 
 ![imagen90](./images/90.png)
 
-Incluimos configuraciones elegidas y las probamos.
+Incluimos configuraciones elegidas.
 
 ![imagen91](./images/91.png)
 
 ![imagen92](./images/92.png)
+
+Comprobamos que todo se ha realizado correctamente.
 
 ![imagen93](./images/93.png)
 
 ![imagen94](./images/94.png)
 
 ![imagen95](./images/95.png)
-
-![imagen96](./images/96.png)
 
 ---
