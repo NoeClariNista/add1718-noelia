@@ -529,6 +529,6 @@ Comprobamos que todo se ha realizado correctamente.
 
 ![imagen94](./images/94.png)
 
-![imagen95](./images/95.png)
+![imagen95](./images/95.png) 
 
 ---
