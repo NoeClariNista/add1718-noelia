@@ -381,72 +381,45 @@ Vamos al Cliente Windows.
 
 Descargamos e instalamos la versión de Agente Puppet para Windows similar al Puppet Master.
 
-![]
+![imagen64](./images/64.png)
+
+![imagen65](./images/65.png)
+
+![imagen66](./images/66.png)
+
+![imagen67](./images/67.png)
+
+![imagen68](./images/68.png)
+
+![imagen69](./images/69.png)
+
+![imagen70](./images/70.png)
+
+El fichero `puppet.conf` en Windows está en `C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf`. (ProgramData es una ruta oculta). Revisamos que tenga algo como lo siguiente.
+
+![imagen71](./images/71.png)
 
 Reiniciamos la MV.
 
-Debemos aceptar el certificado en el master para este nuevo cliente. Consultar apartado anterior y repetir los pasos para este nuevo cliente.
+Debemos aceptar el certificado en el master para este nuevo Cliente. Consultamos el apartado 4 y repetimos los pasos para este nuevo Cliente.
 
-Si no aparece el cliente Windows en em master
+![imagen72](./images/72.png)
 
-Si en el master no nos aparece el certificado del cliente windows para ser aceptado, probar lo siguiente:
+En el master no nos aparece el certificado del Cliente Windows para ser aceptado, probamos lo siguiente para conseguir que aparesca.
 
-        Ir a cli2aluXX
-        Ejecutar el "Agente Puppet"
-        Abrir "Consola Puppet" -> Ejecutar puppet agent --server masterXX.curso1617 --test.
-        Ir a masterXX -> puppet cert list
-        Capturar pantallas de estos pasos.
+Vamos a cli2alu20.
 
-    ¿Cómo desintalar Puppet en Windows?
+Ejecutamos el Agente Puppet y abrimos la Consola Puppet. Ejecutamos puppet agent --server master20.curso1718 --test.
 
-    Consejos/sugerencias de Héctor Pedraza pars desinstalar Puppet en Windows:
+![imagen73](./images/73.png)
 
-    Si tenemos problemas con el certificado de la máquina windows cliente tenemos que seguir los siguientes pasos para eliminar cualquier rastro de los mismos y poder reintentar la comunicación:
+Vamos a master20 y ejecutamos puppet cert list.
 
-        Borrar en el maestro el certificado correspondiente a esa máquina puppet cert clean nombre-netbios-cliente.
-        Desinstalar el agente puppet en windows.
-        Borrar las carpetas de datos del puppet, ya que no se borran en la desinstalación. Las carpetas son:
-            C:\ProgramData\PuppetLabs y
-            C:\Users\usuario\.puppet.
-        Después reinstalamos y volvemos a probar.
+![imagen74](./images/74.png)
 
-    Si seguimos teniendo problemas para unir/conectar el cliente windows con el puppetmaster, porque no se realice el intercambio de certificados podemos:
+![imagen75](./images/75.png)
 
-        Repetir las recomendaciones anteriores para limpiar los datos, poner un nombre nuevo y diferente a la máquina Windows e intentarlo de nuevo.
-        o usar una máquina Windows nueva (limpia de las acciones anteriores).
-
-    Vamos al cliente2.
-
-Con los comandos siguientes podremos hacernos una idea de como terminar de configurar el fichero puppet del master para la máquina Windows.
-
-    Iniciar consola puppet como administrador y probar los comandos:
-        puppet agent --configprint server, debe mostrar el nombre del servidor puppet. En nuestro ejemplo debe ser masterXX.curso1627.
-        puppet agent --server masterXX.curso1617 --test: Comprobar el estado del agente puppet.
-        puppet agent -t --debug --verbose: Comprobar el estado del agente puppet.
-        facter: Para consultar datos de la máquina windows, como por ejemplo la versión de puppet del cliente.
-        puppet resource user nombre-alumno1: Para ver la configuración puppet del usuario.
-        puppet resource file c:\Users: Para var la configuración puppet de la carpeta.
-
-Veamos imagen de ejemplo:
-
-puppet-resource-windows
-
-    Configuramos en el master el fichero /etc/puppet/manifests/classes/hostwindows4.pp para el cliente Windows:
-
-class hostwindows4 {
-  user { 'soldado1':
-    ensure => 'present',
-    groups => ['Administradores'],
-  }
-
-  user { 'aldeano1':
-    ensure => 'present',
-    groups => ['Usuarios'],
-  }
-}
-
-    Crear un nuevo fichero de configuración para la máquina cliente Windows con el nombre /etc/puppet/manifests/classes/hostalumno5.pp.
-    Incluir configuraciones elegidas por el alumno y probarlas.
+![imagen76](./images/76.png)
 
 ## **6.3. Comprobamos Los Cambios.**
 
@@ -454,15 +427,88 @@ Vamos al Cliente 2.
 
 Con los comandos siguientes podremos hacernos una idea de como terminar de configurar el fichero puppet del master para la máquina Windows.
 
-Iniciamos la consola puppet como administrador y probamos los siguientes comandos.
+Iniciamos la consola puppet como administrador y probamos los comandos.
 
 ~~~
-puppet agent --configprint server, debe mostrar el nombre del servidor puppet. En nuestro ejemplo debe ser master20.curso1718.
+puppet agent --configprint server, debe mostrar el nombre del Servidor puppet. En nuestro ejemplo debe ser master20.curso1718.
+puppet agent --server master20.curso1718 --test, comprobamos el estado del agente puppet.
+~~~
+
+![imagen77](./images/77.png)
+
+Si tenemos problemas con el certificado de la máquina Windows Cliente tenemos que seguir los siguientes pasos para eliminar cualquier rastro de los mismos y poder reintentar la comunicación.
+
+Borramos en el maestro el certificado correspondiente a esa máquina puppet cert clean nombre-netbios-cliente.
+
+![imagen78](./images/78.png)
+
+Desinstalamos el agente puppet en Windows.
+
+![imagen79](./images/79.png)
+
+Borramos las carpetas de datos del puppet, ya que no se borran en la desinstalación. Las carpetas son las siguientes.
+
+~~~
+`C:\ProgramData\PuppetLabs` y `C:\Users\usuario\.puppet`.
+~~~
+
+![imagen80](./images/80.png)
+
+![imagen81](./images/81.png)
+
+Después reinstalamos y volvemos a probar.
+
+Vamos al Cliente 2.
+
+Con los comandos siguientes podremos hacernos una idea de como terminar de configurar el fichero puppet del master para la máquina Windows.
+
+Iniciamos la consola puppet como administrador y probamos los comandos.
+
+~~~
+puppet agent --configprint server, debe mostrar el nombre del Servidor puppet. En nuestro ejemplo debe ser master20.curso1718.
 puppet agent --server master20.curso1718 --test, comprobamos el estado del agente puppet.
 puppet agent -t --debug --verbose, comprobamos el estado del agente puppet.
-facter, para consultar datos de la máquina Windows, como por ejemplo la versión de puppet del Cliente.
+facter, para consultar datos de la máquina windows, como por ejemplo la versión de puppet del Cliente.
 puppet resource user noelia, para ver la configuración puppet del usuario.
 puppet resource file c:\Users, para ver la configuración puppet de la carpeta.
 ~~~
+
+![imagen82](./images/82.png)
+
+![imagen83](./images/83.png)
+
+![imagen84](./images/84.png)
+
+---
+
+# **7. Configuración hostwindows4.pp**
+
+Configuramos en el master el fichero `/etc/puppet/manifests/classes/hostwindows4.pp` para el Cliente Windows.
+
+![imagen85](./images/85.png)
+
+El contenido de `/etc/puppet/manifests/classes/hostwindows4.pp` es el siguiente.
+
+![imagen86](./images/86.png)
+
+Comprobamos que funciona.
+
+![imagen87](./images/87.png)
+
+---
+
+# **8. Configuración Personalizada: hostalumno5.pp.**
+
+Creamos un nuevo fichero de configuración para la máquina cliente Windows con el nombre `/etc/puppet/manifests/classes/hostalumno5.pp`.
+
+![imagen88](./images/88.png)
+
+El contenido de `/etc/puppet/manifests/classes/hostalumno5.pp` es el siguiente.
+
+![imagen89](./images/89.png)
+
+Incluimos configuraciones elegidas y las probamos.
+
+![imagen90](./images/90.png)
 
 ---
