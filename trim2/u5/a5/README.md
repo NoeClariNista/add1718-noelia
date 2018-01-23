@@ -329,7 +329,7 @@ Ejecutamos tree `/etc/puppet` en el Servidor, para comprobar ficheros y director
 
 Vamos al Cliente 1 y comprobamos que se hayan aplicado los cambios solicitados.
 
-![imagen55](./images/55.png)
+![imagen55](./images/55.png) <- falta.
 
 ---
 
@@ -355,7 +355,7 @@ Ahora vamos a modificar el fichero site.pp del master, para que tenga en cuenta 
 
 ![imagen58](./images/58.png)
 
-![imagen509](./images/59.png)
+![imagen59](./images/59.png)
 
 Ejecutamos tree `/etc/puppet` para confirmar que tenemos los nuevos archivos.
 
@@ -393,17 +393,15 @@ Descargamos e instalamos la versión de Agente Puppet para Windows similar al Pu
 
 ![imagen69](./images/69.png)
 
-![imagen70](./images/70.png)
-
 El fichero `puppet.conf` en Windows está en `C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf`. (ProgramData es una ruta oculta). Revisamos que tenga algo como lo siguiente.
 
-![imagen71](./images/71.png)
+![imagen70](./images/70.png)
 
 Reiniciamos la MV.
 
 Debemos aceptar el certificado en el master para este nuevo Cliente. Consultamos el apartado 4 y repetimos los pasos para este nuevo Cliente.
 
-![imagen72](./images/72.png)
+![imagen71](./images/71.png)
 
 En el master no nos aparece el certificado del Cliente Windows para ser aceptado, probamos lo siguiente para conseguir que aparesca.
 
@@ -411,15 +409,15 @@ Vamos a cli2alu20.
 
 Ejecutamos el Agente Puppet y abrimos la Consola Puppet. Ejecutamos puppet agent --server master20.curso1718 --test.
 
-![imagen73](./images/73.png)
+![imagen72](./images/72.png)
 
 Vamos a master20 y ejecutamos puppet cert list.
+
+![imagen73](./images/73.png)
 
 ![imagen74](./images/74.png)
 
 ![imagen75](./images/75.png)
-
-![imagen76](./images/76.png)
 
 ## **6.3. Comprobamos Los Cambios.**
 
@@ -434,15 +432,17 @@ puppet agent --configprint server, debe mostrar el nombre del Servidor puppet. E
 puppet agent --server master20.curso1718 --test, comprobamos el estado del agente puppet.
 ~~~
 
-![imagen77](./images/77.png)
+![imagen76](./images/76.png)
 
 Si tenemos problemas con el certificado de la máquina Windows Cliente tenemos que seguir los siguientes pasos para eliminar cualquier rastro de los mismos y poder reintentar la comunicación.
 
 Borramos en el maestro el certificado correspondiente a esa máquina puppet cert clean nombre-netbios-cliente.
 
-![imagen78](./images/78.png)
+![imagen77](./images/77.png)
 
 Desinstalamos el agente puppet en Windows.
+
+![imagen78](./images/78.png)
 
 ![imagen79](./images/79.png)
 
