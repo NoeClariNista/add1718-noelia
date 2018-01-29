@@ -6,7 +6,13 @@ ___
 
 # **1. Windows.**
 
-Vamos a hacer una tarea programada y otra diferida con Windows.
+Vamos a hacer una tarea programada y una tarea diferida con Windows.
+
+En Windows 10 para abrir el programador de tareas hacemos Panel de control -> Herramientas administrativas -> Programador de tareas.
+
+![imagen01](./images/01.png)
+
+![imagen02](./images/02.png)
 
 ## **1.1. Tarea Diferida.**
 
@@ -14,23 +20,51 @@ La tarea diferida se define para ejecutarse una sola vez en una fecha futura.
 
 Vamos a programar una tarea diferida para que nos muestre un mensaje en pantalla.
 
-En Windows 10 para abrir el programador de tareas hacemos Panel de control -> Herramientas administrativas -> Programador de tareas.
+![imagen03](./images/03.png)
+
+![imagen04](./images/04.png)
+
+![imagen05](./images/05.png)
+
+![imagen06](./images/06.png)
+
+![imagen07](./images/07.png)
+
+![imagen08](./images/08.png)
+
+![imagen09](./images/09.png)
+
+![imagen10](./images/10.png)
+
+![imagen11](./images/11.png)
 
 ## **1.2. Tarea Periódica.**
 
 La tarea programada se define para ejecutarse periódicamente cada intervalo de tiempo.
 
-Vamos a programar una tarea periódica para apagar el equipo.
+Vamos a programar una tarea periódica para que nos muestre un mensaje en pantalla.
 
-El comando para apagar el sistema es shutdown.
+![imagen12](./images/12.png)
 
-shutdown /?: Muestra la ayuda del comando.
+![imagen13](./images/13.png)
+
+![imagen14](./images/14.png)
+
+![imagen15](./images/15.png)
+
+![imagen16](./images/16.png)
+
+![imagen17](./images/17.png)
+
+![imagen18](./images/18.png)
+
+![imagen19](./images/19.png)
 
 ---
 
 # **2. SO GNU/Linux.**
 
-Vamos a hacer una tarea programada y otra diferida con GNU/Linux.
+Vamos a hacer una tarea programada y una tarea diferida con GNU/Linux.
 
 ## **2.1. Tarea Diferida.**
 
@@ -52,13 +86,11 @@ Yast -> Servicios.
 systemctl status atd.
 ~~~
 
-Si el usuario no tuviera permisos para ejecutar at, consultar los ficheros: `/etc/at.deny` y `/etc/at.allow`.
+Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/etc/at.deny` y `/etc/at.allow`.
 
 ## **2.2. Tarea Periódica.**
 
-Programar una tarea periódica (crontab) para apagar el equipo.
-
-El comando para apagar el sistema es shutdown.
+Programamos una tarea periódica (crontab) que nos almacenara las fechas en un documento.
 
 Para programar una tarea periódica tenemos estas formas.
 
