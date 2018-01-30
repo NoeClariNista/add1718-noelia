@@ -6,7 +6,7 @@ ___
 
 # **1. Windows.**
 
-Vamos a hacer una tarea diferida y una tarea programada con Windows.
+Vamos a hacer una tarea diferida y una tarea periódica con Windows.
 
 En Windows 10 para abrir el programador de tareas iremos a Panel de control -> Herramientas administrativas -> Programador de tareas.
 
@@ -20,19 +20,33 @@ La tarea diferida se define para ejecutarse una sola vez en una fecha futura.
 
 Vamos a programar una tarea diferida para que nos permita abrir un fichero de texto en pantalla.
 
+Realizamos una tarea básica. Le Ponemos el nombre a la tarea, como por ejemplo, Tarea Hola Mundo.
+
 ![imagen03](./images/03.png)
+
+Queremos que se realice una vez.
 
 ![imagen04](./images/04.png)
 
+Añadimos la fecha y hora de cuando queremos que se realice la tarea.
+
 ![imagen05](./images/05.png)
+
+Queremos que se inicie un programa.
 
 ![imagen06](./images/06.png)
 
+Dicho programa es un mensaje que saldra en un documento TXT con el siguiente contenido.
+
 ![imagen07](./images/07.png)
+
+Ese documento TXT lo ponemos en nuestra tarea.
 
 ![imagen08](./images/08.png)
 
 ![imagen09](./images/09.png)
+
+Finalmente tenemos nuestra tarea hecha.
 
 ![imagen10](./images/10.png)
 
@@ -99,34 +113,31 @@ Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/
 
 ![imagen29](./images/29.png)
 
-Vamos a programar una tarea diferida (comando at) que nos mostrará un mensaje en pantalla.
+Vamos a programar una tarea diferida, comando at, que nos muestre un mensaje en pantalla.
 
-~~~
-at, crea una tarea diferida.
-atq, muestra los trabajos en cola.
-at -c 1, muestra la configuración del trabajo ID=1.
-atrm 1, elimina el trabajo con ID=1.
-~~~
-
-Otra forma de trabajar con at: at 11:45 Feb 28 < scriptname.sh.
+Creamos un script que muestra un mensaje de aviso.
 
 ![imagen30](./images/30.png)
 
+El contenido del script es el siguiente.
+
 ![imagen31](./images/31.png)
+
+Instalamos zenity con el comando zypper install zenity.
 
 ![imagen32](./images/32.png)
 
+Utilizamos el comando atq para comprobar que no hay ningún trabajo. Usamos el comando at 11:26 Jan 25 < scriptname.sh para programar una tarea diferida. Volvemos a utilizar el comando atq y vemos que hay una tarea diferida.
+
 ![imagen33](./images/33.png)
+
+Vemos que nos sale el mensaje por pantalla.
 
 ![imagen34](./images/34.png)
 
-![imagen35](./images/35.png)
+Volvemos a utilizar el comando atq para que nos muestre que no hay trabajos en cola.
 
-•	Usar comando at para programar una tarea diferida. Por ejemplo para mostrar un mensaje en pantalla.
-•	atq, consultamos que SI hay una tarea programada.
-•	at -c 1, muestra la configuración del trabajo ID=1.
-•	Capturar imagen cuando se ejecute la tarea.
-•	atq, consultamos que ya NO hay tareas.
+![imagen35](./images/35.png)
 
 ## **2.2. Tarea Periódica.**
 
@@ -148,12 +159,15 @@ crontab -e, abre el editor para crear una nueva tarea periódica.
 
 ![imagen37](./images/37.png)
 
+El contenido es el siguiente.
 
 ![imagen38](./images/38.png)
 
 crontab -l, para consultar la tarea que tenemos programada.
 
 ![imagen39](./images/39.png)
+
+Lo que se realizo se guarda en el siguiente fichero.
 
 ![imagen40](./images/40.png)
 
