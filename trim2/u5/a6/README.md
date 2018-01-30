@@ -125,7 +125,7 @@ Configuramos nuestro usuario para que pueda ejecutar el comando at.
 
 ![imagen27](./images/27.png)
 
-Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/etc/at.deny` y `/etc/at.allow`.
+Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros `/etc/at.deny` y `/etc/at.allow`.
 
 ![imagen28](./images/28.png)
 
