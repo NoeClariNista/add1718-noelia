@@ -66,7 +66,7 @@ Queremos que se realice diariamente.
 
 ![imagen13](./images/13.png)
 
-Añadimos la fecha y hora de cuando queremos que se realice la tarea.
+Añadimos la fecha y hora de cuando queremos que se realice la tarea y también cada cuantos días queremos que se repita.
 
 ![imagen14](./images/14.png)
 
@@ -105,9 +105,13 @@ Yast -> Servicios.
 systemctl status atd.
 ~~~
 
+* Inhabilitado y inactivo.
+
 ![imagen21](./images/21.png)
 
 ![imagen22](./images/22.png)
+
+* Habilitado y activo.
 
 ![imagen23](./images/23.png)
 
@@ -127,9 +131,9 @@ Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/
 
 ![imagen29](./images/29.png)
 
-Vamos a programar una tarea diferida, comando at, que nos muestre un mensaje en pantalla.
+Vamos a programar una tarea diferida, con el comando at, que nos muestre un mensaje en pantalla.
 
-Creamos un script que muestra un mensaje de aviso.
+Creamos un script que nos mostrara un mensaje de aviso.
 
 ![imagen30](./images/30.png)
 
@@ -141,7 +145,7 @@ Instalamos zenity con el comando zypper install zenity.
 
 ![imagen32](./images/32.png)
 
-Utilizamos el comando atq para comprobar que no hay ningún trabajo. Usamos el comando at 11:26 Jan 25 < scriptname.sh para programar una tarea diferida. Volvemos a utilizar el comando atq y vemos que hay una tarea diferida.
+Utilizamos el comando atq para comprobar que no hay ningún trabajo. Usamos el comando `at 11:26 Jan 25 < scriptname.sh` para programar una tarea diferida. Volvemos a utilizar el comando atq y vemos que hay una tarea diferida.
 
 ![imagen33](./images/33.png)
 
@@ -155,33 +159,27 @@ Volvemos a utilizar el comando atq para que nos muestre que no hay trabajos en c
 
 ## **2.2. Tarea Periódica.**
 
-Programamos una tarea periódica (crontab) que nos almacenara las fechas en un documento.
+Programamos una tarea periódica, con crontab, que nos almacenara las fechas en un documento.
 
-Definir una tarea periódica (crontab) para apagar el equipo todos los días a una hora/minuto determinada.
+Definir una tarea periódica, con crontab, para apagar el equipo todos los días a una hora/minuto determinada.
 
-Para programar una tarea periódica tenemos estas formas.
-
-Los usuarios usan el comando crontab para programar sus tareas.
-
-El usuario root usa el fichero `/etc/crontab` para programar las tareas del sistema.
-
-crontab -l, para consultar que no hay tareas programadas.
+Para consultar que no hay tareas programadas utilizamos el comando crontab -l.
 
 ![imagen36](./images/36.png)
 
-crontab -e, abre el editor para crear una nueva tarea periódica.
+Para abrir el editor para crear una nueva tarea periódica utilizamos el comando crontab -e.
 
 ![imagen37](./images/37.png)
 
-El contenido es el siguiente.
+El contenido de la nueva tarea es el siguiente.
 
 ![imagen38](./images/38.png)
 
-crontab -l, para consultar la tarea que tenemos programada.
+Para consultar la tarea que tenemos programada utilizamos denuevo el comando crontab -l, .
 
 ![imagen39](./images/39.png)
 
-Lo que se realizo se guarda en el siguiente fichero.
+La tarea que se realizo nos guarda en `cron.log` la información que va realizando y dicha información es la siguiente.
 
 ![imagen40](./images/40.png)
 
