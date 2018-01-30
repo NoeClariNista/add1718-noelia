@@ -70,6 +70,33 @@ Vamos a hacer una tarea programada y una tarea diferida con GNU/Linux.
 
 Configurarmos nuestro usuario para que pueda ejecutar el comando at.
 
+![imagen20](./images/20.png)
+
+![imagen21](./images/21.png)
+
+![imagen22](./images/22.png)
+
+El servicio atd es el responsable de la ejecución de los comandos at. Para asegurarnos de que esté en ejecución.
+
+~~~
+Yast -> Servicios.
+systemctl status atd.
+~~~
+
+![imagen23](./images/23.png)
+
+![imagen24](./images/24.png)
+
+![imagen25](./images/25.png)
+
+![imagen26](./images/26.png)
+
+Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/etc/at.deny` y `/etc/at.allow`.
+
+![imagen27](./images/27.png)
+
+![imagen28](./images/28.png)
+
 Vamos a programar una tarea diferida (comando at) que nos mostrará un mensaje en pantalla.
 
 ~~~
@@ -79,14 +106,19 @@ at -c 1, muestra la configuración del trabajo ID=1.
 atrm 1, elimina el trabajo con ID=1.
 ~~~
 
-El servicio atd es el responsable de la ejecución de los comandos at. Para asegurarnos de que esté en ejecución.
+![imagen29](./images/29.png)
 
-~~~
-Yast -> Servicios.
-systemctl status atd.
-~~~
+![imagen30](./images/30.png)
 
-Si el usuario no tuviera permisos para ejecutar at, consultamos los ficheros: `/etc/at.deny` y `/etc/at.allow`.
+![imagen31](./images/31.png)
+
+![imagen32](./images/32.png)
+
+![imagen33](./images/33.png)
+
+![imagen34](./images/34.png)
+
+![imagen35](./images/35.png)
 
 ## **2.2. Tarea Periódica.**
 
@@ -97,5 +129,19 @@ Para programar una tarea periódica tenemos estas formas.
 Los usuarios usan el comando crontab para programar sus tareas.
 
 El usuario root usa el fichero `/etc/crontab` para programar las tareas del sistema.
+
+![imagen36](./images/36.png)
+
+![imagen37](./images/37.png)
+
+![imagen38](./images/38.png)
+
+![imagen39](./images/39.png)
+
+![imagen40](./images/40.png)
+
+![imagen41](./images/41.png)
+
+![imagen42](./images/42.png)
 
 ---
