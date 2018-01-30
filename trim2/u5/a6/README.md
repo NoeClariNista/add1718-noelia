@@ -36,7 +36,7 @@ Queremos que se inicie un programa.
 
 ![imagen06](./images/06.png)
 
-Dicho programa es un mensaje que saldra en un documento TXT con el siguiente contenido.
+Dicho programa es un mensaje que saldrá en un documento TXT con el siguiente contenido.
 
 ![imagen07](./images/07.png)
 
@@ -58,19 +58,33 @@ La tarea programada se define para ejecutarse periódicamente cada intervalo de 
 
 Vamos a programar una tarea periódica para apagar el equipo.
 
+Realizamos una tarea básica. Le Ponemos el nombre a la tarea, como por ejemplo, Tarea Shutdown.
+
 ![imagen12](./images/12.png)
+
+Queremos que se realice diariamente.
 
 ![imagen13](./images/13.png)
 
+Añadimos la fecha y hora de cuando queremos que se realice la tarea.
+
 ![imagen14](./images/14.png)
+
+Queremos que se inicie un programa.
 
 ![imagen15](./images/15.png)
 
+Dicho programa es un scrip con el siguiente contenido.
+
 ![imagen16](./images/16.png)
+
+Ese scrip lo ponemos en nuestra tarea.
 
 ![imagen17](./images/17.png)
 
 ![imagen18](./images/18.png)
+
+Finalmente tenemos nuestra tarea hecha.
 
 ![imagen19](./images/19.png)
 
@@ -80,7 +94,7 @@ Vamos a programar una tarea periódica para apagar el equipo.
 
 # **2. SO GNU/Linux.**
 
-Vamos a hacer una tarea diferida y una tarea programada con GNU/Linux.
+Vamos a hacer una tarea diferida y una tarea periódica con GNU/Linux.
 
 ## **2.1. Tarea Diferida.**
 
@@ -170,9 +184,5 @@ crontab -l, para consultar la tarea que tenemos programada.
 Lo que se realizo se guarda en el siguiente fichero.
 
 ![imagen40](./images/40.png)
-
-
-
-
 
 ---
