@@ -6,9 +6,9 @@ ___
 
 # **1. Windows.**
 
-Vamos a hacer una tarea programada y una tarea diferida con Windows.
+Vamos a hacer una tarea diferida y una tarea programada con Windows.
 
-En Windows 10 para abrir el programador de tareas hacemos Panel de control -> Herramientas administrativas -> Programador de tareas.
+En Windows 10 para abrir el programador de tareas iremos a Panel de control -> Herramientas administrativas -> Programador de tareas.
 
 ![imagen01](./images/01.png)
 
@@ -18,7 +18,7 @@ En Windows 10 para abrir el programador de tareas hacemos Panel de control -> He
 
 La tarea diferida se define para ejecutarse una sola vez en una fecha futura.
 
-Vamos a programar una tarea diferida para que nos muestre un mensaje en pantalla.
+Vamos a programar una tarea diferida para que nos permita abrir un fichero de texto en pantalla.
 
 ![imagen03](./images/03.png)
 
@@ -42,7 +42,7 @@ Vamos a programar una tarea diferida para que nos muestre un mensaje en pantalla
 
 La tarea programada se define para ejecutarse periódicamente cada intervalo de tiempo.
 
-Vamos a programar una tarea periódica para que nos muestre un mensaje en pantalla.
+Vamos a programar una tarea periódica para apagar el equipo.
 
 ![imagen12](./images/12.png)
 
