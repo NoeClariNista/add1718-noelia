@@ -3,12 +3,12 @@
 fichero = ARGV[0]
 
 if ARGV.size != 1
-  puts "Te Falta Algún Valor En Los Argumentos."
+  puts "Te Faltan O Te Sobran Argumentos."
 else
   contenido = `cat #{fichero}`
   lineas = contenido.split("\n")
   lineas.each do |linea|
-    campos = linea.split(" ")
+    campos = linea.split()
  	num1 = campos[0].to_i
     op = campos[1]
     num2 = campos[2].to_i
