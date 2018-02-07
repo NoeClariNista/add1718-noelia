@@ -5,7 +5,7 @@ op = ARGV[1]
 num2 = ARGV[2].to_i
 
 if ARGV.size < 3
-  puts "Te falta algún valor en los argumentos."
+  puts "Te Falta Algún Valor En Los Argumentos."
 else
   if op == "+"
     puts "#{num1} #{op} #{num2} = #{num1 + num2}"
@@ -16,6 +16,6 @@ else
   elsif op == "/"
     puts "#{num1} #{op} #{num2} = #{num1 / num2}"  
   else
-    puts "ERROR"
+    puts "ERROR."
   end
 end
