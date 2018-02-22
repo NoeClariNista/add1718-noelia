@@ -29,7 +29,7 @@ lines.each do |users|
   var = "2> /dev/null 1> /dev/null"
   if user[4] == "add"
     if system("id #{user[0]} #{var}") == true
-	  puts "El Usuario #{user[0]} Ya Existe."
+      puts "El Usuario #{user[0]} Ya Existe."
     else
       system("useradd -m #{user[0]} #{var}")
       puts "El Usuario #{user[0]} Ha Sido Creado."
