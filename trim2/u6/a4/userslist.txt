@@ -1,5 +1,0 @@
-noe:hernandez:123:28-03-1992:add
-lia:hernandez: :28-03-1992:add
-noe:hernandez:123:28-03-1992:add
-noe:hernandez:123:28-03-1992:delete
-noeclarinista:hernandez:hola:28-03-1992:del
