@@ -46,4 +46,24 @@ ___
 
 * ### **Actividad 2.** **[Docker.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim2/u5/a2/README.md)**
 
+* ### **Actividad 5.** **[Puppet - OpenSUSE.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim2/u5/a5/README.md)**
+
+* ### **Actividad 6.** **[Tareas Programadas.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim2/u5/a6/README.md)**
+
+---
+
+## **Tema 6. Lenguaje De Guiones.**
+
+* ### **Actividad 1.** **[Bucles.](https://github.com/NoeClariNista/add1718-noelia/blob/master/trim2/u6/a1/tabla-del-7.rb)**
+
+* ### **Actividad 2.** **[Calculadora.](https://github.com/NoeClariNista/add1718-noelia/tree/master/trim2/u6/a2)**
+
+* ### **Actividad 3.** **[Script Delete Users.](https://github.com/NoeClariNista/add1718-noelia/tree/master/trim2/u6/a3)**
+
+* ### **Actividad 4.** **[Script Crear Y Borrar Usuarios.](https://github.com/NoeClariNista/add1718-noelia/tree/master/trim2/u6/a4)**
+
+---
+
+## **Tema 7. Administración De Procesos.**
+
 ---
